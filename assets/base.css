@@ -1,0 +1,11 @@
+/* Regras comuns às três páginas do site de estudos. */
+body { margin: 0; }
+[hidden]:not([hidden=until-found i]) { display: none !important; }
+img { max-width: 100%; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+
+/* Link de volta à home, no cronograma e no curso */
+.hubnav { display: flex; justify-content: space-between; gap: 12px; padding-top: 18px; font-size: 13px; font-weight: 600; }
+.hubnav a, .hubback { color: var(--text-2); text-decoration: none; }
+.hubnav a:hover, .hubback:hover { color: var(--accent); }
+.hubback { font-size: 13px; font-weight: 600; display: inline-block; font-family: var(--font-body, var(--f-body)); }

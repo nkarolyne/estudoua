@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Central de estudos · Nicole</title>
+<meta name="description" content="Cronograma e curso de DITA, XML e Git: a rota até a vaga de User Assistance.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/hub.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="./"><i>N</i>Nicole Karolyne</a>
+    <button class="theme" id="themeBtn" type="button">Alternar tema</button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Rota até User Assistance</p>
+      <h1>Central de <em>estudos</em></h1>
+      <p>Cronograma, curso de XML, DITA e Git, tudo num lugar só. O progresso fica salvo neste aparelho.</p>
+    </div>
+    <div class="count" aria-label="Contagem regressiva">
+      <b id="days">–</b>
+      <span>dias até 15 jan 2027</span>
+    </div>
+  </section>
+
+  <main class="cards">
+    <a class="card card-a" href="cronograma.html">
+      <div>
+        <p class="k">Cronograma · 14 out → 15 jan</p>
+        <h2>Rota até a vaga</h2>
+        <p class="d">CV e LinkedIn, estudos, três cases e o site no ar. Linha do tempo, semanas, quadro e calendário.</p>
+      </div>
+      <div>
+        <div class="big"><b id="rDone">0/0</b><span>tarefas feitas</span></div>
+        <div class="bar" aria-hidden="true"><i id="rBar"></i></div>
+      </div>
+      <div>
+        <p class="lbl" id="rLbl">Em foco agora</p>
+        <ul class="focus" id="rFocus"></ul>
+      </div>
+      <span class="cta">Abrir cronograma</span>
+    </a>
+
+    <a class="card card-b" href="curso.html" id="cursoLink">
+      <div>
+        <p class="k">Curso · 42 aulas curtas</p>
+        <h2>DITA do zero</h2>
+        <p class="d">XML, DITA, Git e o trabalho de UA no SAP, com prática em cada página.</p>
+      </div>
+      <div>
+        <div class="big"><b id="cPct">0%</b><span id="cSub">0 de 42 aulas</span></div>
+        <div class="bar" aria-hidden="true"><i id="cBar"></i></div>
+      </div>
+      <div>
+        <p class="lbl">Próxima aula</p>
+        <p id="cNext" style="font-weight:600">Antes de começar</p>
+      </div>
+      <span class="cta" id="cCta">Começar curso</span>
+    </a>
+  </main>
+
+  <footer class="foot">
+    <span>Progresso salvo só neste navegador. Em outro aparelho, o progresso começa do zero.</span>
+  </footer>
+</div>
+<script>window.LESSONS = [["0-1", "Antes de começar"], ["0-2", "Da Renner para UA"], ["0-3", "Texto corrido x estruturado"], ["0-4", "Conteúdo x aparência"], ["0-5", "Escrever em blocos"], ["0-6", "Por que usar Git"], ["0-7", "Palavras do curso"], ["1-1", "O que é XML"], ["1-2", "Anatomia de um elemento"], ["1-3", "Caixas dentro de caixas"], ["1-4", "Atributos"], ["1-5", "As 5 regras"], ["1-6", "Detalhes de todo arquivo"], ["1-7", "Prática: conserte o XML"], ["1-8", "Prática: escreva do zero"], ["1-9", "Guia rápido do VS Code"], ["2-1", "O que é DITA"], ["2-2", "Os 3 tipos de tópico"], ["2-3", "O esqueleto de um tópico"], ["2-4", "Prática: concept"], ["2-5", "Prática: task"], ["2-6", "Prática: reference"], ["2-7", "Mapa: o sumário"], ["2-8", "Reúso com conref"], ["2-9", "Gerar o site"], ["3-1", "O que é controle de versão"], ["3-2", "Terminal sem medo"], ["3-3", "Instalar o Git"], ["3-4", "As 3 áreas e o commit"], ["3-5", "Branch e merge"], ["3-6", "Prática: terminal simulado"], ["3-7", "Git no seu projeto"], ["3-8", "Enviar para o GitHub"], ["3-9", "Publicar e pedir revisão"], ["4-1", "Seu projeto final"], ["4-2", "Apresentar no portfólio"], ["5-1", "O trabalho de UA no SAP"], ["5-2", "SAP Logon e transações"], ["5-3", "Versões: ordens de transporte"], ["5-4", "Ler o código para achar o texto"], ["5-5", "Prática: mensagem de erro"], ["5-6", "Próximos passos"]];</script>
+<script src="assets/hub.js"></script>
+</body>
+</html>

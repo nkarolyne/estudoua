@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Curso DITA do zero · Central de estudos</title>
+<meta name="description" content="Curso de XML, DITA e Git para Content Designers e UX Writers.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/curso.css">
+</head>
+<body>
+
+
+<div class="app">
+  <header class="topbar">
+    <button class="topbar__menu" id="open-nav" type="button" aria-controls="side" aria-expanded="false">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Aulas
+    </button>
+    <span class="topbar__where" id="where"></span>
+    <span class="topbar__pct" id="pct-m">0%</span>
+  </header>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <aside class="side" id="side" aria-label="Índice do curso">
+    <div class="side__head">
+      <a class="hubback" href="./">← Central de estudos</a>
+      <div class="side__brand"><b>DITA do zero</b><button class="side__close" id="close-nav" type="button">Fechar</button></div>
+      <div class="prog"><div class="bar"><span id="bar"></span></div><span id="bar-text">0%</span></div>
+      <button class="reset-btn" type="button" id="reset-btn">Recomeçar curso</button>
+    </div>
+    <nav class="side__nav" id="nav"></nav>
+  </aside>
+
+  <main class="content" id="content">
+<section class="cover" id="cover" hidden>
+  <a class="hubback" href="./">← Central de estudos</a>
+  <p class="l-eyebrow">Curso para Content Designers e UX Writers</p>
+  <h1>DITA do zero</h1>
+  <p class="l-goal">Documentação estruturada para quem já escreve bem: a lógica, o XML, o DITA, o versionamento e o trabalho de UA dentro do SAP. Uma página por vez, com prática em cada etapa.</p>
+  <div class="cover-meta"><span><b>42</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
+  <div class="modules">
+    <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Do UX Writing à User Assistance.</span></div>
+    <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas.</span></div>
+    <div class="mcard"><span class="k">Módulo 2</span><b>DITA</b><span>Tópicos, mapas e reúso.</span></div>
+    <div class="mcard"><span class="k">Módulo 3</span><b>Git e GitHub</b><span>Histórico e revisão.</span></div>
+    <div class="mcard"><span class="k">Final</span><b>Projeto</b><span>Central de ajuda publicada.</span></div>
+    <div class="mcard"><span class="k">Extra</span><b>UA no SAP</b><span>Textos dentro do sistema.</span></div>
+  </div>
+  <button class="start-btn" type="button" id="start-btn">Iniciar curso</button>
+</section>
+
+
+<!-- ═════════════════ MÓDULO 0 · INTRODUÇÃO ═════════════════ -->
+
+<section class="lesson" data-id="0-1" data-mod="0" data-short="Antes de começar">
+  <p class="l-eyebrow">Introdução</p>
+  <h1>Antes de começar</h1>
+  <p class="l-goal">Você já sabe escrever para pessoas. Este curso ensina a escrever de um jeito que o computador também entende.</p>
+  <div class="prose">
+    <p>Times de <strong>User Assistance</strong> (documentação de produto) escrevem a ajuda, os guias e os textos que aparecem dentro de um software. Em empresas grandes, esse conteúdo é escrito em <strong>blocos organizados</strong>, guardado com <strong>histórico de versões</strong> e publicado em vários lugares ao mesmo tempo.</p>
+    <p>Para trabalhar assim, você precisa de três coisas: entender a <strong>lógica</strong> desse tipo de documentação, saber ler e escrever <strong>XML/DITA</strong> e usar o básico de <strong>Git</strong>. É isso que você vai aprender aqui, do zero.</p>
+  </div>
+  <h2>Como o curso está organizado</h2>
+  <div class="modules">
+    <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Por que escrever em blocos com etiquetas. Sem código ainda.</span></div>
+    <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas, regra por regra.</span></div>
+    <div class="mcard"><span class="k">Módulo 2</span><b>DITA</b><span>As etiquetas combinadas para documentação.</span></div>
+    <div class="mcard"><span class="k">Módulo 3</span><b>Git e GitHub</b><span>Histórico, revisão e publicação.</span></div>
+    <div class="mcard"><span class="k">Final</span><b>Projeto</b><span>Uma central de ajuda publicada para o portfólio.</span></div>
+    <div class="mcard"><span class="k">Extra</span><b>UA no SAP</b><span>Onde ficam os textos dentro do sistema e como eles são versionados.</span></div>
+  </div>
+  <h2>Como cada página funciona</h2>
+  <div class="prose"><ul>
+    <li><strong>Explicação curta</strong>, com uma comparação do dia a dia.</li>
+    <li><strong>Faça agora:</strong> um exercício nesta própria página. Você não precisa instalar nada até o fim do Módulo 1.</li>
+    <li><strong>Você aprendeu:</strong> um resumo para revisar depois.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Ritmo sugerido</b><p>São cerca de 7 a 9 horas no total. Faça uma ou duas páginas por vez. Não pule a introdução: ela explica a lógica que faz o resto ter sentido.</p></div>
+  <div class="callout c-sum"><b>Você vai precisar</b><ul><li>O Mac de casa, com o VS Code (já instalado).</li><li>Internet para baixar alguns programas gratuitos nos módulos 2 e 3.</li><li>Nenhum conhecimento de programação.</li></ul></div>
+</section>
+
+<section class="lesson" data-id="0-2" data-mod="0" data-short="Da Renner para UA" hidden>
+  <p class="l-eyebrow">Introdução · Ponto de partida</p>
+  <h1>Do UX Writing à User Assistance</h1>
+  <p class="l-goal">Perceber que você já faz boa parte desse trabalho, e ver com clareza o que é novo.</p>
+  <div class="prose">
+    <p>Na Renner, você escreve para pessoas que usam um app de varejo. Em <strong>User Assistance</strong> (UA), você escreve para pessoas que usam um software de empresa: sistemas de finanças, compras, estoque ou RH.</p>
+    <p>O público e o produto mudam. O raciocínio continua o mesmo: entender quem lê, o que a pessoa precisa fazer agora e escrever só o necessário para ela seguir.</p>
+  </div>
+  <h2>O que você já faz, com o nome usado em UA</h2>
+  <div class="scroll-x"><table class="tbl bridge">
+    <thead><tr><th>Na Renner</th><th>Em User Assistance</th><th>Onde aparece no curso</th></tr></thead>
+    <tbody>
+      <tr><td>Manuais de Tom e Voz e Guia de Redação</td><td>Guia de estilo de documentação</td><td>Módulo 2: o DITA transforma regras de estilo em estrutura (todo passo é um <code>&lt;cmd&gt;</code> com verbo).</td></tr>
+      <tr><td>Vocabulário Controlado e Glossário</td><td>Gestão de terminologia</td><td>Módulo 2 e Projeto: glossário em DITA e reúso de trechos com conref.</td></tr>
+      <tr><td>Microcopy: botões, erros, estados vazios</td><td>Textos de interface, mensagens do sistema e ajuda de campo</td><td>Extra · UA no SAP: mensagens e ajuda de campo (F1) dentro do sistema.</td></tr>
+      <tr><td>Fluxos completos e Content First</td><td>Arquitetura de informação e tópicos de tarefa</td><td>Módulo 2: task, mapa e hierarquia.</td></tr>
+      <tr><td>Roteiros de atendimento (Santander)</td><td>Procedimentos passo a passo</td><td>Módulo 2: a estrutura de uma task.</td></tr>
+      <tr><td>Testes de compreensão</td><td>Validação de documentação com usuários</td><td>Os mesmos métodos. Não muda nada.</td></tr>
+      <tr><td>Parceria com PO, CX e Marketing</td><td>Trabalho com desenvolvedores e gerentes de produto</td><td>Módulo 3: Jira, Git e pull request.</td></tr>
+      <tr><td>Conteúdo acessível</td><td>Saídas acessíveis geradas a partir da estrutura</td><td>Introdução: estrutura bem feita gera páginas acessíveis.</td></tr>
+    </tbody>
+  </table></div>
+  <h2>O que é realmente novo</h2>
+  <div class="prose"><ol>
+    <li><strong>Escrever dentro de etiquetas.</strong> Em vez de Figma ou Google Docs, o texto fica em arquivos XML/DITA.</li>
+    <li><strong>Versionar texto.</strong> Cada mudança é registrada e revisada antes de publicar: com Git nos projetos de documentação e com ordens de transporte dentro do SAP.</li>
+    <li><strong>Trabalhar dentro do sistema.</strong> Entrar pelo SAP Logon e editar textos ligados ao produto, como mensagens e ajuda de campo.</li>
+    <li><strong>Escala.</strong> Milhares de tópicos, atualizados a cada nova versão do produto.</li>
+    <li><strong>Inglês.</strong> Em empresas globais, a maior parte da documentação é escrita em inglês.</li>
+  </ol></div>
+  <div class="callout c-analogy"><b>Uma forma de pensar</b><p>O vocabulário controlado que você criou na Renner padroniza palavras. O DITA aplica a mesma ideia à estrutura do texto inteiro: títulos, passos, avisos e tabelas sempre no mesmo formato.</p></div>
+  <div class="callout c-warn"><b>Para usar numa entrevista</b><p>Ligue cada experiência a um termo de UA. Por exemplo: “Criei e mantive o vocabulário controlado do app da Renner. Em documentação, isso é gestão de terminologia, e no DITA eu faria com glossário e conref.”</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Tom e voz, terminologia, microcopy, fluxos e testes já fazem parte de UA. O que é novo: o formato (XML/DITA), o processo (Git), a leitura de código e a escala.</p></div>
+</section>
+
+<section class="lesson" data-id="0-3" data-mod="0" data-short="Texto corrido x estruturado" hidden>
+  <p class="l-eyebrow">Introdução · A lógica</p>
+  <h1>Texto corrido x texto estruturado</h1>
+  <p class="l-goal">Entender a ideia central de todo o curso: dar um rótulo para cada parte do texto.</p>
+  <div class="callout c-analogy"><b>Comparação</b><p>Pense numa receita escrita num guardanapo e na mesma receita num app de culinária. Os dois têm o mesmo texto. Mas o app sabe o que é <em>ingrediente</em>, o que é <em>tempo de forno</em> e o que é <em>passo</em>. Por isso ele consegue dobrar as porções, criar a lista de compras e ler os passos em voz alta. O guardanapo não consegue.</p></div>
+  <div class="prose"><p>A diferença é que, no app, cada parte da receita tem um <strong>rótulo</strong>. Documentação estruturada é exatamente isso: cada trecho do texto recebe um rótulo que diz <strong>o que ele é</strong> (título, resumo, passo, aviso).</p></div>
+  <h2>Veja a diferença</h2>
+  <div class="demo" id="demo-struct">
+    <div class="seg" role="group" aria-label="Modo de visualização">
+      <button type="button" data-mode="pessoa" aria-pressed="true">Como uma pessoa lê</button>
+      <button type="button" data-mode="maquina" aria-pressed="false">Como o computador vê</button>
+      <button type="button" data-mode="estrutura" aria-pressed="false">Com estrutura</button>
+    </div>
+    <div data-view></div>
+    <p class="demo-note" data-note></p>
+  </div>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>No modo <em>Como uma pessoa lê</em>, conte quantos passos existem e onde está o aviso.</li><li>Agora troque para <em>Com estrutura</em>. Ficou óbvio, certo? Para o computador também.</li></ol></div>
+  <h2>O que se ganha com estrutura</h2>
+  <div class="prose"><ul>
+    <li><strong>Consistência:</strong> todo passo, de todo manual, tem o mesmo formato.</li>
+    <li><strong>Reúso:</strong> o mesmo aviso aparece em vários lugares, escrito uma vez só.</li>
+    <li><strong>Vários formatos:</strong> o mesmo texto vira site, PDF ou ajuda dentro do app.</li>
+    <li><strong>Busca e tradução melhores:</strong> o sistema sabe o que é título, resumo e passo.</li>
+  </ul></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Documentação estruturada é texto com rótulos que dizem o que cada parte é. Isso permite que o computador organize, reaproveite e publique o conteúdo.</p></div>
+</section>
+
+<section class="lesson" data-id="0-4" data-mod="0" data-short="Conteúdo x aparência" hidden>
+  <p class="l-eyebrow">Introdução · A lógica</p>
+  <h1>Conteúdo separado da aparência</h1>
+  <p class="l-goal">Entender por que, nesse tipo de documentação, você não escolhe fonte, cor ou tamanho.</p>
+  <div class="prose">
+    <p>No Word, você escreve e formata ao mesmo tempo: deixa o título maior, coloca negrito, muda a cor. A aparência fica presa ao texto.</p>
+    <p>Na documentação estruturada, você só diz <strong>o que</strong> cada parte é. Uma ferramenta decide <strong>como</strong> isso vai aparecer, de acordo com o lugar onde será publicado.</p>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como entregar um texto para uma gráfica que já tem os modelos prontos. Você entrega uma vez, e ela imprime como cartaz, folheto ou cartão. Você não diagrama nada.</p></div>
+  <h2>Uma fonte, vários formatos</h2>
+  <div class="demo">
+    <div class="seg" role="tablist" aria-label="Formato de saída" id="out-tabs">
+      <button type="button" role="tab" data-out="site" aria-selected="true">Site de ajuda</button>
+      <button type="button" role="tab" data-out="pdf" aria-selected="false">PDF</button>
+      <button type="button" role="tab" data-out="app" aria-selected="false">Ajuda no app</button>
+    </div>
+    <div class="outputs">
+      <div><p class="out-label" style="margin-bottom:8px">A fonte (você escreve isto uma vez)</p><div class="code-wrap" data-code="src03" data-tag="enviar-relatorio.dita"></div></div>
+      <div><p class="out-label" style="margin-bottom:8px">O resultado publicado</p><div class="out-stage" id="out-stage"></div></div>
+    </div>
+    <p class="demo-note">Troque o formato: a fonte não muda nada. Só o resultado muda.</p>
+  </div>
+  <div class="prose"><p>A ferramenta que faz essa transformação se chama <strong>DITA-OT</strong> (DITA Open Toolkit). Pense nela como a gráfica. Você vai instalá-la no Módulo 2.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Você escreve só o conteúdo, com rótulos. A aparência é aplicada depois por uma ferramenta, e o mesmo conteúdo pode sair em vários formatos.</p></div>
+</section>
+
+<section class="lesson" data-id="0-5" data-mod="0" data-short="Escrever em blocos" hidden>
+  <p class="l-eyebrow">Introdução · A lógica</p>
+  <h1>Escrever em blocos: os tópicos</h1>
+  <p class="l-goal">Entender por que a documentação é dividida em pedaços pequenos e independentes.</p>
+  <div class="prose">
+    <p>Em vez de escrever um manual de 80 páginas de uma vez, você escreve <strong>tópicos</strong>: blocos curtos que respondem a <strong>uma pergunta</strong> só. Por exemplo: “O que é um relatório de despesas?” ou “Como enviar um relatório?”.</p>
+    <p>Depois, você monta os manuais escolhendo quais tópicos entram em cada um.</p>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>Tópicos são peças de Lego. Com as mesmas peças, você monta uma casa ou um carro. Se uma peça quebra, você troca só ela.</p></div>
+  <h2>Monte dois guias com os mesmos blocos</h2>
+  <div class="demo">
+    <p class="demo-note">Marque em qual guia cada tópico entra. Os tópicos usados nos dois guias foram escritos uma vez só.</p>
+    <div class="scroll-x"><table class="tbl blocks-tbl" id="blocks-tbl">
+      <thead><tr><th>Tópico</th><th>Guia do funcionário</th><th>Guia do gestor</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="guides" id="guides"></div>
+  </div>
+  <h2>Uma regra importante</h2>
+  <div class="prose"><p>Cada tópico precisa <strong>fazer sentido sozinho</strong>. A pessoa pode chegar nele por uma busca no Google, sem ter lido nada antes. Por isso, evite frases como “como vimos no capítulo anterior”.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Tópico é um bloco que responde a uma pergunta e funciona sozinho. Juntar tópicos de formas diferentes cria manuais diferentes. Isso se chama <strong>reúso</strong>.</p></div>
+</section>
+
+<section class="lesson" data-id="0-6" data-mod="0" data-short="Por que usar Git" hidden>
+  <p class="l-eyebrow">Introdução · A lógica</p>
+  <h1>Docs as code: por que redatores usam Git</h1>
+  <p class="l-goal">Entender como times grandes escrevem juntos sem perder versões.</p>
+  <div class="prose">
+    <p>Você provavelmente já viu arquivos como <code>relatorio_final_v3_revisado_AGORA_SIM.docx</code>. Agora imagine 20 pessoas editando 2 mil tópicos. É preciso saber <strong>quem mudou o quê, quando e por quê</strong>, e revisar antes de publicar.</p>
+    <p>A solução foi copiar o jeito como programadores trabalham. O nome disso é <strong>docs as code</strong> (documentação como código): os textos ficam em arquivos simples, com histórico no Git e revisão antes de publicar.</p>
+  </div>
+  <h2>O fluxo de trabalho</h2>
+  <div class="flow">
+    <div class="st"><em>1 · Jira</em><b>Recebe a tarefa</b><span>“Documentar a nova função de exportar.”</span></div>
+    <div class="st"><em>2 · VS Code</em><b>Escreve</b><span>Cria ou edita os tópicos.</span></div>
+    <div class="st"><em>3 · Git</em><b>Salva a versão</b><span>Com uma mensagem do que mudou.</span></div>
+    <div class="st"><em>4 · GitHub</em><b>Pede revisão</b><span>Alguém lê e aprova.</span></div>
+    <div class="st"><em>5 · DITA-OT</em><b>Publica</b><span>Vira site, PDF ou ajuda no app.</span></div>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como o histórico de versões do Google Docs, com duas diferenças: você decide quando salvar uma versão e sempre escreve uma frase explicando o que mudou.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Docs as code é tratar documentação como código: arquivos de texto, histórico com Git, revisão antes de publicar e publicação automática.</p></div>
+</section>
+
+<section class="lesson" data-id="0-7" data-mod="0" data-short="Palavras do curso" hidden>
+  <p class="l-eyebrow">Introdução · A lógica</p>
+  <h1>As ferramentas e as palavras do curso</h1>
+  <p class="l-goal">Ter um mapa de tudo que vai aparecer. Volte aqui sempre que uma palavra confundir.</p>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Palavra</th><th>O que é</th><th>Comparação</th></tr></thead>
+    <tbody>
+      <tr><td>XML</td><td>Uma forma de marcar texto com etiquetas.</td><td>O alfabeto e a gramática das etiquetas.</td></tr>
+      <tr><td>DITA</td><td>Um conjunto de etiquetas XML combinadas para documentação.</td><td>Um vocabulário controlado, só que de etiquetas.</td></tr>
+      <tr><td>Tópico</td><td>Um bloco que responde a uma pergunta.</td><td>Uma peça de Lego.</td></tr>
+      <tr><td>Mapa</td><td>Arquivo que diz quais tópicos entram num guia, e em que ordem.</td><td>O sumário de um livro.</td></tr>
+      <tr><td>DITA-OT</td><td>Programa que transforma DITA em site ou PDF.</td><td>A gráfica.</td></tr>
+      <tr><td>VS Code</td><td>Editor de texto para esses arquivos.</td><td>O caderno.</td></tr>
+      <tr><td>Terminal</td><td>Janela onde você dá ordens ao computador digitando.</td><td>Conversar por mensagem com o computador.</td></tr>
+      <tr><td>Git</td><td>Programa que guarda o histórico de versões.</td><td>Uma câmera que tira foto do projeto.</td></tr>
+      <tr><td>GitHub</td><td>Site que guarda uma cópia online e organiza revisões.</td><td>O álbum de fotos compartilhado.</td></tr>
+      <tr><td>Jira</td><td>Ferramenta de tarefas da equipe.</td><td>O quadro de post-its.</td></tr>
+      <tr><td>SAP Logon</td><td>Programa para entrar nos sistemas SAP. É onde ficam muitos textos do produto.</td><td>A porta de entrada do prédio.</td></tr>
+      <tr><td>Ordem de transporte</td><td>Pacote que registra as mudanças feitas dentro do SAP, inclusive de textos.</td><td>O “commit” do mundo SAP.</td></tr>
+      <tr><td>ABAP</td><td>Linguagem de programação da SAP, usada pelos desenvolvedores.</td><td>O motor do sistema. Você não programa nele.</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Como tudo se conecta</h2>
+  <div class="prose"><p>Em UA no SAP, o texto mora em dois lugares: nos <strong>guias</strong>, escritos em tópicos, e <strong>dentro do sistema</strong>, junto com as telas.</p></div>
+  <div class="lanes">
+    <div class="lane"><b>Desenvolvimento</b><ol><li><strong>ABAP:</strong> escreve o código do sistema.</li><li>O código decide quando aparecem telas, campos e mensagens.</li></ol></div>
+    <div class="lane lane-ua"><b>User Assistance</b><ol><li><strong>Dentro do SAP</strong> (pelo SAP Logon): escreve mensagens, ajuda de campo (F1) e documentação de programas.</li><li><strong>Nos guias:</strong> escreve tópicos em DITA, publicados com o DITA-OT.</li></ol></div>
+    <div class="lane-shared"><b>Versões e tarefas</b><span>Dentro do SAP, as mudanças vão em <strong>ordens de transporte</strong>.</span><span>Nos projetos de documentação, em <strong>Git</strong>.</span><span>As tarefas ficam no <strong>Jira</strong>.</span></div>
+  </div>
+  <div class="callout c-warn"><b>Onde entra o ABAP</b><p>Quem escreve não programa. O ABAP aparece só para entender quando um texto é mostrado. Isso está no módulo extra, no fim do curso.</p></div>
+  <div class="quiz" data-answer="1" data-explain="O DITA-OT é a “gráfica”: lê os arquivos DITA e gera site, PDF e outros formatos.">
+    <span class="quiz-k">Teste rápido</span><p class="quiz-q">Qual ferramenta transforma seus arquivos em site?</p>
+    <div class="quiz-opts"><button>Git</button><button>DITA-OT</button><button>Jira</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="quiz" data-answer="2" data-explain="Tópicos são blocos independentes. Escrever em blocos permite montar guias diferentes e reaproveitar conteúdo.">
+    <span class="quiz-k">Teste rápido</span><p class="quiz-q">Por que a documentação é dividida em tópicos?</p>
+    <div class="quiz-opts"><button>Para deixar os arquivos mais leves</button><button>Porque o Word não aceita textos longos</button><button>Para reaproveitar blocos em guias diferentes</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-result"><b>Fim da introdução</b><p>Você já entende a lógica: rótulos, conteúdo separado da aparência, blocos reutilizáveis e histórico de versões. Agora vamos aprender a linguagem que escreve esses rótulos: o XML.</p></div>
+</section>
+
+<!-- ═════════════════ MÓDULO 1 · XML ═════════════════ -->
+
+<section class="lesson" data-id="1-1" data-mod="1" data-short="O que é XML" hidden>
+  <p class="l-eyebrow">Módulo 1 · XML do zero</p>
+  <h1>O que é XML</h1>
+  <p class="l-goal">Ver, passo a passo, um texto comum virar XML.</p>
+  <div class="prose">
+    <p>XML significa <em>eXtensible Markup Language</em>. A parte importante é <strong>markup</strong>, que quer dizer <strong>marcação</strong>.</p>
+    <p>Imagine que você pega um marca-texto, passa em um trecho e escreve na margem: “isto é um passo”. O XML faz isso com <strong>etiquetas escritas no próprio texto</strong>, chamadas <strong>tags</strong>.</p>
+  </div>
+  <h2>De texto comum a XML em 3 passos</h2>
+  <div class="stepper" data-stepper="xml-s1,xml-s2,xml-s3" data-caps="Passo 1. Texto comum. Uma pessoa entende, mas para o computador são só letras.|Passo 2. Cada trecho ganha uma etiqueta antes e depois, dizendo o que ele é.|Passo 3. Tudo fica dentro de uma etiqueta principal, que chamamos de raiz. Pronto: isso é XML."></div>
+  <h2>Três coisas para guardar</h2>
+  <div class="prose"><ol>
+    <li><strong>XML não faz nada sozinho.</strong> Ele não tem cor, botão ou layout. Só descreve o conteúdo. Outro programa lê e decide o que fazer.</li>
+    <li><strong>Os nomes das etiquetas descrevem o conteúdo</strong>, não a aparência. Escrevemos <code>&lt;passo&gt;</code>, e não “letra grande”.</li>
+    <li><strong>“Extensible”</strong> quer dizer que, no XML puro, você inventa os nomes. No DITA (Módulo 2), os nomes já vêm combinados.</li>
+  </ol></div>
+  <div class="callout c-analogy"><b>E o HTML?</b><p>HTML, a linguagem das páginas da web, também usa tags e se escreve de um jeito parecido. A diferença: o HTML diz <em>como mostrar</em> (título grande, negrito). O XML diz <em>o que o conteúdo é</em>.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>XML é texto com etiquetas (tags) que dizem o que cada parte é. Tudo fica dentro de uma etiqueta principal, a raiz.</p></div>
+</section>
+
+<section class="lesson" data-id="1-2" data-mod="1" data-short="Anatomia de um elemento" hidden>
+  <p class="l-eyebrow">Módulo 1 · XML do zero</p>
+  <h1>Anatomia de um elemento</h1>
+  <p class="l-goal">Saber o nome de cada pedaço de uma linha de XML.</p>
+  <div class="prose"><p>Toque em cada parte da linha abaixo para ver o que ela é.</p></div>
+  <div class="anat" id="anat" role="group" aria-label="Partes da linha XML"></div>
+  <div class="anat-exp" id="anat-exp" aria-live="polite"></div>
+  <h2>Os nomes que você vai usar</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Nome</th><th>Exemplo</th><th>O que é</th></tr></thead>
+    <tbody>
+      <tr><td>Tag de abertura</td><td><code>&lt;passo&gt;</code></td><td>Começa o trecho.</td></tr>
+      <tr><td>Tag de fechamento</td><td><code>&lt;/passo&gt;</code></td><td>Termina o trecho. Tem uma barra <code>/</code>.</td></tr>
+      <tr><td>Conteúdo</td><td><code>Abra o app.</code></td><td>O texto que a pessoa lê.</td></tr>
+      <tr><td>Elemento</td><td><code>&lt;passo&gt;Abra o app.&lt;/passo&gt;</code></td><td>Tudo junto: abertura, conteúdo e fechamento.</td></tr>
+      <tr><td>Elemento vazio</td><td><code>&lt;imagem arquivo="tela.png"/&gt;</code></td><td>Não tem conteúdo. Abre e fecha na mesma tag, com <code>/&gt;</code> no fim.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="quiz" data-answer="0" data-explain="O nome do elemento é a palavra logo depois do sinal de menor (<). “tipo” é um atributo e “importante” é o valor dele.">
+    <span class="quiz-k">Faça agora</span><p class="quiz-q">Em <code>&lt;aviso tipo="importante"&gt;Salve antes de sair&lt;/aviso&gt;</code>, qual é o nome do elemento?</p>
+    <div class="quiz-opts"><button>aviso</button><button>tipo</button><button>importante</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Um elemento tem tag de abertura, conteúdo e tag de fechamento. A tag de fechamento repete o nome com uma barra antes.</p></div>
+</section>
+
+<section class="lesson" data-id="1-3" data-mod="1" data-short="Caixas dentro de caixas" hidden>
+  <p class="l-eyebrow">Módulo 1 · XML do zero</p>
+  <h1>Caixas dentro de caixas</h1>
+  <p class="l-goal">Entender como os elementos se organizam uns dentro dos outros.</p>
+  <div class="prose">
+    <p>Um elemento pode ter outros elementos dentro dele. Isso cria uma <strong>hierarquia</strong>, como as seções e subseções de um sumário.</p>
+    <p>Alguns nomes que você vai ouvir: o elemento de fora é o <strong>pai</strong>. Os de dentro são os <strong>filhos</strong>. Filhos do mesmo pai são <strong>irmãos</strong>. E o elemento que guarda todos os outros é a <strong>raiz</strong>.</p>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>Caixas de mudança. A caixa grande “Cozinha” tem dentro a caixa “Talheres”, que tem dentro os garfos. Você não pode guardar a caixa “Talheres” metade dentro e metade fora da “Cozinha”.</p></div>
+  <h2>Veja as caixas se formando</h2>
+  <div class="lab" id="lab-boxes">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">tarefa.xml</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-boxes" spellcheck="false" aria-label="Editor XML" style="min-height:260px"></textarea>
+      <div class="lab-out"><span class="out-label">Validação</span><div class="status" data-status></div><span class="out-label">Como caixas</span><div class="boxes" data-boxes></div></div>
+    </div>
+  </div>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>Copie a linha <code>&lt;passo&gt;Clique em Enviar.&lt;/passo&gt;</code>.</li><li>Cole logo abaixo dela, dentro de <code>&lt;passos&gt;</code>, e mude o texto para “Confirme o envio.”.</li><li>Veja uma nova caixa aparecer dentro de “passos”.</li><li>Agora cole a linha <strong>depois</strong> de <code>&lt;/passos&gt;</code>. Veja que ela vira irmã de “passos”, e não filha.</li></ol></div>
+  <div class="callout c-warn"><b>Espaços no início da linha</b><p>Os espaços que empurram as linhas para a direita (recuo) não mudam nada para o computador. Eles servem para você enxergar a hierarquia. Use 2 espaços a cada nível.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Elementos ficam uns dentro dos outros, formando uma árvore com uma raiz no topo. Um elemento sempre fecha dentro do pai.</p></div>
+</section>
+
+<section class="lesson" data-id="1-4" data-mod="1" data-short="Atributos" hidden>
+  <p class="l-eyebrow">Módulo 1 · XML do zero</p>
+  <h1>Atributos: informações sobre o elemento</h1>
+  <p class="l-goal">Saber quando usar um atributo e como escrever um.</p>
+  <div class="prose"><p>Um <strong>atributo</strong> é uma informação extra sobre o elemento. Ele fica dentro da tag de abertura, no formato <code>nome="valor"</code>.</p></div>
+  <div class="code-wrap" data-code="attrs" data-tag="exemplo"></div>
+  <div class="callout c-analogy"><b>Comparação</b><p>Na caixa de mudança, o conteúdo é o que tem dentro (os pratos). O atributo é a etiqueta colada por fora: “frágil”, “cozinha”, “caixa 12”. A etiqueta ajuda a organizar, mas ninguém “usa” a etiqueta.</p></div>
+  <h2>Atributos que você vai ver muito</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Atributo</th><th>Para quê</th></tr></thead>
+    <tbody>
+      <tr><td><code>id</code></td><td>Um nome único, para fazer links e reutilizar o trecho.</td></tr>
+      <tr><td><code>type</code></td><td>O tipo do elemento. Exemplo: um aviso do tipo “importante”.</td></tr>
+      <tr><td><code>xml:lang</code></td><td>O idioma do texto, como <code>pt-BR</code> ou <code>en-US</code>.</td></tr>
+      <tr><td><code>audience</code></td><td>Para quem é o trecho. Permite gerar um guia só para gestores, por exemplo.</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Regras de escrita</h2>
+  <div class="prose"><ul>
+    <li>Sempre com aspas: <code>id="enviar"</code>.</li>
+    <li>Vários atributos ficam separados por espaço.</li>
+    <li>O mesmo atributo não pode aparecer duas vezes na mesma tag.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Conteúdo ou atributo?</b><p>Pergunte: <em>a pessoa vai ler isso?</em> Se sim, é conteúdo. Se é uma informação para o sistema (identificar, filtrar, classificar), é atributo.</p></div>
+  <div class="quiz" data-answer="0" data-explain="A pessoa vai ler o aviso, então ele é conteúdo. Atributos guardam informações para o sistema.">
+    <span class="quiz-k">Faça agora</span><p class="quiz-q">O texto “Salve antes de sair” deve ficar…</p>
+    <div class="quiz-opts"><button>Como conteúdo do elemento</button><button>Como valor de um atributo</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Atributos ficam na tag de abertura, no formato <code>nome="valor"</code>, e guardam informações sobre o elemento, não texto para o leitor.</p></div>
+</section>
+
+<section class="lesson" data-id="1-5" data-mod="1" data-short="As 5 regras" hidden>
+  <p class="l-eyebrow">Módulo 1 · XML do zero</p>
+  <h1>As 5 regras do XML</h1>
+  <p class="l-goal">Conhecer as regras que, se quebradas, fazem o arquivo parar de funcionar.</p>
+  <div class="prose"><p>Um XML que segue todas as regras é chamado de <strong>bem formado</strong>. O XML é rígido: um erro pequeno faz o arquivo inteiro ser recusado. Por isso o editor avisa na hora.</p></div>
+  <div class="compare">
+    <div class="rule-row"><h3>1. Só uma raiz</h3><p>Tudo precisa estar dentro de um único elemento principal.</p>
+      <div class="pair"><div class="yes">&lt;tarefa&gt;
+  &lt;titulo&gt;Enviar&lt;/titulo&gt;
+  &lt;passo&gt;Abra&lt;/passo&gt;
+&lt;/tarefa&gt;</div><div class="no">&lt;titulo&gt;Enviar&lt;/titulo&gt;
+&lt;passo&gt;Abra&lt;/passo&gt;</div></div></div>
+    <div class="rule-row"><h3>2. Toda tag fecha</h3><p>Cada abertura tem seu fechamento. Elementos vazios fecham com <code>/&gt;</code>.</p>
+      <div class="pair"><div class="yes">&lt;passo&gt;Abra o app.&lt;/passo&gt;</div><div class="no">&lt;passo&gt;Abra o app.</div></div></div>
+    <div class="rule-row"><h3>3. Não cruzar tags</h3><p>Feche primeiro o que abriu por último.</p>
+      <div class="pair"><div class="yes">&lt;b&gt;&lt;i&gt;texto&lt;/i&gt;&lt;/b&gt;</div><div class="no">&lt;b&gt;&lt;i&gt;texto&lt;/b&gt;&lt;/i&gt;</div></div></div>
+    <div class="rule-row"><h3>4. Atributos com aspas</h3><p>Aspas duplas ou simples, mas sempre aspas.</p>
+      <div class="pair"><div class="yes">&lt;nota tipo="aviso"&gt;</div><div class="no">&lt;nota tipo=aviso&gt;</div></div></div>
+    <div class="rule-row"><h3>5. Maiúsculas importam</h3><p>A abertura e o fechamento precisam ser escritos exatamente igual.</p>
+      <div class="pair"><div class="yes">&lt;nome&gt;App&lt;/nome&gt;</div><div class="no">&lt;nome&gt;App&lt;/Nome&gt;</div></div></div>
+  </div>
+  <div class="quiz" data-answer="2" data-explain="Na terceira, as tags estão cruzadas: <b> abriu primeiro, então precisa fechar por último.">
+    <span class="quiz-k">Faça agora</span><p class="quiz-q">Qual destas linhas quebra uma regra?</p>
+    <div class="quiz-opts"><button><code>&lt;nota tipo="dica"&gt;Use o filtro&lt;/nota&gt;</code></button><button><code>&lt;imagem arquivo="tela.png"/&gt;</code></button><button><code>&lt;b&gt;&lt;i&gt;Atenção&lt;/b&gt;&lt;/i&gt;</code></button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Uma raiz, toda tag fecha, sem cruzar, atributos com aspas e maiúsculas iguais. Com isso, seu XML é bem formado.</p></div>
+</section>
+
+<section class="lesson" data-id="1-6" data-mod="1" data-short="Detalhes de todo arquivo" hidden>
+  <p class="l-eyebrow">Módulo 1 · XML do zero</p>
+  <h1>Detalhes que aparecem em todo arquivo</h1>
+  <p class="l-goal">Reconhecer as linhas “estranhas” no topo dos arquivos e alguns cuidados com caracteres.</p>
+  <h2>1. A declaração</h2>
+  <div class="code-wrap" data-code="decl" data-tag="primeira linha do arquivo"></div>
+  <div class="prose"><p>Diz que o arquivo é XML. <code>UTF-8</code> é o padrão de caracteres que aceita acentos, ç e emojis. Sempre na primeira linha, sem nada antes.</p></div>
+  <h2>2. Comentários</h2>
+  <div class="code-wrap" data-code="comment" data-tag="comentário"></div>
+  <div class="prose"><p>Tudo entre <code>&lt;!--</code> e <code>--&gt;</code> é ignorado. Use para deixar recados para a equipe. Não aparece no resultado publicado.</p></div>
+  <h2>3. Caracteres especiais</h2>
+  <div class="prose"><p>Os sinais <code>&lt;</code> e <code>&amp;</code> têm significado no XML. Para escrevê-los como texto, use um código:</p></div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Para mostrar</th><th>Escreva</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>&lt;</td><td><code>&amp;lt;</code></td><td><code>valor &amp;lt; 100</code></td></tr>
+      <tr><td>&gt;</td><td><code>&amp;gt;</code></td><td><code>valor &amp;gt; 100</code></td></tr>
+      <tr><td>&amp;</td><td><code>&amp;amp;</code></td><td><code>Despesas &amp;amp; Viagens</code></td></tr>
+    </tbody>
+  </table></div>
+  <h2>4. A linha DOCTYPE</h2>
+  <div class="code-wrap" data-code="doctype" data-tag="vai aparecer no Módulo 2"></div>
+  <div class="prose"><p>Ela diz qual <strong>modelo</strong> o arquivo segue, e com isso quais tags são permitidas. Ninguém decora isso: você copia de um exemplo e cola.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Declaração na primeira linha, comentários para a equipe, códigos para &lt; e &amp;, e DOCTYPE para indicar o modelo.</p></div>
+</section>
+
+<section class="lesson" data-id="1-7" data-mod="1" data-short="Prática: conserte o XML" hidden>
+  <p class="l-eyebrow">Módulo 1 · Prática</p>
+  <h1>Prática: conserte o XML</h1>
+  <p class="l-goal">Treinar a leitura de mensagens de erro, que é o que você mais vai fazer no começo.</p>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>O arquivo abaixo tem <strong>3 erros</strong>.</li><li>Leia a mensagem em vermelho. Ela mostra a linha do problema.</li><li>Corrija um erro por vez. Quando ficar válido, a árvore aparece.</li></ol></div>
+  <div class="lab" id="lab-xml">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">primeiro.xml</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button><button class="btn-ghost" type="button" data-solve>Ver solução</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-xml" spellcheck="false" aria-label="Editor XML"></textarea>
+      <div class="lab-out"><span class="out-label">Validação</span><div class="status" data-status></div><span class="out-label">Árvore do documento</span><div class="xtree" data-tree></div></div>
+    </div>
+  </div>
+  <details class="callout c-analogy"><summary style="cursor:pointer;font-weight:650">Precisa de uma dica?</summary><ul style="margin-top:8px"><li>Linha 2: falta algo em volta do valor do atributo.</li><li>Linha 3: compare a abertura e o fechamento letra por letra.</li><li>Linha 5: a segunda tag está sem a barra.</li></ul></details>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>A mensagem de erro aponta a linha. O erro costuma estar nela ou logo antes.</p></div>
+</section>
+
+<section class="lesson" data-id="1-8" data-mod="1" data-short="Prática: escreva do zero" hidden>
+  <p class="l-eyebrow">Módulo 1 · Prática</p>
+  <h1>Prática: escreva um XML do zero</h1>
+  <p class="l-goal">Criar seu primeiro arquivo sozinha, seguindo uma lista de pedidos.</p>
+  <div class="prose"><p>Você vai escrever uma <strong>nota de versão</strong> de um app, aquele texto de “O que há de novo”. Siga os passos. A lista à direita fica verde conforme você acerta.</p></div>
+  <ol class="how">
+    <li><div><b>Crie a raiz</b><span>Escreva <code>&lt;notaVersao versao="2.2"&gt;</code> numa linha e <code>&lt;/notaVersao&gt;</code> algumas linhas abaixo. Todo o resto vai no meio.</span></div></li>
+    <li><div><b>Adicione a data</b><span>Dentro da raiz: <code>&lt;data&gt;10/10/2026&lt;/data&gt;</code>.</span></div></li>
+    <li><div><b>Liste as novidades</b><span>Crie <code>&lt;novidades&gt;</code> e, dentro dele, pelo menos dois <code>&lt;item&gt;</code> com uma frase cada.</span></div></li>
+    <li><div><b>Conte uma correção</b><span>Depois de <code>&lt;/novidades&gt;</code>, crie <code>&lt;correcao&gt;</code> com uma frase.</span></div></li>
+  </ol>
+  <div class="lab" id="lab-own">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">nota-versao.xml</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button><button class="btn-ghost" type="button" data-solve>Ver um exemplo</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-own" spellcheck="false" aria-label="Editor da nota de versão"></textarea>
+      <div class="lab-out"><span class="out-label">Pedidos</span><ul class="checks" data-checks></ul><span class="out-label">Árvore</span><div class="xtree" data-tree></div></div>
+    </div>
+  </div>
+  <div class="callout c-result"><b>Resultado</b><p>Seu primeiro XML escrito do zero. Guarde o texto: você vai salvá-lo no seu computador na próxima página.</p></div>
+</section>
+
+<section class="lesson" data-id="1-9" data-mod="1" data-short="Guia rápido do VS Code" hidden>
+  <p class="l-eyebrow">Módulo 1 · No seu computador</p>
+  <h1>Guia rápido do VS Code</h1>
+  <p class="l-goal">Conhecer o editor que já está no Mac e salvar seu primeiro arquivo XML.</p>
+  <div class="prose"><p>O VS Code é um editor de texto feito para arquivos como XML, DITA e código. Ele já está instalado no Mac. Esta página mostra só o que você vai usar no curso.</p></div>
+  <h2>As 5 áreas da janela</h2>
+  <div class="scroll-x"><div class="vsc" role="img" aria-label="Desenho da janela do VS Code com 5 áreas numeradas">
+    <div class="vsc-top">central-ajuda-despesas</div>
+    <div class="vsc-body">
+      <div class="vsc-act"><span class="nb">1</span><i>▤</i><i>⌕</i><i>⑂</i><i>▦</i></div>
+      <div class="vsc-side"><span class="nb">2</span><small>EXPLORER</small><div>conceito-relatorio.dita</div><div class="on">nota-versao.xml</div><div>guia.ditamap</div></div>
+      <div class="vsc-main">
+        <div class="vsc-tabs"><span class="nb">3</span><span class="tab-on">nota-versao.xml</span><span>guia.ditamap</span></div>
+        <div class="vsc-ed"><div><em>1</em><b>&lt;notaVersao</b> <u>versao="2.2"</u><b>&gt;</b></div><div><em>2</em>  <b>&lt;data&gt;</b>10/10/2026<b>&lt;/data&gt;</b></div><div><em>3</em>  <b>&lt;novidades&gt;</b></div></div>
+        <div class="vsc-term"><span class="nb">4</span><small>TERMINAL · PROBLEMS</small><div>$ git status</div></div>
+      </div>
+    </div>
+    <div class="vsc-status"><span class="nb">5</span>main · XML · UTF-8</div>
+  </div></div>
+  <ol class="how">
+    <li><div><b>Barra de atividades</b><span>Os ícones da esquerda trocam o que aparece na lateral: <em>Explorer</em> (arquivos), <em>Search</em> (busca), <em>Source Control</em> (Git) e <em>Extensions</em>.</span></div></li>
+    <li><div><b>Explorer</b><span>Os arquivos da pasta aberta. Clique num arquivo para abrir.</span></div></li>
+    <li><div><b>Abas e editor</b><span>Cada arquivo aberto vira uma aba. Um ponto branco na aba quer dizer que há mudanças ainda não salvas.</span></div></li>
+    <li><div><b>Painel de baixo</b><span>Tem o <em>Terminal</em> (Módulos 2 e 3) e o <em>Problems</em>, a lista de erros dos arquivos.</span></div></li>
+    <li><div><b>Barra de status</b><span>Mostra o branch do Git, o tipo de arquivo e o padrão de caracteres (UTF-8).</span></div></li>
+  </ol>
+  <h2>Faça agora: prepare a pasta do projeto</h2>
+  <ol class="how">
+    <li><div><b>Crie a pasta</b><span>No Finder, em Documentos, crie a pasta <code>central-ajuda-despesas</code>. Use esse nome exato: sem espaços e sem acentos.</span></div></li>
+    <li><div><b>Abra a pasta, não um arquivo</b><span>No VS Code: <em>File → Open Folder</em> e escolha a pasta. Ou arraste a pasta para o ícone do VS Code no Dock. Se perguntar se você confia nos autores, clique em <em>Yes, I trust</em>.</span></div></li>
+    <li><div><b>Confira a extensão XML</b><span>Abra Extensions com <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>, busque “XML” e confira se a da <strong>Red Hat</strong> está instalada. Se não estiver, clique em <em>Install</em>. Ela aponta erros e fecha as tags sozinha: digite <code>&lt;passo&gt;</code> e ela escreve <code>&lt;/passo&gt;</code>.</span></div></li>
+    <li><div><b>Crie o arquivo</b><span>No Explorer, passe o mouse sobre o nome da pasta e clique no ícone de novo arquivo. Nome: <code>nota-versao.xml</code>. Cole o XML da página anterior.</span></div></li>
+    <li><div><b>Salve</b><span><kbd>Cmd</kbd>+<kbd>S</kbd>. Para não esquecer, ligue <em>File → Auto Save</em>: o VS Code salva sozinho.</span></div></li>
+    <li><div><b>Veja um erro de propósito</b><span>Apague uma aspa. Aparece um sublinhado vermelho e o erro entra na lista do <em>Problems</em> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>). Passe o mouse em cima para ler. Desfaça com <kbd>Cmd</kbd>+<kbd>Z</kbd>.</span></div></li>
+  </ol>
+  <h2>Atalhos que você vai usar</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Atalho no Mac</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>Cmd+S</code></td><td>Salvar.</td></tr>
+      <tr><td><code>Cmd+Z</code></td><td>Desfazer.</td></tr>
+      <tr><td><code>Cmd+P</code></td><td>Abrir um arquivo digitando o nome.</td></tr>
+      <tr><td><code>Cmd+F</code></td><td>Buscar no arquivo aberto.</td></tr>
+      <tr><td><code>Cmd+Shift+F</code></td><td>Buscar em todos os arquivos da pasta. Ótimo para conferir terminologia.</td></tr>
+      <tr><td><code>Cmd+/</code></td><td>Transformar a linha em comentário (em XML vira <code>&lt;!-- --&gt;</code>).</td></tr>
+      <tr><td><code>Option+Shift+F</code></td><td>Arrumar o recuo do arquivo inteiro.</td></tr>
+      <tr><td><code>Option+Z</code></td><td>Quebrar linhas longas na tela, sem mudar o arquivo.</td></tr>
+      <tr><td><code>Ctrl+`</code></td><td>Abrir e fechar o terminal. É o Ctrl mesmo, não o Cmd.</td></tr>
+      <tr><td><code>Cmd+Shift+P</code></td><td>Paleta de comandos: digite o que quer fazer, como “format”.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-warn"><b>Erro comum</b><p>Abrir só o arquivo, e não a pasta. Assim o Explorer fica vazio e o terminal abre em outro lugar. Sempre use <em>Open Folder</em>.</p></div>
+  <div class="callout c-result"><b>Resultado do Módulo 1</b><p>Você sabe ler e escrever XML, entende as mensagens de erro e tem a pasta do projeto pronta no VS Code, com seu primeiro arquivo salvo.</p></div>
+</section>
+
+<!-- ═════════════════ MÓDULO 2 · DITA ═════════════════ -->
+
+<section class="lesson" data-id="2-1" data-mod="2" data-short="O que é DITA" hidden>
+  <p class="l-eyebrow">Módulo 2 · DITA</p>
+  <h1>O que é DITA</h1>
+  <p class="l-goal">Conectar o XML que você aprendeu com a lógica da introdução.</p>
+  <div class="prose">
+    <p>DITA significa <em>Darwin Information Typing Architecture</em>. O nome é difícil, mas a ideia é simples: <strong>DITA é XML com um vocabulário pronto para documentação</strong>.</p>
+    <p>No XML puro, você inventou <code>&lt;notaVersao&gt;</code> e <code>&lt;item&gt;</code>. No DITA, os nomes já estão definidos: <code>&lt;title&gt;</code> para título, <code>&lt;step&gt;</code> para passo, <code>&lt;note&gt;</code> para aviso. Os nomes são em inglês porque o padrão é internacional.</p>
+    <p>É um <strong>padrão aberto</strong>, mantido por uma organização chamada OASIS. Por isso, ferramentas, empresas e agências de tradução do mundo todo entendem os mesmos arquivos.</p>
+  </div>
+  <div class="callout c-analogy"><b>Você já faz isso</b><p>Quando você cria um vocabulário controlado, decide que todo mundo vai dizer “reembolso”, e não “devolução” ou “estorno”. O DITA faz o mesmo com as etiquetas: todo mundo usa <code>&lt;step&gt;</code> para passo.</p></div>
+  <h2>As ideias do DITA, que você já conhece</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Ideia</th><th>Onde você viu</th></tr></thead>
+    <tbody>
+      <tr><td>Tópicos</td><td>Escrever em blocos (Introdução)</td></tr>
+      <tr><td>Tipos de informação</td><td>Cada bloco tem um tipo: explicar, ensinar a fazer ou consultar. É o “Information Typing” do nome.</td></tr>
+      <tr><td>Mapas</td><td>Montar guias com os mesmos blocos</td></tr>
+      <tr><td>Reúso</td><td>Escrever uma vez, usar em vários lugares</td></tr>
+      <tr><td>Publicação</td><td>Uma fonte, vários formatos (DITA-OT)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>DITA é um padrão de XML com etiquetas definidas para documentação, organizado em tópicos, tipos, mapas e reúso.</p></div>
+</section>
+
+<section class="lesson" data-id="2-2" data-mod="2" data-short="Os 3 tipos de tópico" hidden>
+  <p class="l-eyebrow">Módulo 2 · DITA</p>
+  <h1>Os 3 tipos de tópico</h1>
+  <p class="l-goal">Saber escolher o tipo certo para cada conteúdo.</p>
+  <div class="prose"><p>Todo tópico DITA tem um tipo. Para escolher, pergunte: <strong>o que a pessoa quer agora?</strong></p></div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Tipo</th><th>A pessoa quer…</th><th>Exemplo de título</th></tr></thead>
+    <tbody>
+      <tr><td><code>concept</code></td><td>Entender: o que é, por que importa.</td><td>O que é um relatório de despesas</td></tr>
+      <tr><td><code>task</code></td><td>Fazer algo, passo a passo.</td><td>Enviar um relatório de despesas</td></tr>
+      <tr><td><code>reference</code></td><td>Consultar um dado exato.</td><td>Limites por tipo de despesa</td></tr>
+    </tbody>
+  </table></div>
+  <h2>Faça agora: classifique cada frase</h2>
+  <div class="sort" id="sort"></div>
+  <p class="score" id="sort-score" aria-live="polite"></p>
+  <div class="callout c-warn"><b>Erro comum</b><p>Misturar tipos num mesmo tópico, por exemplo, explicar o conceito no meio dos passos. Se o texto começa a explicar demais, ele provavelmente merece um concept separado.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Entender → concept. Fazer → task. Consultar → reference.</p></div>
+</section>
+
+<section class="lesson" data-id="2-3" data-mod="2" data-short="O esqueleto de um tópico" hidden>
+  <p class="l-eyebrow">Módulo 2 · DITA</p>
+  <h1>O esqueleto de todo tópico</h1>
+  <p class="l-goal">Ler um arquivo DITA linha por linha.</p>
+  <div class="code-wrap" data-code="skeleton" data-tag="qualquer-topico.dita" data-lines="1"></div>
+  <ol class="how">
+    <li><div><b>Linha 1 · Declaração</b><span>A mesma do XML. Sempre igual.</span></div></li>
+    <li><div><b>Linha 2 · DOCTYPE</b><span>Diz que este arquivo é um concept. Muda conforme o tipo. Copie dos exemplos.</span></div></li>
+    <li><div><b>Linha 3 · Raiz com id</b><span>A raiz tem o nome do tipo. O <code>id</code> é um nome único: minúsculas, sem acentos, com hífens.</span></div></li>
+    <li><div><b>Linha 4 · Título</b><span>Para concept, um substantivo (“Relatório de despesas”). Para task, um verbo (“Enviar um relatório”).</span></div></li>
+    <li><div><b>Linha 5 · Resumo curto</b><span>O <code>&lt;shortdesc&gt;</code>: uma ou duas frases. Aparece nas buscas e nos links. É a microcopy mais importante do tópico.</span></div></li>
+    <li><div><b>Linhas 6 a 8 · Corpo</b><span>O conteúdo. O nome muda conforme o tipo: <code>conbody</code>, <code>taskbody</code> ou <code>refbody</code>.</span></div></li>
+  </ol>
+  <div class="quiz" data-answer="1" data-explain="O shortdesc aparece em buscas e em links para o tópico. Precisa ser curto e dizer o que a pessoa ganha.">
+    <span class="quiz-k">Teste rápido</span><p class="quiz-q">Onde o texto do &lt;shortdesc&gt; costuma aparecer?</p>
+    <div class="quiz-opts"><button>Só no rodapé da página</button><button>Nos resultados de busca e nos links para o tópico</button><button>Em lugar nenhum, é só para a equipe</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Todo tópico tem: declaração, DOCTYPE, raiz com id, título, resumo curto e corpo.</p></div>
+</section>
+
+<section class="lesson" data-id="2-4" data-mod="2" data-short="Prática: concept" hidden>
+  <p class="l-eyebrow">Módulo 2 · Prática</p>
+  <h1>Prática: seu primeiro concept</h1>
+  <p class="l-goal">Editar um tópico e ver como ele fica publicado.</p>
+  <div class="prose"><p>Elementos que você pode usar dentro de <code>&lt;conbody&gt;</code>:</p></div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Elemento</th><th>O que é</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;p&gt;</code></td><td>Parágrafo.</td></tr>
+      <tr><td><code>&lt;ul&gt;</code> + <code>&lt;li&gt;</code></td><td>Lista com marcadores. Cada <code>&lt;li&gt;</code> é um item.</td></tr>
+      <tr><td><code>&lt;section&gt;</code> + <code>&lt;title&gt;</code></td><td>Uma seção com subtítulo.</td></tr>
+      <tr><td><code>&lt;note&gt;</code></td><td>Aviso em destaque. Aceita <code>type="important"</code> ou <code>type="tip"</code>.</td></tr>
+      <tr><td><code>&lt;b&gt;</code></td><td>Destaque em negrito.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>Mude o título para “O que é um relatório de despesas”.</li><li>Adicione o status <em>Recusado</em> como um novo <code>&lt;li&gt;</code>.</li><li>Antes de <code>&lt;/conbody&gt;</code>, adicione: <code>&lt;note type="tip"&gt;Envie o relatório até 5 dias depois da viagem.&lt;/note&gt;</code></li></ol></div>
+  <div class="lab" id="lab-concept">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">conceito-relatorio.dita</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-concept" spellcheck="false" aria-label="Editor do concept"></textarea>
+      <div class="lab-out"><span class="out-label">Checagem</span><ul class="checks" data-checks></ul><span class="out-label">Como fica publicado</span><div data-preview></div></div>
+    </div>
+  </div>
+  <div class="callout c-result"><b>Resultado</b><p>No VS Code, crie <code>conceito-relatorio.dita</code> na pasta do projeto e cole sua versão final.</p></div>
+</section>
+
+<section class="lesson" data-id="2-5" data-mod="2" data-short="Prática: task" hidden>
+  <p class="l-eyebrow">Módulo 2 · Prática</p>
+  <h1>Task: o passo a passo</h1>
+  <p class="l-goal">Escrever um procedimento no formato que o DITA espera. Aqui o seu UX Writing aparece.</p>
+  <h2>As partes de uma task, em ordem</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Elemento</th><th>Para quê</th><th>Obrigatório?</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;prereq&gt;</code></td><td>O que a pessoa precisa antes de começar.</td><td>Não</td></tr>
+      <tr><td><code>&lt;context&gt;</code></td><td>Por que ou quando fazer isso.</td><td>Não</td></tr>
+      <tr><td><code>&lt;steps&gt;</code></td><td>A lista de passos.</td><td>Sim</td></tr>
+      <tr><td><code>&lt;result&gt;</code></td><td>O que acontece no fim.</td><td>Não</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose"><p>A <strong>ordem importa</strong>: o DITA recusa um <code>&lt;prereq&gt;</code> depois dos passos. Cada <code>&lt;step&gt;</code> tem:</p><ul>
+    <li><code>&lt;cmd&gt;</code>: a ação. Obrigatório. Uma ação só, com verbo no imperativo.</li>
+    <li><code>&lt;info&gt;</code>: explicação extra. Opcional.</li>
+    <li><code>&lt;stepresult&gt;</code>: o que a pessoa vê depois da ação. Opcional.</li>
+  </ul><p>Nomes de botões e menus vão em <code>&lt;uicontrol&gt;</code>, escritos exatamente como na tela.</p></div>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>Entre o passo 2 e o 3, crie um passo novo: <code>&lt;step&gt;&lt;cmd&gt;Anexe os recibos que faltam.&lt;/cmd&gt;&lt;/step&gt;</code></li><li>Veja a checagem “4 passos” ficar verde.</li></ol></div>
+  <div class="lab" id="lab-task">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">tarefa-enviar-relatorio.dita</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-task" spellcheck="false" aria-label="Editor da task" style="min-height:420px"></textarea>
+      <div class="lab-out"><span class="out-label">Checagem</span><ul class="checks" data-checks></ul><span class="out-label">Como fica publicado</span><div data-preview></div></div>
+    </div>
+  </div>
+  <div class="callout c-result"><b>Resultado</b><p>Salve como <code>tarefa-enviar-relatorio.dita</code> na pasta do projeto.</p></div>
+</section>
+
+<section class="lesson" data-id="2-6" data-mod="2" data-short="Prática: reference" hidden>
+  <p class="l-eyebrow">Módulo 2 · Prática</p>
+  <h1>Reference: dados para consultar</h1>
+  <p class="l-goal">Criar uma tabela simples em DITA.</p>
+  <div class="prose"><p>Reference é para consulta rápida: limites, códigos, configurações. O formato mais comum é a <code>&lt;simpletable&gt;</code>:</p></div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Elemento</th><th>O que é</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;simpletable&gt;</code></td><td>A tabela inteira.</td></tr>
+      <tr><td><code>&lt;sthead&gt;</code></td><td>A linha de cabeçalho.</td></tr>
+      <tr><td><code>&lt;strow&gt;</code></td><td>Uma linha comum.</td></tr>
+      <tr><td><code>&lt;stentry&gt;</code></td><td>Uma célula.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>Copie um bloco inteiro de <code>&lt;strow&gt;</code> até <code>&lt;/strow&gt;</code>.</li><li>Cole antes de <code>&lt;/simpletable&gt;</code>.</li><li>Troque os textos para “Táxi e aplicativo” e “R$ 150”.</li></ol></div>
+  <div class="lab" id="lab-ref">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">ref-limites.dita</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-ref" spellcheck="false" aria-label="Editor da reference" style="min-height:420px"></textarea>
+      <div class="lab-out"><span class="out-label">Checagem</span><ul class="checks" data-checks></ul><span class="out-label">Como fica publicado</span><div data-preview></div></div>
+    </div>
+  </div>
+  <div class="callout c-result"><b>Resultado</b><p>Salve como <code>ref-limites.dita</code>. Agora você tem os três tipos de tópico.</p></div>
+</section>
+
+<section class="lesson" data-id="2-7" data-mod="2" data-short="Mapa: o sumário" hidden>
+  <p class="l-eyebrow">Módulo 2 · Prática</p>
+  <h1>Mapa: o sumário que junta tudo</h1>
+  <p class="l-goal">Montar um guia ligando os três tópicos.</p>
+  <div class="prose">
+    <p>O <strong>mapa</strong> é um arquivo <code>.ditamap</code>. Ele não tem texto próprio. Só aponta para os tópicos e define a ordem e a hierarquia.</p>
+    <ul>
+      <li>Cada <code>&lt;topicref href="arquivo.dita"/&gt;</code> aponta para um tópico.</li>
+      <li>Um <code>topicref</code> dentro de outro vira um subitem no sumário.</li>
+      <li>Para ter dois guias diferentes, crie dois mapas com os mesmos tópicos.</li>
+    </ul>
+  </div>
+  <div class="callout c-do"><b>Faça agora</b><ol><li>Troque a ordem dos dois <code>topicref</code> de dentro e veja o sumário mudar.</li><li>Escreva um nome de arquivo errado, como <code>ref-limite.dita</code>, e veja o aviso de link quebrado.</li><li>Clique em “Recomeçar” para voltar ao certo.</li></ol></div>
+  <div class="lab" id="lab-map">
+    <div class="lab-bar"><div><strong>Editor</strong> <span class="file">guia.ditamap</span></div><div class="lab-actions"><button class="btn-ghost" type="button" data-reset>Recomeçar</button></div></div>
+    <div class="lab-grid">
+      <textarea id="ta-map" spellcheck="false" aria-label="Editor do mapa" style="min-height:260px"></textarea>
+      <div class="lab-out"><span class="out-label">Checagem</span><ul class="checks" data-checks></ul><span class="out-label">Sumário gerado</span><div data-preview></div></div>
+    </div>
+  </div>
+  <div class="callout c-result"><b>Resultado</b><p>Salve como <code>guia.ditamap</code> na pasta do projeto.</p></div>
+</section>
+
+<section class="lesson" data-id="2-8" data-mod="2" data-short="Reúso com conref" hidden>
+  <p class="l-eyebrow">Módulo 2 · DITA</p>
+  <h1>Reúso com conref</h1>
+  <p class="l-goal">Escrever um aviso uma vez e usá-lo em vários tópicos.</p>
+  <div class="prose"><p>Quando um trecho se repete, como uma regra ou um aviso legal, ele fica num arquivo só. Os outros tópicos apontam para ele. Mudou a regra? Você edita um lugar e todos se atualizam.</p></div>
+  <h2>Passo 1. Crie a fonte, com um id no trecho</h2>
+  <div class="code-wrap" data-code="avisos" data-tag="avisos.dita"></div>
+  <h2>Passo 2. Aponte para ela de qualquer tópico</h2>
+  <div class="code-wrap" data-code="conref-use" data-tag="dentro de uma task"></div>
+  <div class="prose"><p>Leia o endereço assim: <code>avisos.dita</code> (o arquivo) <code>#avisos</code> (o id do tópico) <code>/recibo</code> (o id do trecho).</p></div>
+  <h2>Passo 3. Veja funcionando</h2>
+  <div class="reuse">
+    <label for="reuse-in">Edite o aviso na fonte (avisos.dita)</label>
+    <input id="reuse-in" type="text" value="Guarde o recibo original por 5 anos.">
+    <div class="reuse-cards">
+      <div class="reuse-card"><b>Enviar um relatório de despesas</b><span>1. Abra o relatório. 2. Clique em Enviar.</span><aside class="pv-note"><strong>Importante:</strong> <span data-reuse></span></aside><span class="src">conref → avisos.dita#avisos/recibo</span></div>
+      <div class="reuse-card"><b>Anexar um recibo</b><span>1. Tire uma foto do recibo. 2. Toque em Anexar.</span><aside class="pv-note"><strong>Importante:</strong> <span data-reuse></span></aside><span class="src">conref → avisos.dita#avisos/recibo</span></div>
+    </div>
+  </div>
+  <div class="callout c-do"><b>Faça agora no VS Code</b><ol><li>Crie <code>avisos.dita</code> com o código do passo 1.</li><li>Na sua task, logo depois de <code>&lt;/prereq&gt;</code>, cole: <code>&lt;context&gt;&lt;note conref="avisos.dita#avisos/recibo"/&gt;&lt;/context&gt;</code></li></ol></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>conref puxa um trecho de outro arquivo pelo id. É o vocabulário controlado aplicado a frases inteiras.</p></div>
+</section>
+
+<section class="lesson" data-id="2-9" data-mod="2" data-short="Gerar o site" hidden>
+  <p class="l-eyebrow">Módulo 2 · No seu computador</p>
+  <h1>Gere o site de verdade</h1>
+  <p class="l-goal">Instalar a “gráfica” (DITA-OT) no Mac e transformar seus arquivos num site.</p>
+  <div class="callout c-warn"><b>Esta é a parte mais técnica do curso</b><p>Vá com calma e siga na ordem. Se algo der errado, veja “Problemas comuns” no fim da página. Se travar, pule para o Módulo 3 e volte depois.</p></div>
+  <h2>Parte A · Instale o Java</h2>
+  <ol class="how">
+    <li><div><b>Teste se já existe</b><span>No VS Code, abra o terminal com <kbd>Ctrl</kbd>+<kbd>`</kbd> e rode o comando abaixo. Se aparecer versão 17 ou maior, pule para a Parte B.</span></div></li>
+    <li><div><b>Baixe o Temurin</b><span>O DITA-OT precisa do Java 17 ou mais novo. Acesse <a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a> e baixe a versão LTS recomendada para macOS (arquivo <code>.pkg</code>). É gratuito.</span></div></li>
+    <li><div><b>Instale e teste de novo</b><span>Abra o <code>.pkg</code> e avance até o fim. Feche e abra o terminal e rode o teste outra vez.</span></div></li>
+  </ol>
+  <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
+  <h2>Parte B · Instale o DITA-OT</h2>
+  <ol class="how">
+    <li><div><b>Baixe</b><span>Acesse <a href="https://www.dita-ot.org/download" target="_blank" rel="noopener">dita-ot.org/download</a> e baixe o arquivo <code>.zip</code>.</span></div></li>
+    <li><div><b>Extraia e renomeie</b><span>Dê dois cliques no zip para extrair. Renomeie a pasta para <code>dita-ot</code> (sem o número da versão).</span></div></li>
+    <li><div><b>Mova para a sua pasta de usuário</b><span>No Finder, use <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd> para abrir a pasta com o seu nome e arraste <code>dita-ot</code> para lá.</span></div></li>
+    <li><div><b>Avise o Mac onde ela está (PATH)</b><span>O PATH é a lista de pastas onde o Mac procura programas. Rode no terminal o comando abaixo, uma vez só. Ele acrescenta a pasta <code>dita-ot/bin</code> nessa lista.</span></div></li>
+    <li><div><b>Feche e abra o terminal</b><span>O PATH só é lido quando o terminal abre. Feche o painel e abra de novo com <kbd>Ctrl</kbd>+<kbd>`</kbd>.</span></div></li>
+    <li><div><b>Teste</b><span>Digite <code>dita --version</code>. Deve aparecer um número.</span></div></li>
+  </ol>
+  <div class="code-wrap" data-code="path-mac" data-tag="terminal · uma vez só"></div>
+  <h2>Parte C · Gere o site</h2>
+  <ol class="how">
+    <li><div><b>Confira os arquivos</b><span>Na pasta do projeto você deve ter: <code>conceito-relatorio.dita</code>, <code>tarefa-enviar-relatorio.dita</code>, <code>ref-limites.dita</code>, <code>avisos.dita</code> e <code>guia.ditamap</code>.</span></div></li>
+    <li><div><b>Rode o comando</b><span>No terminal do VS Code (que já abre na pasta do projeto), digite o comando abaixo e aperte Enter. Leva alguns segundos.</span></div></li>
+    <li><div><b>Abra o resultado</b><span>Apareceu a pasta <code>docs</code>. Clique com o botão direito em <code>docs/index.html</code> → <em>Reveal in Finder</em> e abra o arquivo no navegador.</span></div></li>
+  </ol>
+  <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+  <div class="prose"><p>Lendo o comando: <code>dita</code> é o programa, <code>-i</code> é a entrada (seu mapa), <code>-f</code> é o formato (html5) e <code>-o</code> é a pasta de saída. Quer PDF também? Acrescente <code>-f pdf</code>.</p></div>
+  <h2>Problemas comuns</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Mensagem</th><th>O que fazer</th></tr></thead>
+    <tbody>
+      <tr><td>“command not found: dita”</td><td>O PATH não está certo, ou o terminal não foi reaberto. Confira se a pasta se chama exatamente <code>dita-ot</code> e está na sua pasta de usuário. Refaça os passos 4 e 5.</td></tr>
+      <tr><td>“permission denied”</td><td>Rode <code>chmod +x ~/dita-ot/bin/dita</code> e tente de novo.</td></tr>
+      <tr><td>Erro falando de Java ou versão</td><td>O Java está desatualizado. Instale o Temurin 17 ou mais novo.</td></tr>
+      <tr><td>Erro com nome de arquivo e número de linha</td><td>É um erro no seu XML. Abra o arquivo e confira a linha, como no Módulo 1.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-result"><b>Resultado do Módulo 2</b><p>Um site de ajuda com sumário, gerado a partir dos seus tópicos. É o mesmo fluxo de um time de documentação real.</p></div>
+</section>
+
+<!-- ═════════════════ MÓDULO 3 · GIT ═════════════════ -->
+
+<section class="lesson" data-id="3-1" data-mod="3" data-short="O que é controle de versão" hidden>
+  <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
+  <h1>O que é controle de versão</h1>
+  <p class="l-goal">Entender o que o Git faz antes de digitar qualquer comando.</p>
+  <div class="prose">
+    <p>O <strong>Git</strong> guarda o histórico do seu projeto. Cada vez que você salva uma versão, ele tira uma “foto” de todos os arquivos e guarda junto uma frase explicando o que mudou. Essa foto se chama <strong>commit</strong>.</p>
+    <p>Com isso, você pode ver quem mudou o quê, comparar versões e voltar no tempo se algo der errado.</p>
+  </div>
+  <div class="callout c-analogy"><b>Git x GitHub</b><p><strong>Git</strong> é o programa no seu computador, como uma câmera que tira as fotos. <strong>GitHub</strong> é um site onde você guarda uma cópia online, como um álbum compartilhado. Lá a equipe vê, comenta e aprova as mudanças.</p></div>
+  <h2>As palavras do Git</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Palavra</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td>Repositório</td><td>A pasta do projeto com o histórico do Git. Também chamado de “repo”.</td></tr>
+      <tr><td>Commit</td><td>Uma versão salva, com mensagem.</td></tr>
+      <tr><td>Branch</td><td>Uma linha paralela para trabalhar sem mexer na versão oficial.</td></tr>
+      <tr><td>Merge</td><td>Juntar um branch de volta na versão oficial.</td></tr>
+      <tr><td>Push</td><td>Enviar seus commits para o GitHub.</td></tr>
+      <tr><td>Pull request</td><td>Pedido, no GitHub, para revisarem e juntarem suas mudanças.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Git guarda versões (commits) no seu computador. GitHub guarda uma cópia online e organiza as revisões.</p></div>
+</section>
+
+<section class="lesson" data-id="3-2" data-mod="3" data-short="Terminal sem medo" hidden>
+  <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
+  <h1>Terminal sem medo</h1>
+  <p class="l-goal">Abrir o terminal e entender como um comando é escrito.</p>
+  <div class="prose"><p>O <strong>terminal</strong> é uma janela onde você digita ordens para o computador, em vez de clicar. O Git é usado principalmente por ele. Não tem perigo: os comandos deste curso só criam e salvam coisas.</p></div>
+  <h2>Como abrir</h2>
+  <div class="prose"><ul>
+    <li><strong>Jeito mais fácil:</strong> no VS Code, aperte <kbd>Ctrl</kbd>+<kbd>`</kbd> (ou <em>View → Terminal</em>). Ele já abre dentro da pasta do projeto.</li>
+    <li><strong>Fora do VS Code:</strong> o app Terminal. Aperte <kbd>Cmd</kbd>+<kbd>Espaço</kbd>, digite “Terminal” e Enter.</li>
+  </ul></div>
+  <h2>Como ler um comando</h2>
+  <div class="anat" style="font-size:clamp(14px,2.4vw,18px)"><button type="button" class="t" tabindex="-1">git</button><button type="button" tabindex="-1"> </button><button type="button" class="a" tabindex="-1">commit</button><button type="button" tabindex="-1"> </button><button type="button" class="x" tabindex="-1">-m "Adiciona aviso"</button></div>
+  <div class="prose"><ol>
+    <li><strong>O programa:</strong> <code>git</code></li>
+    <li><strong>A ação:</strong> <code>commit</code> (salvar uma versão)</li>
+    <li><strong>Opções:</strong> começam com hífen. <code>-m</code> quer dizer “mensagem”, e o texto vem entre aspas.</li>
+  </ol></div>
+  <h2>Comandos para se localizar</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>pwd</code></td><td>Mostra em qual pasta você está.</td></tr>
+      <tr><td><code>ls</code></td><td>Lista os arquivos da pasta.</td></tr>
+      <tr><td><code>cd nome-da-pasta</code></td><td>Entra numa pasta.</td></tr>
+      <tr><td><code>cd ..</code></td><td>Volta uma pasta para cima.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-analogy"><b>Atalhos que salvam tempo</b><ul><li><code>Tab</code> completa nomes de arquivos.</li><li>Seta para cima repete o último comando.</li><li><code>Ctrl+C</code> cancela algo que travou.</li></ul></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Um comando tem programa, ação e opções. Para se localizar: pwd, ls e cd.</p></div>
+</section>
+
+<section class="lesson" data-id="3-3" data-mod="3" data-short="Instalar o Git" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Instale e configure o Git</h1>
+  <p class="l-goal">Deixar o Git pronto para usar.</p>
+  <ol class="how">
+    <li><div><b>Confira se já existe</b><span>No Mac, o Git vem junto com as ferramentas de desenvolvedor da Apple. No terminal do VS Code, digite <code>git --version</code>. Se aparecer um número, já está instalado.</span><span>Se aparecer uma janela oferecendo instalar as “ferramentas de linha de comando”, clique em <em>Instalar</em> e espere terminar.</span></div></li>
+    <li><div><b>Feche e abra o VS Code</b><span>Para o terminal enxergar o Git recém-instalado.</span></div></li>
+    <li><div><b>Diga quem você é</b><span>O Git coloca seu nome e e-mail em cada commit. Use o mesmo e-mail que vai usar no GitHub. Isso é feito uma vez só.</span></div></li>
+  </ol>
+  <div class="code-wrap" data-code="git-config" data-tag="terminal · uma vez só"></div>
+  <div class="code-wrap" data-code="git-test" data-tag="terminal · teste"></div>
+  <div class="callout c-result"><b>Resultado</b><p><code>git --version</code> mostra um número, e <code>git config --global user.name</code> mostra o seu nome.</p></div>
+</section>
+
+<section class="lesson" data-id="3-4" data-mod="3" data-short="As 3 áreas e o commit" hidden>
+  <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
+  <h1>As 3 áreas e o commit</h1>
+  <p class="l-goal">Entender o caminho de um arquivo até virar uma versão salva.</p>
+  <div class="areas-dg">
+    <div class="box3"><b>Pasta de trabalho</b><span>Onde você edita os arquivos no VS Code.</span></div>
+    <div class="arr">git add →</div>
+    <div class="box3"><b>Preparação</b><span>O que vai entrar na próxima versão.</span></div>
+    <div class="arr">git commit →</div>
+    <div class="box3"><b>Histórico</b><span>As versões salvas, cada uma com mensagem.</span></div>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como uma foto em grupo. <code>git add</code> chama as pessoas para a foto. <code>git commit</code> tira a foto e escreve a legenda. Você pode ter mexido em 5 arquivos e escolher fotografar só 2.</p></div>
+  <h2>Os comandos desta etapa</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>git init</code></td><td>Liga o Git na pasta. Só uma vez por projeto.</td></tr>
+      <tr><td><code>git status</code></td><td>Mostra o que mudou e o que está preparado. Use sempre que tiver dúvida.</td></tr>
+      <tr><td><code>git add arquivo</code></td><td>Prepara um arquivo. <code>git add .</code> prepara tudo.</td></tr>
+      <tr><td><code>git commit -m "mensagem"</code></td><td>Salva a versão com a mensagem.</td></tr>
+      <tr><td><code>git log --oneline</code></td><td>Mostra o histórico, uma linha por versão.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-warn"><b>Mensagem de commit é microcopy</b><p>Verbo no presente, curta e específica: “Adiciona passo de anexar recibo”. Evite “ajustes” ou “mudanças”. Em equipes com Jira, comece pelo número da tarefa: “DOC-12 Adiciona passo…”.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Edite → <code>git add</code> → <code>git commit -m "..."</code>. Na dúvida, <code>git status</code>.</p></div>
+</section>
+
+<section class="lesson" data-id="3-5" data-mod="3" data-short="Branch e merge" hidden>
+  <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
+  <h1>Branch e merge</h1>
+  <p class="l-goal">Trabalhar numa cópia segura e juntar quando estiver pronto.</p>
+  <div class="prose"><p>A versão oficial do projeto fica num branch chamado <code>main</code>. Para revisar algo sem mexer nela, você cria um <strong>branch</strong>: uma linha paralela. Quando terminar, faz o <strong>merge</strong>, que junta as mudanças de volta.</p></div>
+  <div class="scroll-x" style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px">
+    <svg class="svg-dg" viewBox="0 0 640 170" role="img" aria-label="Diagrama: o branch revisao sai do main, recebe um commit e volta para o main com um merge">
+      <path class="ln-main" d="M40 120 H600"/>
+      <path class="ln-br" d="M200 120 C 240 120 240 50 290 50 H420 C 470 50 470 120 510 120"/>
+      <circle class="dot-main" cx="80" cy="120" r="9"/><circle class="dot-main" cx="200" cy="120" r="9"/><circle class="dot-main" cx="510" cy="120" r="11"/>
+      <circle class="dot-br" cx="330" cy="50" r="9"/><circle class="dot-br" cx="410" cy="50" r="9"/>
+      <text class="lbl" x="40" y="155">main</text>
+      <text x="62" y="102">versão 1</text><text x="170" y="102">versão 2</text>
+      <text class="lbl" x="290" y="22">revisao-tarefa</text>
+      <text x="300" y="80">edição 1</text><text x="385" y="80">edição 2</text>
+      <text x="490" y="152">merge</text>
+    </svg>
+  </div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>git switch -c nome</code></td><td>Cria um branch e já entra nele.</td></tr>
+      <tr><td><code>git switch main</code></td><td>Volta para o main.</td></tr>
+      <tr><td><code>git branch</code></td><td>Lista os branches. O atual tem um asterisco.</td></tr>
+      <tr><td><code>git merge nome</code></td><td>Junta o branch “nome” no branch em que você está.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como pedir para revisar um texto numa cópia do documento, em vez de mexer no original. Quando a revisão é aprovada, as mudanças entram no original.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Branch é uma linha paralela. Merge junta de volta. Para fazer merge, você precisa estar no branch que vai receber as mudanças.</p></div>
+</section>
+
+<section class="lesson" data-id="3-6" data-mod="3" data-short="Prática: terminal simulado" hidden>
+  <p class="l-eyebrow">Módulo 3 · Prática</p>
+  <h1>Prática: terminal simulado</h1>
+  <p class="l-goal">Usar o Git sem medo de errar. Nada aqui afeta seu computador.</p>
+  <div class="callout c-do"><b>Como usar</b><ol><li>Siga as missões na ordem.</li><li>Toque num comando cinza da lista para preenchê-lo. Depois aperte Enter.</li><li>Depois de cada comando, olhe o quadro “Onde estão os arquivos”.</li><li>Digite <code>help</code> para ver todos os comandos.</li></ol></div>
+  <div class="term-grid">
+    <div class="term">
+      <div class="term-out" id="term-out" aria-live="polite"></div>
+      <form class="term-in" id="term-form"><span>$</span><input id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Comando" placeholder="digite um comando"></form>
+    </div>
+    <div class="tside">
+      <div class="panel"><span class="out-label">Missões</span><ol class="missions" id="missions"></ol></div>
+      <div class="panel"><span class="out-label">Onde estão os arquivos</span><div class="areas" id="areas"></div></div>
+    </div>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O ciclo completo: iniciar, salvar versões, criar um branch, editar e juntar de volta.</p></div>
+</section>
+
+<section class="lesson" data-id="3-7" data-mod="3" data-short="Git no seu projeto" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Git no seu projeto de verdade</h1>
+  <p class="l-goal">Repetir o que você fez no simulador, agora na sua pasta.</p>
+  <div class="prose"><p>Abra a pasta <code>central-ajuda-despesas</code> no VS Code e o terminal (<em>Terminal → New Terminal</em>). Rode um comando por vez.</p></div>
+  <h2>Parte A · Primeira versão</h2>
+  <div class="code-wrap" data-code="git-a" data-tag="terminal"></div>
+  <h2>Parte B · Revisão num branch</h2>
+  <div class="code-wrap" data-code="git-b" data-tag="terminal"></div>
+  <div class="prose"><p>Entre os comandos, abra <code>tarefa-enviar-relatorio.dita</code>, faça uma mudança (por exemplo, melhore um <code>&lt;cmd&gt;</code>) e salve.</p></div>
+  <h2>Parte C · Juntar no main</h2>
+  <div class="code-wrap" data-code="git-c" data-tag="terminal"></div>
+  <div class="callout c-analogy"><b>Também dá para usar com cliques</b><p>O ícone <em>Source Control</em> na barra da esquerda do VS Code mostra os arquivos alterados. O “+” ao lado de um arquivo faz o <code>git add</code>, e o botão <em>Commit</em> faz o commit com a mensagem que você digitar. Aprenda primeiro pelo terminal, para entender o que cada clique faz.</p></div>
+  <div class="callout c-warn"><b>Apareceu uma tela estranha no terminal?</b><p>Se o <code>git log</code> encher a tela e travar, aperte <code>q</code> para sair. Se você esqueceu o <code>-m</code> no commit e abriu um editor, escreva a mensagem na primeira linha, salve e feche a aba.</p></div>
+  <div class="callout c-result"><b>Resultado</b><p>O <code>git log --oneline</code> mostra pelo menos 2 commits, e o branch de revisão já foi juntado ao main.</p></div>
+</section>
+
+<section class="lesson" data-id="3-8" data-mod="3" data-short="Enviar para o GitHub" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Envie o projeto para o GitHub</h1>
+  <p class="l-goal">Colocar uma cópia do projeto online.</p>
+  <ol class="how">
+    <li><div><b>Crie a conta</b><span>Em <a href="https://github.com" target="_blank" rel="noopener">github.com</a>, clique em “Sign up”. Escolha um nome de usuário profissional. Ele vai aparecer no link do seu site.</span></div></li>
+    <li><div><b>Crie o repositório</b><span>Clique no “+” no canto superior direito → <em>New repository</em>. Nome: <code>central-ajuda-despesas</code>. Marque <em>Public</em>. <strong>Não</strong> marque “Add a README”. Clique em <em>Create repository</em>.</span></div></li>
+    <li><div><b>Copie a URL</b><span>A página seguinte mostra um endereço terminado em <code>.git</code>. Copie.</span></div></li>
+    <li><div><b>Ligue e envie</b><span>No terminal do VS Code, rode os comandos abaixo, trocando a URL pela sua.</span></div></li>
+    <li><div><b>Entre na conta</b><span>Na primeira vez, abre uma janela do navegador pedindo para entrar no GitHub. Autorize.</span></div></li>
+    <li><div><b>Confira</b><span>Atualize a página do repositório no GitHub. Seus arquivos estão lá.</span></div></li>
+  </ol>
+  <div class="code-wrap" data-code="push" data-tag="terminal"></div>
+  <div class="prose"><p><code>remote add origin</code> diz ao Git qual é o endereço online. <code>push</code> envia seus commits para lá. Daqui para frente, para enviar novas versões, basta <code>git push</code>.</p></div>
+  <div class="callout c-result"><b>Resultado</b><p>O projeto está online no GitHub, com todo o histórico de versões.</p></div>
+</section>
+
+<section class="lesson" data-id="3-9" data-mod="3" data-short="Publicar e pedir revisão" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Publique o site e peça uma revisão</h1>
+  <p class="l-goal">Ter um link público e praticar o fluxo de revisão de uma equipe.</p>
+  <h2>Parte A · Publique com o GitHub Pages</h2>
+  <ol class="how">
+    <li><div><b>Confira a pasta docs</b><span>O site gerado no Módulo 2 está em <code>docs/</code>. Se você mudou algum tópico depois, gere de novo com o comando do DITA-OT, faça um commit e um <code>git push</code>.</span></div></li>
+    <li><div><b>Abra as configurações</b><span>No repositório do GitHub: aba <em>Settings</em> → no menu da esquerda, <em>Pages</em>.</span></div></li>
+    <li><div><b>Escolha a origem</b><span>Em “Source”, escolha <em>Deploy from a branch</em>. Em “Branch”, escolha <code>main</code> e a pasta <code>/docs</code>. Clique em <em>Save</em>.</span></div></li>
+    <li><div><b>Espere e abra</b><span>Em 1 ou 2 minutos, o link aparece no topo dessa mesma página: <code>https://seu-usuario.github.io/central-ajuda-despesas/</code>.</span></div></li>
+  </ol>
+  <h2>Parte B · Pull request: o pedido de revisão</h2>
+  <div class="prose"><p>Em equipes, ninguém junta mudanças direto no main. Você envia um branch e abre um <strong>pull request</strong>. Outra pessoa lê, comenta e aprova. Só então a mudança entra.</p></div>
+  <div class="code-wrap" data-code="pr" data-tag="terminal"></div>
+  <ol class="how">
+    <li><div><b>Abra o pull request</b><span>No GitHub aparece um botão amarelo <em>Compare &amp; pull request</em>. Clique, escreva um título claro e uma descrição do que mudou e por quê.</span></div></li>
+    <li><div><b>Revise</b><span>Na aba <em>Files changed</em>, você vê as linhas removidas (vermelho) e adicionadas (verde). Deixe um comentário numa linha, como faria numa revisão de texto.</span></div></li>
+    <li><div><b>Junte</b><span>Clique em <em>Merge pull request</em> → <em>Confirm</em>.</span></div></li>
+    <li><div><b>Atualize seu computador</b><span>Volte ao main e baixe a versão juntada com os comandos abaixo.</span></div></li>
+  </ol>
+  <div class="code-wrap" data-code="pull" data-tag="terminal"></div>
+  <div class="callout c-result"><b>Resultado do Módulo 3</b><p>Um site público com link próprio e um pull request revisado no histórico. Esse é o fluxo “docs as code” completo.</p></div>
+</section>
+
+<!-- ═════════════════ MÓDULO 4 · PROJETO ═════════════════ -->
+
+<section class="lesson" data-id="4-1" data-mod="4" data-short="Seu projeto final" hidden>
+  <p class="l-eyebrow">Projeto final</p>
+  <h1>Central de Ajuda do Relatório de Despesas</h1>
+  <p class="l-goal">Completar o projeto para colocar no portfólio.</p>
+  <div class="prose"><p>Você já construiu quase tudo durante o curso. Agora é completar o que falta e revisar com calma.</p></div>
+  <div class="callout c-warn"><b>Dica forte: faça a versão final em inglês</b><p>A documentação de empresas globais de software costuma ser escrita em inglês. Um projeto em inglês mostra na prática o seu nível C1.</p></div>
+  <h2>Estrutura final da pasta</h2>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita   <span class="d">← nova</span>
+├── ref-limites.dita
+├── avisos.dita
+├── glossario.dita              <span class="d">← nova</span>
+├── guia.ditamap
+├── README.md
+└── <span class="d">docs/                        ← site gerado</span></div>
+  <h2>O que falta: um glossário</h2>
+  <div class="prose"><p>O tipo <code>glossentry</code> define um termo. Crie um arquivo para cada termo (ou use um tópico com vários) e adicione ao mapa.</p></div>
+  <div class="code-wrap" data-code="gloss" data-tag="glossario-reembolso.dita"></div>
+  <h2>Checklist de entrega</h2>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, todos válidos</label></li>
+    <li><label><input type="checkbox" id="ck-2">Um aviso reutilizado com conref nas 2 tasks</label></li>
+    <li><label><input type="checkbox" id="ck-3">Glossário com 3 termos</label></li>
+    <li><label><input type="checkbox" id="ck-4">Mapa com hierarquia e site gerado em <code>docs/</code></label></li>
+    <li><label><input type="checkbox" id="ck-5">Pelo menos 5 commits com mensagens claras</label></li>
+    <li><label><input type="checkbox" id="ck-6">Um pull request revisado e juntado</label></li>
+    <li><label><input type="checkbox" id="ck-7">README explicando o projeto e as decisões</label></li>
+    <li><label><input type="checkbox" id="ck-8">Site publicado no GitHub Pages</label></li>
+  </ul>
+</section>
+
+<section class="lesson" data-id="4-2" data-mod="4" data-short="Apresentar no portfólio" hidden>
+  <p class="l-eyebrow">Projeto final</p>
+  <h1>Apresente no portfólio</h1>
+  <p class="l-goal">Explicar o projeto de um jeito que recrutadores entendam em um minuto.</p>
+  <h2>O README do repositório</h2>
+  <div class="prose"><p>O README é a primeira coisa que aparece no GitHub. Crie <code>README.md</code> na pasta, adapte o modelo abaixo, faça commit e push.</p></div>
+  <div class="code-wrap" data-code="readme" data-tag="README.md · modelo"></div>
+  <h2>O case no portfólio</h2>
+  <ol class="how">
+    <li><div><b>Contexto</b><span>“Projeto de estudo para aplicar documentação estruturada em DITA a um produto de despesas corporativas.”</span></div></li>
+    <li><div><b>Decisões</b><span>Por que separou concept, task e reference. O que virou conref e por quê. Como escreveu os shortdescs.</span></div></li>
+    <li><div><b>Processo</b><span>Fluxo docs as code: Git, branch, pull request e publicação.</span></div></li>
+    <li><div><b>Resultado</b><span>Links para o site e para o repositório.</span></div></li>
+  </ol>
+  <h2>Para ir além</h2>
+  <div class="next">
+    <a href="https://learningdita.com" target="_blank" rel="noopener"><b>LearningDITA</b><span>Curso gratuito de introdução da Scriptorium, com exercícios e quizzes.</span></a>
+    <a href="https://www.oxygenxml.com" target="_blank" rel="noopener"><b>Oxygen XML Editor</b><span>O editor mais usado em times DITA. Tem teste grátis.</span></a>
+    <a href="https://www.dita-ot.org/dev/" target="_blank" rel="noopener"><b>Documentação do DITA-OT</b><span>Para personalizar o visual do site e do PDF.</span></a>
+    <a href="https://www.udemy.com/course/git-and-github-for-writers/" target="_blank" rel="noopener"><b>Git and GitHub for Writers</b><span>Curso pago com exercícios usando documentos.</span></a>
+  </div>
+  <div class="callout c-result"><b>Parabéns</b><p>Você começou sem saber o que era XML e terminou com uma central de ajuda estruturada, versionada e publicada. Esse é o trabalho de User Assistance na prática.</p></div>
+</section>
+
+<!-- ═════════════════ EXTRA · UA NO SAP ═════════════════ -->
+
+<section class="lesson" data-id="5-1" data-mod="5" data-short="O trabalho de UA no SAP" hidden>
+  <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
+  <h1>O trabalho de UA dentro do sistema SAP</h1>
+  <p class="l-goal">Entender que textos a pessoa de UA escreve dentro do sistema e onde o ABAP entra nisso.</p>
+  <div class="prose">
+    <p>Até aqui você aprendeu a escrever <strong>guias</strong>: tópicos DITA publicados num portal de ajuda. Mas boa parte do texto que o usuário lê fica <strong>dentro do próprio sistema SAP</strong>, junto com o produto.</p>
+    <p>A pessoa de UA não programa. Ela entra no sistema, encontra o objeto certo (um campo, uma mensagem, um programa) e escreve ou revisa o texto ligado a ele.</p>
+  </div>
+  <h2>Os textos que ficam no sistema</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Texto</th><th>Onde o usuário vê</th><th>Equivalente na Renner</th></tr></thead>
+    <tbody>
+      <tr><td>Rótulo de campo</td><td>O nome do campo na tela, em até 4 tamanhos.</td><td>Label de formulário</td></tr>
+      <tr><td>Ajuda de campo (F1)</td><td>Ao apertar F1 com o cursor num campo.</td><td>Texto de ajuda ou tooltip</td></tr>
+      <tr><td>Mensagem curta</td><td>Na barra de status, em baixo da tela.</td><td>Mensagem de erro ou snackbar</td></tr>
+      <tr><td>Texto longo da mensagem</td><td>Ao clicar na mensagem: causa e o que fazer.</td><td>Tela de erro com explicação</td></tr>
+      <tr><td>Documentação de programa</td><td>No botão de informação de um relatório ou transação.</td><td>Onboarding de uma função</td></tr>
+    </tbody>
+  </table></div>
+  <h2>E o ABAP?</h2>
+  <div class="prose"><p>O ABAP é a linguagem em que os desenvolvedores constroem o sistema. É o código que decide <strong>quando</strong> uma tela, um campo ou uma mensagem aparece. Para quem escreve, ler um trecho de ABAP serve para uma coisa só: descobrir em que situação o texto aparece, para escrever a mensagem certa. Você não escreve código.</p></div>
+  <div class="callout c-warn"><b>Este módulo está em revisão</b><p>O conteúdo será ajustado com materiais de um UA developer. Ferramentas e nomes podem variar de empresa para empresa e de time para time.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Em UA no SAP, você também escreve textos que vivem dentro do sistema: rótulos, ajuda F1, mensagens e documentação de programas. O ABAP só ajuda a entender quando esses textos aparecem.</p></div>
+</section>
+
+<section class="lesson" data-id="5-2" data-mod="5" data-short="SAP Logon e transações" hidden>
+  <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
+  <h1>SAP Logon e transações</h1>
+  <p class="l-goal">Saber como se entra no sistema e como se chega às telas onde os textos são editados.</p>
+  <h2>SAP Logon: a porta de entrada</h2>
+  <div class="prose">
+    <p>O <strong>SAP Logon</strong> é o programa instalado no computador para entrar nos sistemas SAP. Ele mostra uma lista de sistemas. Você escolhe um, digita usuário e senha, e abre a interface do sistema, chamada <strong>SAP GUI</strong>. No Mac, ele vem no pacote <em>SAP GUI for Java</em>.</p>
+    <p>Normalmente a empresa tem pelo menos três sistemas, cada um com um papel:</p>
+  </div>
+  <div class="areas-dg">
+    <div class="box3"><b>DEV · Desenvolvimento</b><span>Onde as mudanças são feitas, incluindo os textos.</span></div>
+    <div class="arr">→</div>
+    <div class="box3"><b>QAS · Qualidade</b><span>Onde as mudanças são testadas e revisadas.</span></div>
+    <div class="arr">→</div>
+    <div class="box3"><b>PRD · Produção</b><span>O sistema que os usuários reais usam.</span></div>
+  </div>
+  <h2>Transações: atalhos para cada tela</h2>
+  <div class="prose"><p>Dentro do sistema, cada tela tem um código curto, chamado <strong>transação</strong>. Você digita o código no campo de comando, no topo da tela, e aperta Enter. Estas são as mais ligadas ao trabalho de texto:</p></div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Transação</th><th>Para que serve</th></tr></thead>
+    <tbody>
+      <tr><td><code>SE91</code></td><td>Mensagens: texto curto e texto longo de cada mensagem.</td></tr>
+      <tr><td><code>SE61</code></td><td>Documentos: textos longos e documentação de objetos.</td></tr>
+      <tr><td><code>SE11</code></td><td>Dicionário de dados: rótulos de campo e documentação F1 dos elementos de dados.</td></tr>
+      <tr><td><code>SE63</code></td><td>Tradução dos textos para outros idiomas.</td></tr>
+      <tr><td><code>SE09</code> / <code>SE10</code></td><td>Ordens de transporte: o versionamento (próxima página).</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-warn"><b>Confirme com o time</b><p>Essas transações são padrão, mas cada time usa um conjunto e pode ter ferramentas próprias. Use a tabela como mapa inicial.</p></div>
+  <h2>Rótulos de campo têm tamanho fixo</h2>
+  <div class="prose"><p>Um campo pode ter até quatro rótulos, e o sistema escolhe qual mostrar conforme o espaço na tela. Teste abaixo:</p></div>
+  <div class="msg-lab" id="lbl-lab">
+    <div class="msg-in">
+      <label for="lbl-s">Curto (até 10)</label><input id="lbl-s" type="text" autocomplete="off" value="Venc.">
+      <label for="lbl-m">Médio (até 20)</label><input id="lbl-m" type="text" autocomplete="off" value="Data venc.">
+      <label for="lbl-l">Longo (até 40)</label><input id="lbl-l" type="text" autocomplete="off" value="Data de vencimento">
+      <label for="lbl-h">Título de coluna (até 55)</label><input id="lbl-h" type="text" autocomplete="off" value="Data de vencimento do pagamento">
+    </div>
+    <div class="msg-out">
+      <span class="out-label">Checagem</span>
+      <ul class="checks" id="lbl-checks"></ul>
+      <div class="callout c-analogy"><b>Por que isso importa</b><p>Abreviar bem é microcopy pura. O curto aparece em telas apertadas, e precisa continuar compreensível.</p></div>
+    </div>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>SAP Logon é a porta de entrada. Lá dentro, os textos são editados em transações como SE91, SE61 e SE11, primeiro no sistema de desenvolvimento.</p></div>
+</section>
+
+<section class="lesson" data-id="5-3" data-mod="5" data-short="Versões: ordens de transporte" hidden>
+  <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
+  <h1>Versionamento dentro do SAP</h1>
+  <p class="l-goal">Entender como uma mudança de texto é registrada e chega aos usuários.</p>
+  <div class="prose">
+    <p>Dentro do SAP não se usa Git para os textos do sistema. As mudanças são registradas em <strong>ordens de transporte</strong> (em inglês, <em>transport requests</em>). Uma ordem é um “pacote” com tudo que mudou numa tarefa, com nome, autor e data.</p>
+    <p>O SAP Logon é só a porta de entrada: o versionamento acontece dentro do sistema, nessas ordens.</p>
+  </div>
+  <h2>Veja uma mudança de texto viajar</h2>
+  <div class="transport" id="transport">
+    <div class="tr-systems"></div>
+    <p class="tr-cap" aria-live="polite"></p>
+    <div class="stepper-nav"><button class="btn-ghost" type="button" data-tr-prev>← Anterior</button><button class="btn-ghost" type="button" data-tr-next>Próximo passo →</button><span data-tr-count></span></div>
+  </div>
+  <h2>Git x SAP: o que equivale a quê</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>No Git (Módulo 3)</th><th>Dentro do SAP</th></tr></thead>
+    <tbody>
+      <tr><td>Editar arquivos na pasta</td><td>Editar o texto no sistema DEV</td></tr>
+      <tr><td><code>git commit</code></td><td>Gravar a mudança numa ordem de transporte</td></tr>
+      <tr><td>Mensagem do commit</td><td>Descrição da ordem</td></tr>
+      <tr><td><code>git log</code></td><td>Versões do objeto e histórico das ordens</td></tr>
+      <tr><td>Pull request e revisão</td><td>Liberar a ordem e testar no QAS</td></tr>
+      <tr><td>Merge e publicação</td><td>Importar a ordem em PRD</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout c-warn"><b>A comparação não é perfeita</b><p>Não existem branches como no Git: a mudança segue uma linha só, de DEV para QAS e PRD. A importação nos outros sistemas costuma ser feita por outro time, não por quem escreveu.</p></div>
+  <div class="callout c-analogy"><b>Então por que aprender Git?</b><p>Os guias em DITA e muitos projetos de documentação ficam fora do sistema e usam Git. E a lógica é a mesma: registrar cada mudança com descrição e revisar antes de publicar. Quem entende uma, entende a outra.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Textos do sistema são versionados em ordens de transporte: grava em DEV, libera, testa em QAS e importa em PRD.</p></div>
+</section>
+
+<section class="lesson" data-id="5-4" data-mod="5" data-short="Ler o código para achar o texto" hidden>
+  <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
+  <h1>Ler o código só para achar o texto</h1>
+  <p class="l-goal">Usar um trecho de ABAP para descobrir quando uma mensagem aparece. Só isso.</p>
+  <div class="prose"><p>Imagine que você precisa escrever as mensagens de uma regra nova. O desenvolvedor manda o trecho abaixo. Você não precisa entender tudo: procure as palavras <code>IF</code> (condição) e <code>MESSAGE</code> (mensagem). Toque nas linhas.</p></div>
+  <div class="explain" data-explain="abap2"></div>
+  <div class="callout c-analogy"><b>Em português</b><p>Para cada despesa do relatório: se não tiver recibo, mostre o erro 002. Senão, se o valor passar do limite, mostre o aviso 001.</p></div>
+  <h2>Como ler a chamada da mensagem</h2>
+  <div class="code-wrap" data-code="abap-msg" data-tag="no código"></div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Parte</th><th>No exemplo</th><th>O que diz para você</th></tr></thead>
+    <tbody>
+      <tr><td>Tipo</td><td><code>e</code></td><td>A primeira letra: <code>e</code> erro, <code>w</code> aviso, <code>i</code> informação, <code>s</code> sucesso.</td></tr>
+      <tr><td>Número</td><td><code>001</code></td><td>Qual mensagem você vai escrever.</td></tr>
+      <tr><td>Classe</td><td><code>zdespesas</code></td><td>Onde ela fica guardada. É o que você abre na SE91.</td></tr>
+      <tr><td>Valores</td><td><code>WITH lv_limite</code></td><td>O que entra no lugar de <code>&amp;1</code> no seu texto.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="quiz" data-answer="1" data-explain="O aviso 001 está no ELSEIF: aparece quando a despesa tem recibo, mas o valor passa do limite. É isso que a mensagem precisa explicar.">
+    <span class="quiz-k">Faça agora</span><p class="quiz-q">Quando o aviso 001 aparece para a pessoa?</p>
+    <div class="quiz-opts"><button>Quando a despesa está sem recibo</button><button>Quando a despesa tem recibo, mas o valor passa do limite</button><button>Sempre, para todas as despesas</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>No código, procure IF e MESSAGE. Eles dizem quando a mensagem aparece, qual é o número e quais valores entram no texto.</p></div>
+</section>
+
+<section class="lesson" data-id="5-5" data-mod="5" data-short="Prática: mensagem de erro" hidden>
+  <p class="l-eyebrow">Extra · Prática <span class="draft">rascunho</span></p>
+  <h1>Prática: escreva a mensagem de erro</h1>
+  <p class="l-goal">Reescrever uma mensagem provisória respeitando os limites do sistema.</p>
+  <div class="prose">
+    <p>O desenvolvedor criou uma regra: despesas mais antigas que o prazo não podem ser enviadas. Ele deixou uma mensagem provisória na SE91. Sua vez de melhorar.</p>
+    <ul>
+      <li><strong>Texto curto:</strong> aparece na barra de status. Limite de <strong>73 caracteres</strong>, contando os marcadores.</li>
+      <li><strong>Texto longo:</strong> abre quando a pessoa clica na mensagem. Explica a causa e o que fazer.</li>
+      <li><strong>Marcadores:</strong> <code>&amp;1</code> vira a data da despesa (15/06/2026) e <code>&amp;2</code> vira o prazo em dias (60).</li>
+    </ul>
+  </div>
+  <div class="msg-lab" id="msg-lab">
+    <div class="msg-in">
+      <label for="msg-short">Texto curto da mensagem 003</label>
+      <input id="msg-short" type="text" autocomplete="off">
+      <span class="msg-count" id="msg-count" aria-live="polite"></span>
+      <label for="msg-long">Texto longo (causa e o que fazer)</label>
+      <textarea id="msg-long" rows="4"></textarea>
+      <div class="lab-actions"><button class="btn-ghost" type="button" id="msg-reset">Recomeçar</button><button class="btn-ghost" type="button" id="msg-solve">Ver um exemplo</button></div>
+    </div>
+    <div class="msg-out">
+      <span class="out-label">Como a pessoa vê</span>
+      <div class="sapbar"><span class="ico" aria-hidden="true">!</span><span id="msg-prev"></span></div>
+      <div class="sap-long" id="msg-long-prev"></div>
+      <span class="out-label">Checagem</span>
+      <ul class="checks" id="msg-checks"></ul>
+    </div>
+  </div>
+  <div class="callout c-result"><b>Resultado</b><p>Uma mensagem de sistema escrita com o mesmo cuidado de uma microcopy da Renner, dentro dos limites técnicos. Um antes e depois assim vale para o portfólio.</p></div>
+</section>
+
+<section class="lesson" data-id="5-6" data-mod="5" data-short="Próximos passos" hidden>
+  <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
+  <h1>Próximos passos</h1>
+  <p class="l-goal">Saber o que perguntar ao time e como falar disso numa entrevista.</p>
+  <h2>Perguntas para um UA developer</h2>
+  <ul class="checklist" id="questions">
+    <li><label><input type="checkbox" id="q-1">Quais textos vocês mais escrevem dentro do sistema: mensagens, F1, documentação de programas?</label></li>
+    <li><label><input type="checkbox" id="q-2">Quais transações ou ferramentas vocês usam no dia a dia?</label></li>
+    <li><label><input type="checkbox" id="q-3">Como funciona a ordem de transporte para textos? Quem libera e quem importa?</label></li>
+    <li><label><input type="checkbox" id="q-4">Os guias são escritos em DITA? Em qual ferramenta?</label></li>
+    <li><label><input type="checkbox" id="q-5">Como vocês recebem as tarefas do time de desenvolvimento?</label></li>
+    <li><label><input type="checkbox" id="q-6">Existe um guia de estilo para mensagens e textos de campo?</label></li>
+  </ul>
+  <div class="callout c-warn"><b>Como falar numa entrevista</b><p>“Não desenvolvo em ABAP. Sei entrar no sistema pelo SAP Logon, entendo onde ficam mensagens e ajuda de campo, como as mudanças seguem por ordens de transporte, e leio um trecho de código para entender quando um texto aparece.”</p></div>
+  <h2>Onde ver mais</h2>
+  <div class="next">
+    <a href="https://help.sap.com" target="_blank" rel="noopener"><b>SAP Help Portal</b><span>Onde a SAP publica a documentação dos produtos. Bom para ver o trabalho de UA pronto.</span></a>
+    <a href="https://learning.sap.com" target="_blank" rel="noopener"><b>SAP Learning</b><span>Cursos gratuitos da SAP, incluindo introduções ao uso do sistema.</span></a>
+  </div>
+  <div class="callout c-result"><b>Fim do curso</b><p>Você entende a lógica da documentação estruturada, escreve XML e DITA, usa Git, tem um projeto publicado e sabe como os textos vivem dentro do sistema SAP.</p></div>
+</section>
+
+  </main>
+</div>
+
+
+<script src="assets/curso.js"></script>
+</body>
+</html>
