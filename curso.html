@@ -43,7 +43,7 @@
   <p class="l-eyebrow">Curso para Content Designers e UX Writers</p>
   <h1>DITA do zero</h1>
   <p class="l-goal">Documentação estruturada para quem já escreve bem: a lógica, o XML, o DITA, o versionamento e o trabalho de UA dentro do SAP. Uma página por vez, com prática em cada etapa.</p>
-  <div class="cover-meta"><span><b>42</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
+  <div class="cover-meta"><span><b>43</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
   <div class="modules">
     <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Do UX Writing à User Assistance.</span></div>
     <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas.</span></div>
@@ -254,7 +254,85 @@
     <span class="quiz-k">Teste rápido</span><p class="quiz-q">Por que a documentação é dividida em tópicos?</p>
     <div class="quiz-opts"><button>Para deixar os arquivos mais leves</button><button>Porque o Word não aceita textos longos</button><button>Para reaproveitar blocos em guias diferentes</button></div><p class="quiz-fb" aria-live="polite"></p>
   </div>
-  <div class="callout c-result"><b>Fim da introdução</b><p>Você já entende a lógica: rótulos, conteúdo separado da aparência, blocos reutilizáveis e histórico de versões. Agora vamos aprender a linguagem que escreve esses rótulos: o XML.</p></div>
+</section>
+
+<section class="lesson" data-id="0-8" data-mod="0" data-short="Como tudo se encaixa" hidden>
+  <p class="l-eyebrow">Introdução · Visão geral</p>
+  <h1>Como tudo se encaixa no dia a dia</h1>
+  <p class="l-goal">Ver o trabalho inteiro de uma vez, antes de estudar cada ferramenta separada.</p>
+  <div class="prose">
+    <p>Até aqui você viu cada peça sozinha. Esta página junta tudo num exemplo de um dia de trabalho de technical writer. Não precisa decorar nada: os próximos módulos explicam cada ferramenta com calma.</p>
+  </div>
+  <div class="callout c-analogy"><b>A comparação desta página</b><p>Pense numa editora de livros de receita. Você escreve no <strong>caderno</strong> (VS Code), seguindo a <strong>gramática</strong> das etiquetas (XML) e o <strong>formato de ficha</strong> que a editora exige (DITA). O <strong>sumário</strong> diz a ordem das fichas (mapa). A cada mudança, a <strong>câmera</strong> tira uma foto (Git) e guarda no <strong>álbum</strong> que o time inteiro vê (GitHub). O editor revisa, a <strong>gráfica</strong> imprime (DITA-OT) e o pedido sai do <strong>quadro de post-its</strong> (Jira).</p></div>
+
+  <h2>Quem faz o quê</h2>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Ferramenta</th><th>Na editora</th><th>O que entrega para a próxima etapa</th></tr></thead>
+    <tbody>
+      <tr><td>Jira</td><td>O pedido no quadro</td><td>O que precisa ser escrito, e até quando.</td></tr>
+      <tr><td>VS Code</td><td>O caderno</td><td>Os arquivos abertos para escrever.</td></tr>
+      <tr><td>XML</td><td>A gramática</td><td>Etiquetas bem formadas, que o computador consegue ler.</td></tr>
+      <tr><td>DITA</td><td>O formato de ficha</td><td>Tópicos do tipo certo: concept, task ou reference.</td></tr>
+      <tr><td>Mapa</td><td>O sumário</td><td>A ordem dos tópicos dentro do guia.</td></tr>
+      <tr><td>Git</td><td>A câmera</td><td>Uma versão salva, com uma frase dizendo o que mudou.</td></tr>
+      <tr><td>GitHub</td><td>O álbum compartilhado</td><td>Um lugar para o time ler, comentar e aprovar.</td></tr>
+      <tr><td>DITA-OT</td><td>A gráfica</td><td>O site, o PDF ou a ajuda dentro do app.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Um dia de trabalho, do pedido à publicação</h2>
+  <div class="prose"><p>O app de despesas ganhou uma função nova: anexar a foto do recibo pelo celular. Veja o caminho que o texto faz.</p></div>
+  <ol class="how">
+    <li><div><b>Chega o pedido · Jira</b><span>O ticket DOC-142 diz: “Documentar o anexo de recibo pelo celular. Entrega: sexta.” Você lê o ticket e combina com o desenvolvedor um horário para testar a função.</span></div></li>
+    <li><div><b>Abre um rascunho separado · Git</b><span>Antes de escrever, você cria uma branch, uma cópia de trabalho só sua. O guia publicado não muda enquanto você escreve.</span>
+      <div class="code-wrap"><span class="code-tag">terminal</span><pre class="code">git switch -c doc-142-recibo-celular</pre></div></div></li>
+    <li><div><b>Escreve o tópico · VS Code, XML e DITA</b><span>É um passo a passo, então o tipo é <code>task</code>. Cada passo fica dentro de <code>&lt;cmd&gt;</code> e começa com verbo. É a mesma regra de um bom guia de estilo, só que agora ela está na estrutura.</span>
+      <div class="code-wrap"><span class="code-tag">anexar-recibo-celular.dita</span><pre class="code">&lt;task id="anexar-recibo-celular"&gt;
+  &lt;title&gt;Anexar um recibo pelo celular&lt;/title&gt;
+  &lt;taskbody&gt;
+    &lt;steps&gt;
+      &lt;step&gt;&lt;cmd&gt;Abra a despesa no app.&lt;/cmd&gt;&lt;/step&gt;
+      &lt;step&gt;&lt;cmd&gt;Toque em &lt;uicontrol&gt;Anexar recibo&lt;/uicontrol&gt;.&lt;/cmd&gt;&lt;/step&gt;
+      &lt;step&gt;&lt;cmd&gt;Fotografe o recibo e toque em &lt;uicontrol&gt;Usar foto&lt;/uicontrol&gt;.&lt;/cmd&gt;&lt;/step&gt;
+    &lt;/steps&gt;
+  &lt;/taskbody&gt;
+&lt;/task&gt;</pre></div></div></li>
+    <li><div><b>Coloca no sumário · Mapa</b><span>Uma linha no mapa diz em que parte do guia o tópico novo aparece.</span>
+      <div class="code-wrap"><span class="code-tag">guia.ditamap</span><pre class="code">&lt;topicref href="anexar-recibo-celular.dita"/&gt;</pre></div></div></li>
+    <li><div><b>Confere o resultado · DITA-OT</b><span>Você gera o site no seu computador e lê do jeito que a pessoa vai ler. Se algo ficou estranho, volta ao passo 3.</span>
+      <div class="code-wrap"><span class="code-tag">terminal</span><pre class="code">dita -i guia.ditamap -f html5 -o saida</pre></div></div></li>
+    <li><div><b>Salva a versão · Git</b><span>Você tira a “foto” do projeto e escreve o que mudou. Depois envia essa versão para o GitHub.</span>
+      <div class="code-wrap"><span class="code-tag">terminal</span><pre class="code">git add .
+git commit -m "Documenta anexo de recibo pelo celular (DOC-142)"
+git push</pre></div></div></li>
+    <li><div><b>Pede revisão · GitHub</b><span>Você abre um pull request. O desenvolvedor confere se os passos estão certos e outra pessoa de UA revisa o texto. Os comentários aparecem linha por linha, parecido com o modo de sugestão do Google Docs.</span></div></li>
+    <li><div><b>Publica e fecha o pedido</b><span>Com a aprovação, o rascunho entra no guia oficial (isso se chama merge). O site é gerado de novo e o ticket muda para Concluído no Jira.</span></div></li>
+  </ol>
+  <div class="callout c-warn"><b>O que você já faz hoje</b><p>Os passos 1, 3 e 7 já fazem parte do seu trabalho: entender a função, escrever com clareza e receber revisão. O que muda é onde o texto fica e o caminho que ele faz até chegar na pessoa.</p></div>
+
+  <h2>Outras situações comuns</h2>
+  <div class="compare">
+    <div class="rule-row"><h3>O botão mudou de nome</h3><p>O time trocou “Enviar” por “Enviar para aprovação”, e esse nome aparece em 30 tópicos. No DITA, o nome fica guardado num lugar só e os tópicos puxam esse trecho (isso se chama conref, e está no Módulo 2). Você muda uma vez e os 30 tópicos atualizam. No Git, o histórico mostra quem trocou, quando e por quê.</p></div>
+    <div class="rule-row"><h3>Um cliente pediu o guia em PDF</h3><p>Você não reescreve nada. Os mesmos tópicos voltam para a gráfica, agora com saída em PDF. O conteúdo é um só e só o formato muda, como você viu em “Conteúdo x aparência”.</p></div>
+    <div class="rule-row"><h3>Alguém achou um erro num guia antigo</h3><p>No histórico do Git, você vê a versão daquela época e quem aprovou. Corrige, salva uma versão nova e pede revisão. Nada do que existia antes se perde.</p></div>
+  </div>
+
+  <div class="callout c-sum"><b>Se for lembrar de uma coisa só</b><ul>
+    <li><strong>XML</strong> é a gramática das etiquetas.</li>
+    <li><strong>DITA</strong> é o formato padrão de documentação, escrito em XML.</li>
+    <li><strong>Git</strong> guarda cada versão. O <strong>GitHub</strong> é onde o time revisa.</li>
+    <li><strong>DITA-OT</strong> transforma os tópicos em site ou PDF.</li>
+    <li><strong>Jira</strong> diz o que precisa ser feito, e até quando.</li>
+  </ul></div>
+  <div class="quiz" data-answer="1" data-explain="Todo texto passa pelo Git e por revisão antes de ser publicado. É isso que garante histórico e qualidade.">
+    <span class="quiz-k">Teste rápido</span><p class="quiz-q">Você terminou um tópico novo. O que vem antes de publicar?</p>
+    <div class="quiz-opts"><button>Gerar o PDF direto no Jira</button><button>Salvar a versão no Git e pedir revisão no GitHub</button><button>Mandar o arquivo por e-mail para o desenvolvedor</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="quiz" data-answer="2" data-explain="O conref puxa um trecho guardado num lugar só. Mudou lá, muda em todos os tópicos que usam esse trecho.">
+    <span class="quiz-k">Teste rápido</span><p class="quiz-q">O nome de um botão aparece em 30 tópicos e mudou. O que evita editar os 30 um por um?</p>
+    <div class="quiz-opts"><button>Uma branch nova</button><button>Um mapa novo</button><button>O conref do DITA</button></div><p class="quiz-fb" aria-live="polite"></p>
+  </div>
+  <div class="callout c-result"><b>Fim da introdução</b><p>Você já entende a lógica: rótulos, conteúdo separado da aparência, blocos reutilizáveis, histórico de versões e o caminho de um texto do pedido até a publicação. Agora vamos aprender a linguagem que escreve esses rótulos: o XML.</p></div>
 </section>
 
 <!-- ═════════════════ MÓDULO 1 · XML ═════════════════ -->
