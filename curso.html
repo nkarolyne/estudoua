@@ -816,9 +816,9 @@ git push</pre></div></div></li>
 
   <h3>Como deve ficar</h3>
   <div class="prose"><p>O trecho da task, com a linha de antes e a linha de depois:</p></div>
-  <div class="code-wrap" data-code="task-conref-snip" data-tag="tarefa-enviar-relatorio.dita · trecho"></div>
+  <div class="code-wrap" data-code="task-conref-snip" data-tag="tarefa-enviar-relatorio.dita"></div>
   <div class="prose"><p>O arquivo completo, para conferir linha por linha:</p></div>
-  <div class="code-wrap" data-code="task-conref-full" data-tag="tarefa-enviar-relatorio.dita · completo" data-lines="1"></div>
+  <div class="code-wrap" data-code="task-conref-full" data-tag="tarefa-enviar-relatorio.dita" data-lines="1"></div>
 
   <div class="callout c-result"><b>O que você deve ver</b><ul>
     <li>No VS Code, a task mostra só a linha com o endereço. O texto do aviso não aparece ali, e isso é normal: o VS Code mostra o arquivo do jeito que ele foi escrito.</li>
@@ -872,10 +872,10 @@ Please visit http://www.java.com for information on installing Java.</pre></div>
     <li><div><b>Feche e abra o terminal</b><span>O terminal só enxerga programas novos quando abre. No painel do terminal, clique no ícone de lixeira para fechá-lo. Depois abra de novo em <em>Terminal → New Terminal</em>.</span></div></li>
     <li><div><b>Teste de novo</b><span>Rode o mesmo comando do passo 2.</span>
       <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · os números podem ser outros</span><pre class="code">openjdk version "21.0.5" 2024-10-15 LTS
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">openjdk version "21.0.5" 2024-10-15 LTS
 OpenJDK Runtime Environment Temurin-21.0.5+11 (build 21.0.5+11-LTS)
 OpenJDK 64-Bit Server VM Temurin-21.0.5+11 (build 21.0.5+11-LTS, mixed mode)</pre></div>
-      <span>O que importa é a primeira linha: <code>openjdk version</code> e um número 17 ou maior. Isso quer dizer que o Java está instalado.</span></div></li>
+      <span>Os números podem ser outros no seu Mac. O que importa é a primeira linha: <code>openjdk version</code> e um número 17 ou maior. Isso quer dizer que o Java está instalado.</span></div></li>
   </ol>
 
   <h3>Parte B · DITA-OT</h3>
@@ -898,11 +898,11 @@ OpenJDK 64-Bit Server VM Temurin-21.0.5+11 (build 21.0.5+11-LTS, mixed mode)</pr
     <li><div><b>Feche e abra o terminal</b><span>Clique na lixeira do painel do terminal e abra outro em <em>Terminal → New Terminal</em>. O terminal novo lê o PATH atualizado.</span></div></li>
     <li><div><b>Pergunte onde está o dita</b><span>O comando <code>which</code> mostra em que pasta o Mac encontrou um programa.</span>
       <div class="code-wrap" data-code="which-dita" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · com o seu nome de usuário</span><pre class="code">/Users/seu-usuario/dita-ot/bin/dita</pre></div></div></li>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">/Users/seu-usuario/dita-ot/bin/dita</pre></div></div></li>
     <li><div><b>Veja a versão do DITA-OT</b><span>Rode o comando abaixo.</span>
       <div class="code-wrap" data-code="dita-test" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · o número pode ser outro</span><pre class="code">DITA-OT version 4.3.4</pre></div>
-      <span>Se apareceu um número de versão, a gráfica está pronta.</span></div></li>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">DITA-OT version 4.3.4</pre></div>
+      <span>O número pode ser outro. Se apareceu um número de versão, a gráfica está pronta.</span></div></li>
   </ol>
 
   <div class="callout c-result"><b>O que você deve ver</b><ul>
@@ -959,10 +959,10 @@ OpenJDK 64-Bit Server VM Temurin-21.0.5+11 (build 21.0.5+11-LTS, mixed mode)</pr
       <span>Se o caminho terminar em outra pasta, feche o VS Code, abra de novo com <em>File → Open Folder</em> escolhendo <code>central-ajuda-despesas</code> e abra um terminal novo.</span></div></li>
     <li><div><b>Confira os arquivos</b><span>O comando <code>ls</code> lista os arquivos da pasta.</span>
       <div class="code-wrap" data-code="cmd-ls" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · a arrumação das colunas pode variar</span><pre class="code">avisos.dita                  nota-versao.xml
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">avisos.dita                  nota-versao.xml
 conceito-relatorio.dita      ref-limites.dita
 guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
-      <span>Se faltar algum arquivo, volte à página onde ele foi criado (2.4 a 2.8).</span></div></li>
+      <span>A arrumação das colunas pode variar. Se faltar algum arquivo, volte à página onde ele foi criado (2.4 a 2.8).</span></div></li>
     <li><div><b>Gere o site</b><span>Rode o comando abaixo e espere. Pode levar de alguns segundos a um minuto. Ele terminou quando a linha com o cursor piscando aparece de novo.</span>
       <div class="code-wrap" data-code="build" data-tag="terminal"></div>
       <span>Se tudo deu certo, o terminal mostra pouca coisa ou nada. Mensagens com a palavra <code>ERROR</code> indicam problema: veja “Deu errado?”.</span></div></li>
@@ -1064,10 +1064,10 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
       <span>É o caminho da pasta, de fora para dentro: a pasta de usuário, depois Documents, depois a pasta do projeto.</span></div></li>
     <li><div><b>Liste os arquivos</b><span>Rode o comando abaixo.</span>
       <div class="code-wrap" data-code="cmd-ls" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · a arrumação das colunas pode variar</span><pre class="code">avisos.dita                  guia.ditamap                 tarefa-enviar-relatorio.dita
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">avisos.dita                  guia.ditamap                 tarefa-enviar-relatorio.dita
 conceito-relatorio.dita      nota-versao.xml
 docs                         ref-limites.dita</pre></div>
-      <span>São os mesmos arquivos do Explorer do VS Code. O <code>docs</code> só aparece se você gerou o site na página 2.9b.</span></div></li>
+      <span>A arrumação das colunas pode variar. São os mesmos arquivos do Explorer do VS Code. O <code>docs</code> só aparece se você gerou o site na página 2.9b.</span></div></li>
   </ol>
   <div class="callout c-result"><b>O que você deve ver</b><p>O <code>pwd</code> termina em <code>central-ajuda-despesas</code> e o <code>ls</code> lista os seus arquivos <code>.dita</code>.</p></div>
   <div class="callout c-warn"><b>Deu errado?</b><ul>
@@ -1089,8 +1089,8 @@ docs                         ref-limites.dita</pre></div>
     <li><div><b>Abra o terminal no VS Code</b><span>Use <em>Terminal → New Terminal</em>.</span></div></li>
     <li><div><b>Veja se o Git já existe</b><span>Rode o comando abaixo.</span>
       <div class="code-wrap" data-code="git-version" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · o número pode ser outro</span><pre class="code">git version 2.39.5 (Apple Git-154)</pre></div>
-      <span>Se apareceu uma linha assim, o Git está instalado. Pule para o passo 4.</span></div></li>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">git version 2.39.5 (Apple Git-154)</pre></div>
+      <span>O número pode ser outro. Se apareceu uma linha assim, o Git está instalado. Pule para o passo 4.</span></div></li>
     <li><div><b>Instale, se o Mac pedir</b><span>Se em vez do número apareceu uma janela oferecendo instalar as ferramentas de linha de comando, clique em <em>Instalar</em> e aceite a licença. A instalação pode levar alguns minutos. Quando terminar, feche e abra o VS Code e rode o passo 2 de novo.</span></div></li>
     <li><div><b>Grave o seu nome</b><span>Copie o comando, troque o nome entre as aspas se quiser e aperte Enter. Ele não mostra nenhuma mensagem.</span>
       <div class="code-wrap" data-code="git-name" data-tag="terminal · uma vez só"></div></div></li>
@@ -1209,7 +1209,7 @@ seu-email@exemplo.com</pre></div>
   <p class="l-goal">Ligar o Git na pasta do projeto e salvar a primeira versão de todos os arquivos.</p>
   <h2>Entenda</h2>
   <div class="prose"><p>Você vai repetir o que fez no simulador, agora na sua pasta. São cinco comandos: ligar o Git, ver o que ele encontrou, preparar os arquivos, salvar a versão e ver o histórico. Depois de cada comando, compare o que apareceu no seu terminal com a saída esperada.</p></div>
-  <div class="callout c-analogy"><b>As cores do terminal</b><p>No terminal, o Git pinta de vermelho o que ainda não foi preparado e de verde o que já foi preparado para o commit.</p></div>
+  <div class="callout c-analogy"><b>As cores do terminal</b><p>No terminal, o Git pinta de vermelho o que ainda não foi preparado e de verde o que já foi preparado para o commit. Nas saídas esperadas deste módulo, os códigos das versões (como <code>4057579</code>), os números e o nome de usuário vão ser diferentes no seu computador. Compare as palavras.</p></div>
 
   <h2>Faça no seu computador</h2>
   <ol class="how">
@@ -1240,7 +1240,7 @@ nothing added to commit but untracked files present (use "git add" to track)</pr
       <div class="code-wrap" data-code="g-add" data-tag="terminal"></div></div></li>
     <li><div><b>Confira o que foi preparado</b><span>Rode <code>git status</code> de novo.</span>
       <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · a lista de docs/ é maior</span><pre class="code">On branch main
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">On branch main
 
 No commits yet
 
@@ -1254,7 +1254,7 @@ Changes to be committed:
       <span>Quer dizer: estes arquivos estão na área de preparação e vão entrar no próximo commit (<em>changes to be committed</em>).</span></div></li>
     <li><div><b>Salve a primeira versão</b><span>Rode o commit com a mensagem entre aspas.</span>
       <div class="code-wrap" data-code="g-commit1" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · o código e os números mudam</span><pre class="code">[main (root-commit) 4057579] Adiciona tópicos iniciais
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[main (root-commit) 4057579] Adiciona tópicos iniciais
  14 files changed, 412 insertions(+)
  create mode 100644 avisos.dita
  create mode 100644 conceito-relatorio.dita
@@ -1308,7 +1308,7 @@ Changes to be committed:
     <li><div><b>Abra a task e ache o passo</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>Confira o valor</code>. O VS Code destaca a linha.</span></div></li>
     <li><div><b>Troque o texto do passo e salve</b><span>Selecione a linha inteira e cole a linha nova no lugar. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
       <div class="code-wrap" data-code="g-cmd-new" data-tag="linha nova"></div>
-      <div class="code-wrap"><span class="code-tag">como deve ficar · com a linha de antes e a de depois</span><pre class="code">      &lt;step&gt;
+      <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">      &lt;step&gt;
         &lt;cmd&gt;Confira se o valor total está certo.&lt;/cmd&gt;
         &lt;info&gt;Se algum valor estiver errado, edite a despesa antes de enviar.&lt;/info&gt;</pre></div></div></li>
     <li><div><b>Veja o que mudou</b><span>Rode <code>git status</code>.</span>
@@ -1325,7 +1325,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</pre></div>
       <div class="code-wrap" data-code="g-add-task" data-tag="terminal"></div></div></li>
     <li><div><b>Salve a versão no branch</b><span>Rode o commit.</span>
       <div class="code-wrap" data-code="g-commit2" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · o código muda</span><pre class="code">[revisao-tarefa 2086e57] Melhora o passo de conferir o valor
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[revisao-tarefa 2086e57] Melhora o passo de conferir o valor
  1 file changed, 1 insertion(+), 1 deletion(-)</pre></div>
       <span>Quer dizer: a versão foi salva no branch <code>revisao-tarefa</code>. Uma linha saiu e uma linha entrou, porque você trocou o texto de uma linha.</span></div></li>
     <li><div><b>Volte para o main</b><span>Rode o comando abaixo.</span>
@@ -1334,14 +1334,14 @@ no changes added to commit (use "git add" and/or "git commit -a")</pre></div>
       <span>Olhe a task no VS Code: o passo voltou para “Confira o valor total.”. Isso é esperado. O <code>main</code> ainda não recebeu a mudança, que está guardada no branch.</span></div></li>
     <li><div><b>Junte o branch no main</b><span>Rode o merge.</span>
       <div class="code-wrap" data-code="g-merge" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · os códigos mudam</span><pre class="code">Updating 4057579..2086e57
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Updating 4057579..2086e57
 Fast-forward
  tarefa-enviar-relatorio.dita | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)</pre></div>
       <span>Quer dizer: o <code>main</code> avançou até a versão do branch. <em>Fast-forward</em> é o merge mais simples: o main só andou para a frente. A task no VS Code volta a mostrar o texto novo.</span></div></li>
     <li><div><b>Veja o histórico</b><span>Rode <code>git log --oneline</code>.</span>
       <div class="code-wrap" data-code="g-log" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · os códigos mudam</span><pre class="code">2086e57 (HEAD -&gt; main, revisao-tarefa) Melhora o passo de conferir o valor
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">2086e57 (HEAD -&gt; main, revisao-tarefa) Melhora o passo de conferir o valor
 4057579 Adiciona tópicos iniciais</pre></div>
       <span>Quer dizer: há duas versões. A mais nova fica em cima, e o <code>main</code> e o <code>revisao-tarefa</code> agora apontam para a mesma versão.</span></div></li>
   </ol>
@@ -1389,7 +1389,7 @@ Fast-forward
       <div class="code-wrap" data-code="g-remote" data-tag="terminal"></div></div></li>
     <li><div><b>Confira o endereço</b><span>O <code>-v</code> pede para mostrar os detalhes.</span>
       <div class="code-wrap" data-code="g-remote-v" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · com o seu usuário</span><pre class="code">origin	https://github.com/seu-usuario/central-ajuda-despesas.git (fetch)
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">origin	https://github.com/seu-usuario/central-ajuda-despesas.git (fetch)
 origin	https://github.com/seu-usuario/central-ajuda-despesas.git (push)</pre></div>
       <span>Quer dizer: o apelido <code>origin</code> aponta para o seu repositório. <em>Fetch</em> é baixar e <em>push</em> é enviar.</span></div></li>
     <li><div><b>Garanta o nome main</b><span>Este comando confirma que o branch principal se chama <code>main</code>, como no GitHub. Não mostra mensagem.</span>
@@ -1397,7 +1397,7 @@ origin	https://github.com/seu-usuario/central-ajuda-despesas.git (push)</pre></d
     <li><div><b>Envie</b><span>O <code>-u</code> liga o seu <code>main</code> ao <code>main</code> do GitHub. Depois disso, um <code>git push</code> sozinho já basta.</span>
       <div class="code-wrap" data-code="g-push1" data-tag="terminal"></div></div></li>
     <li><div><b>Entre na conta, na primeira vez</b><span>O VS Code mostra um aviso pedindo para entrar no GitHub. Clique em <em>Allow</em>. O navegador abre: entre na sua conta e autorize o VS Code. Volte ao VS Code. O envio continua sozinho.</span>
-      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
  * [new branch]      main -&gt; main
 branch 'main' set up to track 'origin/main'.</pre></div>
       <span>Antes dessas linhas podem aparecer outras com contagens, como <code>Writing objects: 100%</code>. Quer dizer: o <code>main</code> foi criado no GitHub (<em>new branch</em>) e ficou ligado ao seu.</span></div></li>
@@ -1429,7 +1429,7 @@ branch 'main' set up to track 'origin/main'.</pre></div>
       <div class="code-wrap" data-code="build" data-tag="terminal"></div></div></li>
     <li><div><b>Veja o que mudou</b><span>Rode <code>git status</code>.</span>
       <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída parecida com esta</span><pre class="code">On branch main
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">On branch main
 Your branch is up to date with 'origin/main'.
 
 Changes not staged for commit:
@@ -1440,11 +1440,11 @@ Changes not staged for commit:
     <li><div><b>Prepare e salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
       <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
       <div class="code-wrap" data-code="g-commit-site" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · o código e os números mudam</span><pre class="code">[main 3c1a2bd] Atualiza o site gerado
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[main 3c1a2bd] Atualiza o site gerado
  1 file changed, 2 insertions(+), 2 deletions(-)</pre></div></div></li>
     <li><div><b>Envie</b><span>Agora basta <code>git push</code>.</span>
       <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
    2086e57..3c1a2bd  main -&gt; main</pre></div>
       <span>Quer dizer: o <code>main</code> do GitHub avançou da versão antiga para a nova.</span></div></li>
   </ol>
@@ -1482,7 +1482,7 @@ Changes not staged for commit:
       <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisa-shortdesc'</pre></div></div></li>
     <li><div><b>Troque o shortdesc da task</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Ache a linha que começa com <code>&lt;shortdesc&gt;</code>, selecione a linha inteira e cole a linha nova. Salve.</span>
       <div class="code-wrap" data-code="g-shortdesc-new" data-tag="linha nova"></div>
-      <div class="code-wrap"><span class="code-tag">como deve ficar · com a linha de antes e a de depois</span><pre class="code">  &lt;title&gt;Enviar um relatório de despesas&lt;/title&gt;
+      <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">  &lt;title&gt;Enviar um relatório de despesas&lt;/title&gt;
   &lt;shortdesc&gt;Envie o relatório para o seu gestor aprovar o reembolso.&lt;/shortdesc&gt;
   &lt;taskbody&gt;</pre></div></div></li>
     <li><div><b>Gere o site de novo</b><span>Assim o site também recebe o texto novo.</span>
@@ -1490,12 +1490,12 @@ Changes not staged for commit:
     <li><div><b>Prepare e salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
       <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
       <div class="code-wrap" data-code="g-commit-pr" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · o código e os números mudam</span><pre class="code">[revisa-shortdesc 74bbea7] Deixa o shortdesc da tarefa mais direto
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[revisa-shortdesc 74bbea7] Deixa o shortdesc da tarefa mais direto
  2 files changed, 2 insertions(+), 2 deletions(-)</pre></div>
       <span>Quer dizer: a versão foi salva no branch <code>revisa-shortdesc</code>, com a task e a página do site.</span></div></li>
     <li><div><b>Envie o branch para o GitHub</b><span>Como o branch é novo, use <code>-u</code> e o nome dele.</span>
       <div class="code-wrap" data-code="g-push-pr" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">remote:
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">remote:
 remote: Create a pull request for 'revisa-shortdesc' on GitHub by visiting:
 remote:      https://github.com/seu-usuario/central-ajuda-despesas/pull/new/revisa-shortdesc
 remote:
@@ -1520,7 +1520,7 @@ Your branch is up to date with 'origin/main'.</pre></div>
       <span>A segunda linha compara com a última informação que o seu Mac tem do GitHub. Ele ainda não sabe do merge, por isso o shortdesc antigo aparece no VS Code.</span></div></li>
     <li><div><b>Baixe o que mudou</b><span>O <code>pull</code> baixa do GitHub os commits novos.</span>
       <div class="code-wrap" data-code="g-pull" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída parecida com esta</span><pre class="code">From https://github.com/seu-usuario/central-ajuda-despesas
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">From https://github.com/seu-usuario/central-ajuda-despesas
    3c1a2bd..9f8e7d6  main       -&gt; origin/main
 Updating 3c1a2bd..9f8e7d6
 Fast-forward
@@ -1576,8 +1576,8 @@ Fast-forward
     <li><div><b>Abra o mapa</b><span>No Explorer, clique em <code>guia.ditamap</code>.</span></div></li>
     <li><div><b>Ache a linha da primeira task</b><span>Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>tarefa-enviar</code>. O VS Code destaca a linha que começa com <code>&lt;topicref href="tarefa-enviar-relatorio.dita"</code>.</span></div></li>
     <li><div><b>Acrescente a nova task logo abaixo</b><span>Clique no fim dessa linha, aperte Enter, cole a linha abaixo e salve.</span>
-      <div class="code-wrap" data-code="map-task2" data-tag="guia.ditamap · linha nova"></div>
-      <div class="code-wrap"><span class="code-tag">como deve ficar · com a linha de antes e a de depois</span><pre class="code">  &lt;topicref href="conceito-relatorio.dita"&gt;
+      <div class="code-wrap" data-code="map-task2" data-tag="guia.ditamap"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">  &lt;topicref href="conceito-relatorio.dita"&gt;
     &lt;topicref href="tarefa-enviar-relatorio.dita"/&gt;
     &lt;topicref href="tarefa-anexar-recibo.dita"/&gt;
     &lt;topicref href="ref-limites.dita"/&gt;
@@ -1590,7 +1590,7 @@ Fast-forward
     <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
       <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
       <div class="code-wrap" data-code="g-commit-task2" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída parecida com esta · o código e os números mudam</span><pre class="code">[main 5b6c7d8] Adiciona a tarefa de anexar recibo
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">[main 5b6c7d8] Adiciona a tarefa de anexar recibo
  4 files changed, 60 insertions(+), 3 deletions(-)
  create mode 100644 docs/tarefa-anexar-recibo.html
  create mode 100644 tarefa-anexar-recibo.dita</pre></div>
@@ -1645,16 +1645,16 @@ Fast-forward
       <div class="code-wrap" data-code="gloss-gestor" data-tag="glossario-gestor.dita"></div></div></li>
     <li><div><b>Abra o mapa e ache a última linha</b><span>Abra <code>guia.ditamap</code>. A última linha é <code>&lt;/map&gt;</code>.</span></div></li>
     <li><div><b>Acrescente o grupo do glossário</b><span>Clique no começo da linha <code>&lt;/map&gt;</code> e aperte Enter. Uma linha vazia aparece acima dela. Clique nessa linha vazia, cole o bloco abaixo e salve.</span>
-      <div class="code-wrap" data-code="map-gloss" data-tag="guia.ditamap · cole acima do &lt;/map&gt;"></div></div></li>
+      <div class="code-wrap" data-code="map-gloss" data-tag="guia.ditamap"></div></div></li>
     <li><div><b>Arrume e confira o mapa</b><span>Aperte <kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> para alinhar e salve. Compare com o mapa completo abaixo.</span>
-      <div class="code-wrap" data-code="map-final" data-tag="guia.ditamap · completo" data-lines="1"></div></div></li>
+      <div class="code-wrap" data-code="map-final" data-tag="guia.ditamap" data-lines="1"></div></div></li>
     <li><div><b>Gere o site e confira</b><span>Rode o comando de gerar e depois o de abrir o site.</span>
       <div class="code-wrap" data-code="build" data-tag="terminal"></div>
       <div class="code-wrap" data-code="open-site" data-tag="terminal"></div></div></li>
     <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
       <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
       <div class="code-wrap" data-code="g-commit-gloss" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída parecida com esta · o código e os números mudam</span><pre class="code">[main 8e9f0a1] Adiciona glossário com três termos
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">[main 8e9f0a1] Adiciona glossário com três termos
  8 files changed, 75 insertions(+), 2 deletions(-)
  create mode 100644 glossario-gestor.dita
  create mode 100644 glossario-recibo.dita
@@ -1662,7 +1662,7 @@ Fast-forward
  …</pre></div></div></li>
     <li><div><b>Publique</b><span>Envie tudo para o GitHub. O GitHub Pages atualiza o site sozinho em alguns minutos.</span>
       <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
    5b6c7d8..8e9f0a1  main -&gt; main</pre></div></div></li>
   </ol>
   <div class="callout c-result"><b>O que você deve ver</b><ul>
@@ -1711,12 +1711,12 @@ Fast-forward
     <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
       <div class="code-wrap" data-code="g-add-readme" data-tag="terminal"></div>
       <div class="code-wrap" data-code="g-commit-readme" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída parecida com esta · o código e os números mudam</span><pre class="code">[main 2a3b4c5] Adiciona README do projeto
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">[main 2a3b4c5] Adiciona README do projeto
  1 file changed, 20 insertions(+)
  create mode 100644 README.md</pre></div></div></li>
     <li><div><b>Envie</b><span>Rode o push.</span>
       <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
-      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
    8e9f0a1..2a3b4c5  main -&gt; main</pre></div></div></li>
     <li><div><b>Confira no GitHub</b><span>Abra a página do repositório e atualize. O README aparece formatado abaixo da lista de arquivos.</span></div></li>
   </ol>
