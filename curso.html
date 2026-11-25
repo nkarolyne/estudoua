@@ -43,7 +43,7 @@
   <p class="l-eyebrow">Curso para Content Designers e UX Writers</p>
   <h1>DITA do zero</h1>
   <p class="l-goal">Documentação estruturada para quem já escreve bem: a lógica, o XML, o DITA, o versionamento e o trabalho de UA dentro do SAP. Uma página por vez, com prática em cada etapa.</p>
-  <div class="cover-meta"><span><b>46</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
+  <div class="cover-meta"><span><b>47</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
   <div class="modules">
     <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Do UX Writing à User Assistance.</span></div>
     <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas.</span></div>
@@ -1548,43 +1548,196 @@ Fast-forward
 <section class="lesson" data-id="4-1" data-mod="4" data-short="Seu projeto final" hidden>
   <p class="l-eyebrow">Projeto final</p>
   <h1>Central de Ajuda do Relatório de Despesas</h1>
-  <p class="l-goal">Completar o projeto para colocar no portfólio.</p>
-  <div class="prose"><p>Você já construiu quase tudo durante o curso. Agora é completar o que falta e revisar com calma.</p></div>
-  <div class="callout c-warn"><b>Dica forte: faça a versão final em inglês</b><p>A documentação de empresas globais de software costuma ser escrita em inglês. Um projeto em inglês mostra na prática o seu nível C1.</p></div>
-  <h2>Estrutura final da pasta</h2>
+  <p class="l-goal">Completar o projeto para colocar no portfólio. Nesta página: a segunda task.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Você já construiu quase tudo durante o curso. Faltam três coisas, uma por página: uma segunda task (esta página), um glossário (página 4.1b) e o README que apresenta o projeto (página 4.2). No fim da 4.2 há uma lista para conferir a entrega.</p></div>
+  <h3>Como a pasta vai ficar no fim</h3>
   <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── nota-versao.xml
 ├── conceito-relatorio.dita
 ├── tarefa-enviar-relatorio.dita
-├── tarefa-anexar-recibo.dita   <span class="d">← nova</span>
+├── tarefa-anexar-recibo.dita      <span class="d">← nova (4.1)</span>
 ├── ref-limites.dita
 ├── avisos.dita
-├── glossario.dita              <span class="d">← nova</span>
-├── guia.ditamap
-├── README.md
-└── <span class="d">docs/                        ← site gerado</span></div>
-  <h2>O que falta: um glossário</h2>
-  <div class="prose"><p>O tipo <code>glossentry</code> define um termo. Crie um arquivo para cada termo (ou use um tópico com vários) e adicione ao mapa.</p></div>
+├── glossario-reembolso.dita       <span class="d">← nova (4.1b)</span>
+├── glossario-recibo.dita          <span class="d">← nova (4.1b)</span>
+├── glossario-gestor.dita          <span class="d">← nova (4.1b)</span>
+├── guia.ditamap                   <span class="d">← editado (4.1 e 4.1b)</span>
+├── README.md                      <span class="d">← novo (4.2)</span>
+└── docs/                          <span class="d">site gerado</span></div>
+  <div class="prose"><p>A segunda task ensina a anexar um recibo. Ela usa o mesmo aviso do <code>avisos.dita</code>, pelo mesmo conref. Agora o reúso é de verdade: um aviso, duas tasks.</p></div>
+  <div class="callout c-warn"><b>Dica forte: faça a versão final em inglês</b><p>A documentação de empresas globais de software costuma ser escrita em inglês. Um projeto em inglês mostra na prática o seu nível C1. Se quiser, termine o projeto em português e depois traduza os textos, mantendo as tags iguais.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o arquivo da task</b><span>No Explorer do VS Code, passe o mouse sobre o nome da pasta, clique no ícone de novo arquivo e digite <code>tarefa-anexar-recibo.dita</code>. Aperte Enter.</span></div></li>
+    <li><div><b>Cole o conteúdo e salve</b><span>Copie o bloco abaixo, cole no arquivo vazio e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>. Repare no <code>&lt;context&gt;</code>: é o mesmo conref da página 2.8.</span>
+      <div class="code-wrap" data-code="task2" data-tag="tarefa-anexar-recibo.dita" data-lines="1"></div></div></li>
+    <li><div><b>Abra o mapa</b><span>No Explorer, clique em <code>guia.ditamap</code>.</span></div></li>
+    <li><div><b>Ache a linha da primeira task</b><span>Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>tarefa-enviar</code>. O VS Code destaca a linha que começa com <code>&lt;topicref href="tarefa-enviar-relatorio.dita"</code>.</span></div></li>
+    <li><div><b>Acrescente a nova task logo abaixo</b><span>Clique no fim dessa linha, aperte Enter, cole a linha abaixo e salve.</span>
+      <div class="code-wrap" data-code="map-task2" data-tag="guia.ditamap · linha nova"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar · com a linha de antes e a de depois</span><pre class="code">  &lt;topicref href="conceito-relatorio.dita"&gt;
+    &lt;topicref href="tarefa-enviar-relatorio.dita"/&gt;
+    &lt;topicref href="tarefa-anexar-recibo.dita"/&gt;
+    &lt;topicref href="ref-limites.dita"/&gt;
+  &lt;/topicref&gt;</pre></div></div></li>
+    <li><div><b>Confira se não há erros</b><span>Abra a aba <em>Problems</em> com <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. Não deve haver erro novo na task nem no mapa.</span></div></li>
+    <li><div><b>Gere o site e confira</b><span>No terminal do VS Code, rode o comando de gerar e depois o de abrir o site.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="open-site" data-tag="terminal"></div>
+      <span>No sumário, “Anexar um recibo” aparece dentro de “Relatório de despesas”, entre as duas outras páginas.</span></div></li>
+    <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-task2" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida com esta · o código e os números mudam</span><pre class="code">[main 5b6c7d8] Adiciona a tarefa de anexar recibo
+ 4 files changed, 60 insertions(+), 3 deletions(-)
+ create mode 100644 docs/tarefa-anexar-recibo.html
+ create mode 100644 tarefa-anexar-recibo.dita</pre></div>
+      <span>Quer dizer: a versão com a task nova, o mapa e as páginas do site foi salva no <code>main</code>.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No site gerado, a página “Anexar um recibo” tem o aviso “Guarde o recibo original por 5 anos.”, igual ao da outra task.</li>
+    <li>O <code>git log --oneline</code> mostra o commit novo no topo.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>A página nova não aparece no sumário.</strong> O mapa não foi salvo, ou o nome no <code>href</code> não bate com o nome do arquivo. Confira letra por letra e gere o site de novo.</li>
+    <li><strong>O DITA-OT mostra erro com o nome <code>tarefa-anexar-recibo.dita</code> e um número de linha.</strong> Algo mudou no colar. Apague todo o conteúdo do arquivo, cole de novo pelo botão Copiar e salve.</li>
+    <li><strong>A linha nova ficou fora do <code>&lt;topicref href="conceito-relatorio.dita"&gt;</code>.</strong> Então a task aparece no sumário no mesmo nível do concept. Recorte a linha e cole antes do <code>&lt;/topicref&gt;</code>, como no “como deve ficar”.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita      <span class="d">← nova</span>
+├── ref-limites.dita
+├── avisos.dita
+├── guia.ditamap                   <span class="d">← editado</span>
+└── docs/</div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Uma task nova entra no guia em dois lugares: o arquivo <code>.dita</code> e uma linha <code>topicref</code> no mapa. O conref deixa o mesmo aviso nas duas tasks.</p></div>
+</section>
+
+<section class="lesson" data-id="4-1b" data-mod="4" data-short="Glossário" hidden>
+  <p class="l-eyebrow">Projeto final</p>
+  <h1>Crie o glossário</h1>
+  <p class="l-goal">Definir três termos do produto e publicar a versão final do site.</p>
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>O DITA tem um tipo de tópico só para definir termos: o <strong>glossentry</strong> (entrada de glossário). Cada termo fica num arquivo. Ele tem duas partes:</p>
+    <ul>
+      <li><code>&lt;glossterm&gt;</code>: o termo, como aparece no produto.</li>
+      <li><code>&lt;glossdef&gt;</code>: a definição, numa frase simples.</li>
+    </ul>
+    <p>No mapa, os termos ficam juntos dentro de um <code>&lt;topichead&gt;</code>. O <code>topichead</code> cria um título de grupo no sumário, “Glossário”, sem ter uma página própria.</p>
+  </div>
   <div class="code-wrap" data-code="gloss" data-tag="glossario-reembolso.dita"></div>
-  <h2>Checklist de entrega</h2>
-  <ul class="checklist" id="checklist">
-    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, todos válidos</label></li>
-    <li><label><input type="checkbox" id="ck-2">Um aviso reutilizado com conref nas 2 tasks</label></li>
-    <li><label><input type="checkbox" id="ck-3">Glossário com 3 termos</label></li>
-    <li><label><input type="checkbox" id="ck-4">Mapa com hierarquia e site gerado em <code>docs/</code></label></li>
-    <li><label><input type="checkbox" id="ck-5">Pelo menos 5 commits com mensagens claras</label></li>
-    <li><label><input type="checkbox" id="ck-6">Um pull request revisado e juntado</label></li>
-    <li><label><input type="checkbox" id="ck-7">README explicando o projeto e as decisões</label></li>
-    <li><label><input type="checkbox" id="ck-8">Site publicado no GitHub Pages</label></li>
-  </ul>
+  <div class="callout c-analogy"><b>Comparação</b><p>É o seu vocabulário controlado da Renner, com uma ficha para cada termo.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o primeiro termo</b><span>Crie o arquivo <code>glossario-reembolso.dita</code>, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="gloss" data-tag="glossario-reembolso.dita"></div></div></li>
+    <li><div><b>Crie o segundo termo</b><span>Crie o arquivo <code>glossario-recibo.dita</code>, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="gloss-recibo" data-tag="glossario-recibo.dita"></div></div></li>
+    <li><div><b>Crie o terceiro termo</b><span>Crie o arquivo <code>glossario-gestor.dita</code>, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="gloss-gestor" data-tag="glossario-gestor.dita"></div></div></li>
+    <li><div><b>Abra o mapa e ache a última linha</b><span>Abra <code>guia.ditamap</code>. A última linha é <code>&lt;/map&gt;</code>.</span></div></li>
+    <li><div><b>Acrescente o grupo do glossário</b><span>Clique no começo da linha <code>&lt;/map&gt;</code> e aperte Enter. Uma linha vazia aparece acima dela. Clique nessa linha vazia, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="map-gloss" data-tag="guia.ditamap · cole acima do &lt;/map&gt;"></div></div></li>
+    <li><div><b>Arrume e confira o mapa</b><span>Aperte <kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> para alinhar e salve. Compare com o mapa completo abaixo.</span>
+      <div class="code-wrap" data-code="map-final" data-tag="guia.ditamap · completo" data-lines="1"></div></div></li>
+    <li><div><b>Gere o site e confira</b><span>Rode o comando de gerar e depois o de abrir o site.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="open-site" data-tag="terminal"></div></div></li>
+    <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-gloss" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida com esta · o código e os números mudam</span><pre class="code">[main 8e9f0a1] Adiciona glossário com três termos
+ 8 files changed, 75 insertions(+), 2 deletions(-)
+ create mode 100644 glossario-gestor.dita
+ create mode 100644 glossario-recibo.dita
+ create mode 100644 glossario-reembolso.dita
+ …</pre></div></div></li>
+    <li><div><b>Publique</b><span>Envie tudo para o GitHub. O GitHub Pages atualiza o site sozinho em alguns minutos.</span>
+      <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+   5b6c7d8..8e9f0a1  main -&gt; main</pre></div></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No site gerado, o sumário tem um grupo “Glossário” com Reembolso, Recibo e Gestor. Cada termo abre uma página com a definição.</li>
+    <li>Alguns minutos depois do push, o site publicado no GitHub Pages mostra a task nova e o glossário.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O grupo “Glossário” não aparece.</strong> O bloco foi colado depois do <code>&lt;/map&gt;</code>. Ele precisa ficar acima dessa linha. Compare com o mapa completo.</li>
+    <li><strong>Um termo não aparece no grupo.</strong> O nome do arquivo e o <code>href</code> não batem. Confira letra por letra, sem acentos.</li>
+    <li><strong>O site publicado ainda está antigo.</strong> Espere alguns minutos e atualize com <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>, que ignora a cópia guardada pelo navegador. Acompanhe a publicação na aba <em>Actions</em> do repositório.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita
+├── ref-limites.dita
+├── avisos.dita
+├── glossario-reembolso.dita       <span class="d">← nova</span>
+├── glossario-recibo.dita          <span class="d">← nova</span>
+├── glossario-gestor.dita          <span class="d">← nova</span>
+├── guia.ditamap                   <span class="d">← editado</span>
+└── docs/</div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O glossentry define um termo com <code>glossterm</code> e <code>glossdef</code>. O <code>topichead</code> agrupa os termos no sumário.</p></div>
 </section>
 
 <section class="lesson" data-id="4-2" data-mod="4" data-short="Apresentar no portfólio" hidden>
   <p class="l-eyebrow">Projeto final</p>
   <h1>Apresente no portfólio</h1>
-  <p class="l-goal">Explicar o projeto de um jeito que recrutadores entendam em um minuto.</p>
-  <h2>O README do repositório</h2>
-  <div class="prose"><p>O README é a primeira coisa que aparece no GitHub. Crie <code>README.md</code> na pasta, adapte o modelo abaixo, faça commit e push.</p></div>
-  <div class="code-wrap" data-code="readme" data-tag="README.md · modelo"></div>
+  <p class="l-goal">Escrever o README e explicar o projeto de um jeito que recrutadores entendam em um minuto.</p>
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>O <strong>README</strong> é a apresentação do repositório. O GitHub mostra esse arquivo logo abaixo da lista de arquivos, então é a primeira coisa que um recrutador lê.</p>
+    <p>Ele é escrito em <strong>Markdown</strong>, um jeito simples de formatar texto com símbolos: <code>#</code> no começo da linha vira título, <code>##</code> vira subtítulo e <code>-</code> vira item de lista. Por isso o arquivo termina em <code>.md</code>.</p>
+  </div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o arquivo</b><span>No Explorer do VS Code, crie o arquivo <code>README.md</code> na pasta do projeto. Escreva README em maiúsculas.</span></div></li>
+    <li><div><b>Cole o modelo e salve</b><span>Copie o modelo abaixo, cole no arquivo e salve.</span>
+      <div class="code-wrap" data-code="readme" data-tag="README.md · modelo"></div></div></li>
+    <li><div><b>Adapte o texto</b><span>Na última linha, troque <code>SEU-USUARIO</code> pelo seu nome de usuário do GitHub. Leia o resto e ajuste com as suas palavras, principalmente a seção “Decisões de conteúdo”. Salve.</span></div></li>
+    <li><div><b>Veja como vai ficar</b><span>Com o README aberto, aperte <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>. O VS Code abre uma prévia formatada, parecida com o que o GitHub vai mostrar. Feche a prévia quando terminar.</span></div></li>
+    <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add-readme" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-readme" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida com esta · o código e os números mudam</span><pre class="code">[main 2a3b4c5] Adiciona README do projeto
+ 1 file changed, 20 insertions(+)
+ create mode 100644 README.md</pre></div></div></li>
+    <li><div><b>Envie</b><span>Rode o push.</span>
+      <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+   8e9f0a1..2a3b4c5  main -&gt; main</pre></div></div></li>
+    <li><div><b>Confira no GitHub</b><span>Abra a página do repositório e atualize. O README aparece formatado abaixo da lista de arquivos.</span></div></li>
+  </ol>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O README aparece como texto corrido, sem títulos.</strong> O arquivo foi salvo com outro final, como <code>README.txt</code>. Renomeie para <code>README.md</code>, faça o commit e o push.</li>
+    <li><strong>O link do site no README não abre.</strong> Faltou trocar <code>SEU-USUARIO</code>. Corrija, salve, faça o commit e o push.</li>
+  </ul></div>
+
+  <h2>Confira a entrega</h2>
+  <div class="prose"><p>Marque cada item depois de conferir. As marcas ficam salvas neste navegador.</p></div>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, sem erros na aba Problems</label></li>
+    <li><label><input type="checkbox" id="ck-2">O mesmo aviso, com conref, nas 2 tasks</label></li>
+    <li><label><input type="checkbox" id="ck-3">Glossário com 3 termos</label></li>
+    <li><label><input type="checkbox" id="ck-4">Mapa com hierarquia e site gerado em <code>docs/</code></label></li>
+    <li><label><input type="checkbox" id="ck-5">Pelo menos 5 commits com mensagens claras (<code>git log --oneline</code>)</label></li>
+    <li><label><input type="checkbox" id="ck-6">Um pull request revisado e juntado (página 3.9b)</label></li>
+    <li><label><input type="checkbox" id="ck-7">README explicando o projeto e as decisões</label></li>
+    <li><label><input type="checkbox" id="ck-8">Site publicado no GitHub Pages, com o link funcionando</label></li>
+  </ul>
+
   <h2>O case no portfólio</h2>
   <ol class="how">
     <li><div><b>Contexto</b><span>“Projeto de estudo para aplicar documentação estruturada em DITA a um produto de despesas corporativas.”</span></div></li>
