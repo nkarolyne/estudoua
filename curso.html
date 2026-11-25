@@ -43,7 +43,7 @@
   <p class="l-eyebrow">Curso para Content Designers e UX Writers</p>
   <h1>DITA do zero</h1>
   <p class="l-goal">Documentação estruturada para quem já escreve bem: a lógica, o XML, o DITA, o versionamento e o trabalho de UA dentro do SAP. Uma página por vez, com prática em cada etapa.</p>
-  <div class="cover-meta"><span><b>44</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
+  <div class="cover-meta"><span><b>46</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
   <div class="modules">
     <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Do UX Writing à User Assistance.</span></div>
     <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas.</span></div>
@@ -1006,44 +1006,44 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>O que é controle de versão</h1>
   <p class="l-goal">Entender o que o Git faz antes de digitar qualquer comando.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>O <strong>Git</strong> guarda o histórico do seu projeto. Cada vez que você salva uma versão, ele tira uma “foto” de todos os arquivos e guarda junto uma frase explicando o que mudou. Essa foto se chama <strong>commit</strong>.</p>
-    <p>Com isso, você pode ver quem mudou o quê, comparar versões e voltar no tempo se algo der errado.</p>
+    <p>Com isso, você vê quem mudou o quê, compara versões e volta no tempo se algo der errado.</p>
   </div>
   <div class="callout c-analogy"><b>Git x GitHub</b><p><strong>Git</strong> é o programa no seu computador, como uma câmera que tira as fotos. <strong>GitHub</strong> é um site onde você guarda uma cópia online, como um álbum compartilhado. Lá a equipe vê, comenta e aprova as mudanças.</p></div>
-  <h2>As palavras do Git</h2>
+  <h3>As palavras do Git</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Palavra</th><th>Significado</th></tr></thead>
     <tbody>
       <tr><td>Repositório</td><td>A pasta do projeto com o histórico do Git. Também chamado de “repo”.</td></tr>
-      <tr><td>Commit</td><td>Uma versão salva, com mensagem.</td></tr>
+      <tr><td>Commit</td><td>Uma versão salva, com uma mensagem.</td></tr>
       <tr><td>Branch</td><td>Uma linha paralela para trabalhar sem mexer na versão oficial.</td></tr>
       <tr><td>Merge</td><td>Juntar um branch de volta na versão oficial.</td></tr>
       <tr><td>Push</td><td>Enviar seus commits para o GitHub.</td></tr>
+      <tr><td>Pull</td><td>Baixar do GitHub os commits que ainda não estão no seu computador.</td></tr>
       <tr><td>Pull request</td><td>Pedido, no GitHub, para revisarem e juntarem suas mudanças.</td></tr>
     </tbody>
   </table></div>
+  <h2>Faça no seu computador</h2>
+  <div class="callout c-do"><b>Nada ainda</b><p>Esta página é só leitura. Você instala o Git na página 3.3 e usa no seu projeto a partir da 3.7.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>Git guarda versões (commits) no seu computador. GitHub guarda uma cópia online e organiza as revisões.</p></div>
 </section>
 
 <section class="lesson" data-id="3-2" data-mod="3" data-short="Terminal sem medo" hidden>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>Terminal sem medo</h1>
-  <p class="l-goal">Abrir o terminal e entender como um comando é escrito.</p>
-  <div class="prose"><p>O <strong>terminal</strong> é uma janela onde você digita ordens para o computador, em vez de clicar. O Git é usado principalmente por ele. Não tem perigo: os comandos deste curso só criam e salvam coisas.</p></div>
-  <h2>Como abrir</h2>
-  <div class="prose"><ul>
-    <li><strong>Jeito mais fácil:</strong> no VS Code, aperte <kbd>Ctrl</kbd>+<kbd>`</kbd> (ou <em>View → Terminal</em>). Ele já abre dentro da pasta do projeto.</li>
-    <li><strong>Fora do VS Code:</strong> o app Terminal. Aperte <kbd>Cmd</kbd>+<kbd>Espaço</kbd>, digite “Terminal” e Enter.</li>
-  </ul></div>
-  <h2>Como ler um comando</h2>
+  <p class="l-goal">Abrir o terminal, entender como um comando é escrito e descobrir onde você está.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>O <strong>terminal</strong> é uma janela onde você digita ordens para o computador, em vez de clicar. Cada ordem é um <strong>comando</strong>. O Git é usado principalmente por ele. Não tem perigo: os comandos deste curso só criam, mostram e salvam coisas.</p></div>
+  <h3>Como ler um comando</h3>
   <div class="anat" style="font-size:clamp(14px,2.4vw,18px)"><button type="button" class="t" tabindex="-1">git</button><button type="button" tabindex="-1"> </button><button type="button" class="a" tabindex="-1">commit</button><button type="button" tabindex="-1"> </button><button type="button" class="x" tabindex="-1">-m "Adiciona aviso"</button></div>
   <div class="prose"><ol>
-    <li><strong>O programa:</strong> <code>git</code></li>
-    <li><strong>A ação:</strong> <code>commit</code> (salvar uma versão)</li>
-    <li><strong>Opções:</strong> começam com hífen. <code>-m</code> quer dizer “mensagem”, e o texto vem entre aspas.</li>
+    <li><strong>O programa:</strong> <code>git</code>.</li>
+    <li><strong>A ação:</strong> <code>commit</code>, salvar uma versão.</li>
+    <li><strong>As opções:</strong> começam com hífen. <code>-m</code> quer dizer “mensagem”, e o texto vem entre aspas.</li>
   </ol></div>
-  <h2>Comandos para se localizar</h2>
+  <h3>Comandos para se localizar</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
     <tbody>
@@ -1053,55 +1053,101 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
       <tr><td><code>cd ..</code></td><td>Volta uma pasta para cima.</td></tr>
     </tbody>
   </table></div>
-  <div class="callout c-analogy"><b>Atalhos que salvam tempo</b><ul><li><code>Tab</code> completa nomes de arquivos.</li><li>Seta para cima repete o último comando.</li><li><code>Ctrl+C</code> cancela algo que travou.</li></ul></div>
-  <div class="callout c-sum"><b>Você aprendeu</b><p>Um comando tem programa, ação e opções. Para se localizar: pwd, ls e cd.</p></div>
+  <div class="callout c-analogy"><b>Atalhos que salvam tempo</b><ul><li><kbd>Tab</kbd> completa nomes de arquivos e pastas.</li><li>A seta para cima traz de volta o último comando.</li><li><kbd>Ctrl</kbd>+<kbd>C</kbd> cancela um comando que travou.</li></ul></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o terminal no VS Code</b><span>Abra a pasta do projeto no VS Code e use o menu <em>Terminal → New Terminal</em>. O atalho é <kbd>Ctrl</kbd>+<kbd>`</kbd> (é o Ctrl mesmo, não o Cmd). O terminal do VS Code já abre dentro da pasta do projeto.</span></div></li>
+    <li><div><b>Veja onde você está</b><span>Copie, cole no terminal e aperte Enter.</span>
+      <div class="code-wrap" data-code="cmd-pwd" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">/Users/seu-usuario/Documents/central-ajuda-despesas</pre></div>
+      <span>É o caminho da pasta, de fora para dentro: a pasta de usuário, depois Documents, depois a pasta do projeto.</span></div></li>
+    <li><div><b>Liste os arquivos</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="cmd-ls" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · a arrumação das colunas pode variar</span><pre class="code">avisos.dita                  guia.ditamap                 tarefa-enviar-relatorio.dita
+conceito-relatorio.dita      nota-versao.xml
+docs                         ref-limites.dita</pre></div>
+      <span>São os mesmos arquivos do Explorer do VS Code. O <code>docs</code> só aparece se você gerou o site na página 2.9b.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><p>O <code>pwd</code> termina em <code>central-ajuda-despesas</code> e o <code>ls</code> lista os seus arquivos <code>.dita</code>.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O <code>pwd</code> mostra só <code>/Users/seu-usuario</code>.</strong> Você abriu o app Terminal do Mac, ou o VS Code está com um arquivo aberto em vez da pasta. Use o terminal do VS Code com a pasta aberta (<em>File → Open Folder</em>).</li>
+    <li><strong>Apareceu <code>zsh: command not found</code>.</strong> O comando foi digitado com erro. Use o botão Copiar e cole.</li>
+  </ul></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Um comando tem programa, ação e opções. Para se localizar, use <code>pwd</code> e <code>ls</code>.</p></div>
 </section>
 
 <section class="lesson" data-id="3-3" data-mod="3" data-short="Instalar o Git" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
   <h1>Instale e configure o Git</h1>
-  <p class="l-goal">Deixar o Git pronto para usar.</p>
+  <p class="l-goal">Deixar o Git pronto e dizer a ele quem você é.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>No Mac, o Git vem junto com as ferramentas de desenvolvedor da Apple (<em>command line developer tools</em>). Muitas vezes já está instalado. Depois de instalado, você grava seu nome e e-mail no Git, uma vez só. O Git coloca esses dados em cada commit, para mostrar quem fez cada mudança.</p></div>
+
+  <h2>Faça no seu computador</h2>
   <ol class="how">
-    <li><div><b>Confira se já existe</b><span>No Mac, o Git vem junto com as ferramentas de desenvolvedor da Apple. No terminal do VS Code, digite <code>git --version</code>. Se aparecer um número, já está instalado.</span><span>Se aparecer uma janela oferecendo instalar as “ferramentas de linha de comando”, clique em <em>Instalar</em> e espere terminar.</span></div></li>
-    <li><div><b>Feche e abra o VS Code</b><span>Para o terminal enxergar o Git recém-instalado.</span></div></li>
-    <li><div><b>Diga quem você é</b><span>O Git coloca seu nome e e-mail em cada commit. Use o mesmo e-mail que vai usar no GitHub. Isso é feito uma vez só.</span></div></li>
+    <li><div><b>Abra o terminal no VS Code</b><span>Use <em>Terminal → New Terminal</em>.</span></div></li>
+    <li><div><b>Veja se o Git já existe</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="git-version" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · o número pode ser outro</span><pre class="code">git version 2.39.5 (Apple Git-154)</pre></div>
+      <span>Se apareceu uma linha assim, o Git está instalado. Pule para o passo 4.</span></div></li>
+    <li><div><b>Instale, se o Mac pedir</b><span>Se em vez do número apareceu uma janela oferecendo instalar as ferramentas de linha de comando, clique em <em>Instalar</em> e aceite a licença. A instalação pode levar alguns minutos. Quando terminar, feche e abra o VS Code e rode o passo 2 de novo.</span></div></li>
+    <li><div><b>Grave o seu nome</b><span>Copie o comando, troque o nome entre as aspas se quiser e aperte Enter. Ele não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="git-name" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Grave o seu e-mail</b><span>Troque o texto entre as aspas pelo e-mail que você vai usar no GitHub. Mantenha as aspas.</span>
+      <div class="code-wrap" data-code="git-email" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Defina main como nome do branch principal</b><span>Assim os seus projetos começam com o mesmo nome usado no curso e no GitHub. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="git-main" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Confira o que ficou gravado</b><span>Rode os dois comandos abaixo, um de cada vez.</span>
+      <div class="code-wrap" data-code="git-test" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Nicole Karolyne
+seu-email@exemplo.com</pre></div>
+      <span>Cada comando responde com o que você gravou.</span></div></li>
   </ol>
-  <div class="code-wrap" data-code="git-config" data-tag="terminal · uma vez só"></div>
-  <div class="code-wrap" data-code="git-test" data-tag="terminal · teste"></div>
-  <div class="callout c-result"><b>Resultado</b><p><code>git --version</code> mostra um número, e <code>git config --global user.name</code> mostra o seu nome.</p></div>
+  <div class="callout c-result"><b>O que você deve ver</b><p><code>git --version</code> mostra um número, e os testes do passo 7 mostram o seu nome e o seu e-mail.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O teste não mostrou nada.</strong> O nome ou o e-mail não foi gravado. Rode de novo o passo 4 ou 5.</li>
+    <li><strong>Gravei o e-mail errado.</strong> Rode o comando do passo 5 de novo com o e-mail certo. O novo substitui o antigo.</li>
+    <li><strong>Depois de instalar, o terminal ainda não reconhece o git.</strong> Feche o VS Code por completo (<kbd>Cmd</kbd>+<kbd>Q</kbd>), abra de novo e teste.</li>
+  </ul></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O Git já vem no Mac ou é instalado com as ferramentas da Apple. Nome e e-mail são gravados uma vez e aparecem em todos os commits.</p></div>
 </section>
 
 <section class="lesson" data-id="3-4" data-mod="3" data-short="As 3 áreas e o commit" hidden>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>As 3 áreas e o commit</h1>
   <p class="l-goal">Entender o caminho de um arquivo até virar uma versão salva.</p>
+  <h2>Entenda</h2>
   <div class="areas-dg">
     <div class="box3"><b>Pasta de trabalho</b><span>Onde você edita os arquivos no VS Code.</span></div>
     <div class="arr">git add →</div>
-    <div class="box3"><b>Preparação</b><span>O que vai entrar na próxima versão.</span></div>
+    <div class="box3"><b>Preparação</b><span>O que vai entrar na próxima versão. Em inglês, <em>staging</em>.</span></div>
     <div class="arr">git commit →</div>
     <div class="box3"><b>Histórico</b><span>As versões salvas, cada uma com mensagem.</span></div>
   </div>
   <div class="callout c-analogy"><b>Comparação</b><p>É como uma foto em grupo. <code>git add</code> chama as pessoas para a foto. <code>git commit</code> tira a foto e escreve a legenda. Você pode ter mexido em 5 arquivos e escolher fotografar só 2.</p></div>
-  <h2>Os comandos desta etapa</h2>
+  <h3>Os comandos desta etapa</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
     <tbody>
       <tr><td><code>git init</code></td><td>Liga o Git na pasta. Só uma vez por projeto.</td></tr>
       <tr><td><code>git status</code></td><td>Mostra o que mudou e o que está preparado. Use sempre que tiver dúvida.</td></tr>
-      <tr><td><code>git add arquivo</code></td><td>Prepara um arquivo. <code>git add .</code> prepara tudo.</td></tr>
+      <tr><td><code>git add arquivo</code></td><td>Prepara um arquivo. <code>git add .</code> prepara todos. O ponto quer dizer “esta pasta inteira”.</td></tr>
       <tr><td><code>git commit -m "mensagem"</code></td><td>Salva a versão com a mensagem.</td></tr>
       <tr><td><code>git log --oneline</code></td><td>Mostra o histórico, uma linha por versão.</td></tr>
     </tbody>
   </table></div>
-  <div class="callout c-warn"><b>Mensagem de commit é microcopy</b><p>Verbo no presente, curta e específica: “Adiciona passo de anexar recibo”. Evite “ajustes” ou “mudanças”. Em equipes com Jira, comece pelo número da tarefa: “DOC-12 Adiciona passo…”.</p></div>
-  <div class="callout c-sum"><b>Você aprendeu</b><p>Edite → <code>git add</code> → <code>git commit -m "..."</code>. Na dúvida, <code>git status</code>.</p></div>
+  <div class="callout c-warn"><b>Mensagem de commit é microcopy</b><p>Use verbo no presente e seja curta e específica: “Adiciona passo de anexar recibo”. Evite “ajustes” ou “mudanças”. Em equipes com Jira, comece pelo número da tarefa: “DOC-12 Adiciona passo…”.</p></div>
+  <h2>Faça no seu computador</h2>
+  <div class="callout c-do"><b>Nada ainda</b><p>Você pratica esses comandos no simulador da página 3.6 e no seu projeto na página 3.7.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Edite, depois <code>git add</code>, depois <code>git commit -m "..."</code>. Na dúvida, <code>git status</code>.</p></div>
 </section>
 
 <section class="lesson" data-id="3-5" data-mod="3" data-short="Branch e merge" hidden>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>Branch e merge</h1>
   <p class="l-goal">Trabalhar numa cópia segura e juntar quando estiver pronto.</p>
+  <h2>Entenda</h2>
   <div class="prose"><p>A versão oficial do projeto fica num branch chamado <code>main</code>. Para revisar algo sem mexer nela, você cria um <strong>branch</strong>: uma linha paralela. Quando terminar, faz o <strong>merge</strong>, que junta as mudanças de volta.</p></div>
   <div class="scroll-x" style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px">
     <svg class="svg-dg" viewBox="0 0 640 170" role="img" aria-label="Diagrama: o branch revisao sai do main, recebe um commit e volta para o main com um merge">
@@ -1119,21 +1165,30 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
     <tbody>
-      <tr><td><code>git switch -c nome</code></td><td>Cria um branch e já entra nele.</td></tr>
+      <tr><td><code>git switch -c nome</code></td><td>Cria um branch e já entra nele. O <code>-c</code> quer dizer “criar”.</td></tr>
       <tr><td><code>git switch main</code></td><td>Volta para o main.</td></tr>
       <tr><td><code>git branch</code></td><td>Lista os branches. O atual tem um asterisco.</td></tr>
       <tr><td><code>git merge nome</code></td><td>Junta o branch “nome” no branch em que você está.</td></tr>
     </tbody>
   </table></div>
-  <div class="callout c-analogy"><b>Comparação</b><p>É como pedir para revisar um texto numa cópia do documento, em vez de mexer no original. Quando a revisão é aprovada, as mudanças entram no original.</p></div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como revisar um texto numa cópia do documento, sem mexer no original. Quando a revisão é aprovada, as mudanças entram no original.</p></div>
+  <h2>Faça no seu computador</h2>
+  <div class="callout c-do"><b>Nada ainda</b><p>Você pratica branch e merge no simulador da página 3.6 e no seu projeto na página 3.7b.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>Branch é uma linha paralela. Merge junta de volta. Para fazer merge, você precisa estar no branch que vai receber as mudanças.</p></div>
 </section>
 
 <section class="lesson" data-id="3-6" data-mod="3" data-short="Prática: terminal simulado" hidden>
   <p class="l-eyebrow">Módulo 3 · Prática</p>
   <h1>Prática: terminal simulado</h1>
-  <p class="l-goal">Usar o Git sem medo de errar. Nada aqui afeta seu computador.</p>
-  <div class="callout c-do"><b>Como usar</b><ol><li>Siga as missões na ordem.</li><li>Toque num comando cinza da lista para preenchê-lo. Depois aperte Enter.</li><li>Depois de cada comando, olhe o quadro “Onde estão os arquivos”.</li><li>Digite <code>help</code> para ver todos os comandos.</li></ol></div>
+  <p class="l-goal">Usar o Git sem medo de errar. Nada aqui afeta o seu computador.</p>
+  <h2>Faça nesta página</h2>
+  <ol class="how">
+    <li><div><b>Leia a primeira missão</b><span>As missões ficam no quadro “Missões”. Faça na ordem, de cima para baixo.</span></div></li>
+    <li><div><b>Preencha o comando</b><span>Toque no comando cinza embaixo da missão. Ele aparece na linha do terminal escuro, ao lado do <code>$</code>. Você também pode digitar.</span></div></li>
+    <li><div><b>Aperte Enter</b><span>O terminal responde com a saída do comando, como no seu computador.</span></div></li>
+    <li><div><b>Olhe o quadro “Onde estão os arquivos”</b><span>Ele mostra em qual das 3 áreas cada arquivo está depois do comando. A missão fica marcada quando você acerta.</span></div></li>
+    <li><div><b>Se ficar perdida</b><span>Digite <code>help</code> e aperte Enter para ver todos os comandos que o simulador entende.</span></div></li>
+  </ol>
   <div class="term-grid">
     <div class="term">
       <div class="term-out" id="term-out" aria-live="polite"></div>
@@ -1144,64 +1199,347 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
       <div class="panel"><span class="out-label">Onde estão os arquivos</span><div class="areas" id="areas"></div></div>
     </div>
   </div>
+  <div class="callout c-result"><b>O que você deve ver</b><p>Todas as missões marcadas com ✓. Na próxima página, você faz o mesmo no seu projeto de verdade.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>O ciclo completo: iniciar, salvar versões, criar um branch, editar e juntar de volta.</p></div>
 </section>
 
 <section class="lesson" data-id="3-7" data-mod="3" data-short="Git no seu projeto" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
-  <h1>Git no seu projeto de verdade</h1>
-  <p class="l-goal">Repetir o que você fez no simulador, agora na sua pasta.</p>
-  <div class="prose"><p>Abra a pasta <code>central-ajuda-despesas</code> no VS Code e o terminal (<em>Terminal → New Terminal</em>). Rode um comando por vez.</p></div>
-  <h2>Parte A · Primeira versão</h2>
-  <div class="code-wrap" data-code="git-a" data-tag="terminal"></div>
-  <h2>Parte B · Revisão num branch</h2>
-  <div class="code-wrap" data-code="git-b" data-tag="terminal"></div>
-  <div class="prose"><p>Entre os comandos, abra <code>tarefa-enviar-relatorio.dita</code>, faça uma mudança (por exemplo, melhore um <code>&lt;cmd&gt;</code>) e salve.</p></div>
-  <h2>Parte C · Juntar no main</h2>
-  <div class="code-wrap" data-code="git-c" data-tag="terminal"></div>
+  <h1>Git no seu projeto: a primeira versão</h1>
+  <p class="l-goal">Ligar o Git na pasta do projeto e salvar a primeira versão de todos os arquivos.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Você vai repetir o que fez no simulador, agora na sua pasta. São cinco comandos: ligar o Git, ver o que ele encontrou, preparar os arquivos, salvar a versão e ver o histórico. Depois de cada comando, compare o que apareceu no seu terminal com a saída esperada.</p></div>
+  <div class="callout c-analogy"><b>As cores do terminal</b><p>No terminal, o Git pinta de vermelho o que ainda não foi preparado e de verde o que já foi preparado para o commit.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o projeto e o terminal</b><span>No VS Code, abra a pasta <code>central-ajuda-despesas</code> (<em>File → Open Folder</em>) e depois <em>Terminal → New Terminal</em>. Rode <code>pwd</code> e confira se o caminho termina em <code>central-ajuda-despesas</code>.</span></div></li>
+    <li><div><b>Ligue o Git na pasta</b><span>Rode o comando abaixo. Faça isso uma vez só por projeto.</span>
+      <div class="code-wrap" data-code="g-init" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Initialized empty Git repository in /Users/seu-usuario/Documents/central-ajuda-despesas/.git/</pre></div>
+      <span>Quer dizer: o Git criou um repositório vazio. Ele guarda o histórico numa pasta escondida chamada <code>.git</code>. Não apague essa pasta.</span></div></li>
+    <li><div><b>Veja o que o Git encontrou</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+	avisos.dita
+	conceito-relatorio.dita
+	docs/
+	guia.ditamap
+	nota-versao.xml
+	ref-limites.dita
+	tarefa-enviar-relatorio.dita
+
+nothing added to commit but untracked files present (use "git add" to track)</pre></div>
+      <span>Quer dizer: você está no branch <code>main</code>, ainda não há nenhuma versão salva e estes arquivos ainda não são acompanhados pelo Git (<em>untracked</em>).</span></div></li>
+    <li><div><b>Prepare todos os arquivos</b><span>O ponto no fim quer dizer “esta pasta inteira”. O comando não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div></div></li>
+    <li><div><b>Confira o que foi preparado</b><span>Rode <code>git status</code> de novo.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · a lista de docs/ é maior</span><pre class="code">On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+	new file:   avisos.dita
+	new file:   conceito-relatorio.dita
+	new file:   docs/index.html
+	…
+	new file:   tarefa-enviar-relatorio.dita</pre></div>
+      <span>Quer dizer: estes arquivos estão na área de preparação e vão entrar no próximo commit (<em>changes to be committed</em>).</span></div></li>
+    <li><div><b>Salve a primeira versão</b><span>Rode o commit com a mensagem entre aspas.</span>
+      <div class="code-wrap" data-code="g-commit1" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · o código e os números mudam</span><pre class="code">[main (root-commit) 4057579] Adiciona tópicos iniciais
+ 14 files changed, 412 insertions(+)
+ create mode 100644 avisos.dita
+ create mode 100644 conceito-relatorio.dita
+ create mode 100644 docs/index.html
+ …
+ create mode 100644 tarefa-enviar-relatorio.dita</pre></div>
+      <span>Quer dizer: a versão foi salva no branch <code>main</code>. O <code>4057579</code> é o código dessa versão. <em>Root-commit</em> é o primeiro commit do projeto, e há uma linha <em>create mode</em> para cada arquivo novo.</span></div></li>
+    <li><div><b>Veja o histórico</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-log" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">4057579 (HEAD -&gt; main) Adiciona tópicos iniciais</pre></div>
+      <span>Quer dizer: há uma versão no histórico. <code>HEAD -&gt; main</code> mostra onde você está agora: no branch <code>main</code>, nesta versão.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>O <code>git log --oneline</code> mostra uma linha com a mensagem “Adiciona tópicos iniciais”.</li>
+    <li>Um <code>git status</code> agora responde <code>nothing to commit, working tree clean</code>: tudo o que está na pasta já está salvo.</li>
+    <li>No VS Code, os nomes dos arquivos deixam de aparecer em verde no Explorer.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>fatal: not a git repository</code></strong>. O terminal está fora da pasta do projeto. Rode <code>pwd</code>, abra a pasta certa no VS Code e abra um terminal novo.</li>
+    <li><strong>A primeira linha diz <code>On branch master</code>.</strong> O Git usou outro nome para o branch principal. Rode <code>git branch -M main</code> para trocar o nome para <code>main</code>.</li>
+    <li><strong>Apareceu um texto longo que começa com <code>Committer:</code></strong>. O nome e o e-mail não foram gravados na página 3.3. A versão foi salva mesmo assim. Volte à 3.3 e grave os dois para os próximos commits.</li>
+    <li><strong>O terminal virou uma tela cheia com til (<code>~</code>) no lado esquerdo.</strong> Você rodou o commit sem o <code>-m</code> e abriu um editor de texto do terminal. Aperte <kbd>Esc</kbd>, digite <code>:q!</code> e aperte Enter. O commit é cancelado. Rode de novo com <code>-m "mensagem"</code>.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/                          <span class="d">← novo, escondido (o histórico)</span>
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── ref-limites.dita
+├── guia.ditamap
+├── avisos.dita
+└── docs/</div>
   <div class="callout c-analogy"><b>Também dá para usar com cliques</b><p>O ícone <em>Source Control</em> na barra da esquerda do VS Code mostra os arquivos alterados. O “+” ao lado de um arquivo faz o <code>git add</code>, e o botão <em>Commit</em> faz o commit com a mensagem que você digitar. Aprenda primeiro pelo terminal, para entender o que cada clique faz.</p></div>
-  <div class="callout c-warn"><b>Apareceu uma tela estranha no terminal?</b><p>Se o <code>git log</code> encher a tela e travar, aperte <code>q</code> para sair. Se você esqueceu o <code>-m</code> no commit e abriu um editor, escreva a mensagem na primeira linha, salve e feche a aba.</p></div>
-  <div class="callout c-result"><b>Resultado</b><p>O <code>git log --oneline</code> mostra pelo menos 2 commits, e o branch de revisão já foi juntado ao main.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p><code>git init</code> liga o Git, <code>git add .</code> prepara, <code>git commit -m</code> salva e <code>git log --oneline</code> mostra o histórico.</p></div>
+</section>
+
+<section class="lesson" data-id="3-7b" data-mod="3" data-short="Branch no seu projeto" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Revise num branch e junte no main</h1>
+  <p class="l-goal">Fazer uma mudança numa linha paralela e juntar de volta, como numa revisão de verdade.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Você vai melhorar o texto de um passo da task num branch chamado <code>revisao-tarefa</code>. A versão oficial, no <code>main</code>, fica intacta até você fazer o merge. É o mesmo ciclo da página 3.5.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o branch e entre nele</b><span>No terminal do VS Code, rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-switch-c" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisao-tarefa'</pre></div>
+      <span>Quer dizer: o branch foi criado e você já está nele. O nome do branch também aparece no canto inferior esquerdo do VS Code.</span></div></li>
+    <li><div><b>Abra a task e ache o passo</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>Confira o valor</code>. O VS Code destaca a linha.</span></div></li>
+    <li><div><b>Troque o texto do passo e salve</b><span>Selecione a linha inteira e cole a linha nova no lugar. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="g-cmd-new" data-tag="linha nova"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar · com a linha de antes e a de depois</span><pre class="code">      &lt;step&gt;
+        &lt;cmd&gt;Confira se o valor total está certo.&lt;/cmd&gt;
+        &lt;info&gt;Se algum valor estiver errado, edite a despesa antes de enviar.&lt;/info&gt;</pre></div></div></li>
+    <li><div><b>Veja o que mudou</b><span>Rode <code>git status</code>.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">On branch revisao-tarefa
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   tarefa-enviar-relatorio.dita
+
+no changes added to commit (use "git add" and/or "git commit -a")</pre></div>
+      <span>Quer dizer: você está no branch <code>revisao-tarefa</code> e a task foi alterada (<em>modified</em>), mas ainda não foi preparada.</span></div></li>
+    <li><div><b>Prepare só a task</b><span>Desta vez, prepare um arquivo só, pelo nome. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="g-add-task" data-tag="terminal"></div></div></li>
+    <li><div><b>Salve a versão no branch</b><span>Rode o commit.</span>
+      <div class="code-wrap" data-code="g-commit2" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · o código muda</span><pre class="code">[revisao-tarefa 2086e57] Melhora o passo de conferir o valor
+ 1 file changed, 1 insertion(+), 1 deletion(-)</pre></div>
+      <span>Quer dizer: a versão foi salva no branch <code>revisao-tarefa</code>. Uma linha saiu e uma linha entrou, porque você trocou o texto de uma linha.</span></div></li>
+    <li><div><b>Volte para o main</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-switch-main" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to branch 'main'</pre></div>
+      <span>Olhe a task no VS Code: o passo voltou para “Confira o valor total.”. Isso é esperado. O <code>main</code> ainda não recebeu a mudança, que está guardada no branch.</span></div></li>
+    <li><div><b>Junte o branch no main</b><span>Rode o merge.</span>
+      <div class="code-wrap" data-code="g-merge" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · os códigos mudam</span><pre class="code">Updating 4057579..2086e57
+Fast-forward
+ tarefa-enviar-relatorio.dita | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)</pre></div>
+      <span>Quer dizer: o <code>main</code> avançou até a versão do branch. <em>Fast-forward</em> é o merge mais simples: o main só andou para a frente. A task no VS Code volta a mostrar o texto novo.</span></div></li>
+    <li><div><b>Veja o histórico</b><span>Rode <code>git log --oneline</code>.</span>
+      <div class="code-wrap" data-code="g-log" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · os códigos mudam</span><pre class="code">2086e57 (HEAD -&gt; main, revisao-tarefa) Melhora o passo de conferir o valor
+4057579 Adiciona tópicos iniciais</pre></div>
+      <span>Quer dizer: há duas versões. A mais nova fica em cima, e o <code>main</code> e o <code>revisao-tarefa</code> agora apontam para a mesma versão.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>O histórico tem 2 commits.</li>
+    <li>Você está no <code>main</code>, e a task mostra “Confira se o valor total está certo.”.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>fatal: invalid reference</code></strong> ou <strong><code>not something we can merge</code></strong>. O nome do branch foi digitado com erro. Rode <code>git branch</code> para ver os nomes certos e use o botão Copiar.</li>
+    <li><strong>Editei a task antes de criar o branch.</strong> Sem problema. O <code>git switch -c</code> leva as mudanças não salvas junto para o branch novo. Siga do passo 4.</li>
+    <li><strong>O <code>git status</code> diz <code>nothing to commit</code>.</strong> A task não foi salva no VS Code. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd> e rode o <code>git status</code> de novo.</li>
+    <li><strong>O <code>git log</code> encheu a tela e não volta.</strong> Aperte <kbd>q</kbd> para sair.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita   <span class="d">← editado</span>
+├── ref-limites.dita
+├── guia.ditamap
+├── avisos.dita
+└── docs/                          <span class="d">ainda com o texto antigo (você gera de novo na 3.9)</span></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Crie o branch, edite, faça o commit, volte ao <code>main</code> e faça o merge. O merge sempre traz as mudanças para o branch em que você está.</p></div>
 </section>
 
 <section class="lesson" data-id="3-8" data-mod="3" data-short="Enviar para o GitHub" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
   <h1>Envie o projeto para o GitHub</h1>
-  <p class="l-goal">Colocar uma cópia do projeto online.</p>
+  <p class="l-goal">Colocar uma cópia do projeto online, com todo o histórico.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Até aqui, o histórico está só no seu Mac. Agora você cria um repositório vazio no GitHub e diz ao Git o endereço dele. Esse endereço online se chama <strong>remote</strong>. O Git dá a ele o apelido <code>origin</code>. O <code>push</code> envia os seus commits para lá.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · No site do GitHub</h3>
   <ol class="how">
-    <li><div><b>Crie a conta</b><span>Em <a href="https://github.com" target="_blank" rel="noopener">github.com</a>, clique em “Sign up”. Escolha um nome de usuário profissional. Ele vai aparecer no link do seu site.</span></div></li>
-    <li><div><b>Crie o repositório</b><span>Clique no “+” no canto superior direito → <em>New repository</em>. Nome: <code>central-ajuda-despesas</code>. Marque <em>Public</em>. <strong>Não</strong> marque “Add a README”. Clique em <em>Create repository</em>.</span></div></li>
-    <li><div><b>Copie a URL</b><span>A página seguinte mostra um endereço terminado em <code>.git</code>. Copie.</span></div></li>
-    <li><div><b>Ligue e envie</b><span>No terminal do VS Code, rode os comandos abaixo, trocando a URL pela sua.</span></div></li>
-    <li><div><b>Entre na conta</b><span>Na primeira vez, abre uma janela do navegador pedindo para entrar no GitHub. Autorize.</span></div></li>
-    <li><div><b>Confira</b><span>Atualize a página do repositório no GitHub. Seus arquivos estão lá.</span></div></li>
+    <li><div><b>Crie a conta</b><span>Em <a href="https://github.com" target="_blank" rel="noopener">github.com</a>, clique em <em>Sign up</em>. Preencha e-mail, senha e nome de usuário. Escolha um nome de usuário profissional: ele aparece no link do seu site. O GitHub manda um código para o seu e-mail. Digite o código para confirmar a conta.</span></div></li>
+    <li><div><b>Comece um repositório novo</b><span>Com a conta aberta, clique no <strong>+</strong> no canto superior direito e escolha <em>New repository</em>.</span></div></li>
+    <li><div><b>Preencha e crie</b><span>Em <em>Repository name</em>, digite <code>central-ajuda-despesas</code>. Marque <em>Public</em>. Deixe desmarcada a opção <em>Add a README file</em>. Clique em <em>Create repository</em>.</span></div></li>
+    <li><div><b>Copie o endereço</b><span>A página seguinte tem o título <em>Quick setup</em>. Confira se o botão <em>HTTPS</em> está selecionado e clique no ícone de copiar ao lado do endereço. Ele termina em <code>.git</code>.</span></div></li>
   </ol>
-  <div class="code-wrap" data-code="push" data-tag="terminal"></div>
-  <div class="prose"><p><code>remote add origin</code> diz ao Git qual é o endereço online. <code>push</code> envia seus commits para lá. Daqui para frente, para enviar novas versões, basta <code>git push</code>.</p></div>
-  <div class="callout c-result"><b>Resultado</b><p>O projeto está online no GitHub, com todo o histórico de versões.</p></div>
+  <h3>Parte B · No terminal do VS Code</h3>
+  <ol class="how">
+    <li><div><b>Diga ao Git o endereço online</b><span>Copie o comando abaixo e cole no terminal sem apertar Enter. Troque <code>SEU-USUARIO</code> pelo seu nome de usuário do GitHub (ou apague o endereço inteiro e cole o que você copiou). Aperte Enter. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="g-remote" data-tag="terminal"></div></div></li>
+    <li><div><b>Confira o endereço</b><span>O <code>-v</code> pede para mostrar os detalhes.</span>
+      <div class="code-wrap" data-code="g-remote-v" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · com o seu usuário</span><pre class="code">origin	https://github.com/seu-usuario/central-ajuda-despesas.git (fetch)
+origin	https://github.com/seu-usuario/central-ajuda-despesas.git (push)</pre></div>
+      <span>Quer dizer: o apelido <code>origin</code> aponta para o seu repositório. <em>Fetch</em> é baixar e <em>push</em> é enviar.</span></div></li>
+    <li><div><b>Garanta o nome main</b><span>Este comando confirma que o branch principal se chama <code>main</code>, como no GitHub. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="g-branch-m" data-tag="terminal"></div></div></li>
+    <li><div><b>Envie</b><span>O <code>-u</code> liga o seu <code>main</code> ao <code>main</code> do GitHub. Depois disso, um <code>git push</code> sozinho já basta.</span>
+      <div class="code-wrap" data-code="g-push1" data-tag="terminal"></div></div></li>
+    <li><div><b>Entre na conta, na primeira vez</b><span>O VS Code mostra um aviso pedindo para entrar no GitHub. Clique em <em>Allow</em>. O navegador abre: entre na sua conta e autorize o VS Code. Volte ao VS Code. O envio continua sozinho.</span>
+      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+ * [new branch]      main -&gt; main
+branch 'main' set up to track 'origin/main'.</pre></div>
+      <span>Antes dessas linhas podem aparecer outras com contagens, como <code>Writing objects: 100%</code>. Quer dizer: o <code>main</code> foi criado no GitHub (<em>new branch</em>) e ficou ligado ao seu.</span></div></li>
+    <li><div><b>Confira no GitHub</b><span>Volte à página do repositório no navegador e atualize com <kbd>Cmd</kbd>+<kbd>R</kbd>. Os seus arquivos aparecem, e perto do topo há um link com o número de commits.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><p>No GitHub, a lista dos seus arquivos e a pasta <code>docs</code>. Ao clicar no número de commits, aparecem as 2 versões que você salvou.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>error: remote origin already exists.</code></strong> O endereço já foi gravado antes. Para corrigir um endereço errado, rode <code>git remote set-url origin</code> seguido do endereço certo.</li>
+    <li><strong>O terminal pediu <code>Username</code> e <code>Password</code>.</strong> O GitHub não aceita a senha da conta no terminal. Aperte <kbd>Ctrl</kbd>+<kbd>C</kbd> para cancelar e rode o push pelo terminal do VS Code, que abre o login pelo navegador.</li>
+    <li><strong>Apareceu <code>Repository not found</code>.</strong> O endereço tem um erro, quase sempre no nome de usuário. Confira com <code>git remote -v</code> e corrija com <code>git remote set-url origin</code> e o endereço certo.</li>
+    <li><strong>O push foi recusado com a palavra <code>rejected</code>.</strong> O repositório foi criado com o README marcado. O caminho mais simples: no GitHub, abra <em>Settings</em> do repositório, desça até <em>Delete this repository</em>, apague e crie de novo sem o README. Depois rode o push outra vez.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="prose"><p>A pasta do seu Mac não muda. Agora existe uma cópia igual no GitHub, em <code>github.com/seu-usuario/central-ajuda-despesas</code>.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p><code>git remote add origin</code> grava o endereço online e <code>git push</code> envia os commits para lá.</p></div>
 </section>
 
-<section class="lesson" data-id="3-9" data-mod="3" data-short="Publicar e pedir revisão" hidden>
+<section class="lesson" data-id="3-9" data-mod="3" data-short="Publicar o site" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
-  <h1>Publique o site e peça uma revisão</h1>
-  <p class="l-goal">Ter um link público e praticar o fluxo de revisão de uma equipe.</p>
-  <h2>Parte A · Publique com o GitHub Pages</h2>
+  <h1>Publique o site com o GitHub Pages</h1>
+  <p class="l-goal">Ter um link público para a sua central de ajuda.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>O <strong>GitHub Pages</strong> é um serviço gratuito do GitHub que publica um site a partir de uma pasta do repositório. Você vai apontar para a pasta <code>docs</code>. Antes, gere o site de novo, porque a task mudou na página 3.7b e a pasta <code>docs</code> ainda tem o texto antigo.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · Atualize o site e envie</h3>
   <ol class="how">
-    <li><div><b>Confira a pasta docs</b><span>O site gerado no Módulo 2 está em <code>docs/</code>. Se você mudou algum tópico depois, gere de novo com o comando do DITA-OT, faça um commit e um <code>git push</code>.</span></div></li>
-    <li><div><b>Abra as configurações</b><span>No repositório do GitHub: aba <em>Settings</em> → no menu da esquerda, <em>Pages</em>.</span></div></li>
-    <li><div><b>Escolha a origem</b><span>Em “Source”, escolha <em>Deploy from a branch</em>. Em “Branch”, escolha <code>main</code> e a pasta <code>/docs</code>. Clique em <em>Save</em>.</span></div></li>
-    <li><div><b>Espere e abra</b><span>Em 1 ou 2 minutos, o link aparece no topo dessa mesma página: <code>https://seu-usuario.github.io/central-ajuda-despesas/</code>.</span></div></li>
+    <li><div><b>Gere o site de novo</b><span>No terminal do VS Code, rode o comando da página 2.9b.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div></div></li>
+    <li><div><b>Veja o que mudou</b><span>Rode <code>git status</code>.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida com esta</span><pre class="code">On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   docs/tarefa-enviar-relatorio.html</pre></div>
+      <span>Quer dizer: a página da task no site foi refeita com o texto novo. <em>Up to date with 'origin/main'</em> quer dizer que o GitHub tem os mesmos commits que você.</span></div></li>
+    <li><div><b>Prepare e salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-site" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · o código e os números mudam</span><pre class="code">[main 3c1a2bd] Atualiza o site gerado
+ 1 file changed, 2 insertions(+), 2 deletions(-)</pre></div></div></li>
+    <li><div><b>Envie</b><span>Agora basta <code>git push</code>.</span>
+      <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+   2086e57..3c1a2bd  main -&gt; main</pre></div>
+      <span>Quer dizer: o <code>main</code> do GitHub avançou da versão antiga para a nova.</span></div></li>
   </ol>
-  <h2>Parte B · Pull request: o pedido de revisão</h2>
-  <div class="prose"><p>Em equipes, ninguém junta mudanças direto no main. Você envia um branch e abre um <strong>pull request</strong>. Outra pessoa lê, comenta e aprova. Só então a mudança entra.</p></div>
-  <div class="code-wrap" data-code="pr" data-tag="terminal"></div>
+  <h3>Parte B · Ligue o GitHub Pages</h3>
   <ol class="how">
-    <li><div><b>Abra o pull request</b><span>No GitHub aparece um botão amarelo <em>Compare &amp; pull request</em>. Clique, escreva um título claro e uma descrição do que mudou e por quê.</span></div></li>
-    <li><div><b>Revise</b><span>Na aba <em>Files changed</em>, você vê as linhas removidas (vermelho) e adicionadas (verde). Deixe um comentário numa linha, como faria numa revisão de texto.</span></div></li>
-    <li><div><b>Junte</b><span>Clique em <em>Merge pull request</em> → <em>Confirm</em>.</span></div></li>
-    <li><div><b>Atualize seu computador</b><span>Volte ao main e baixe a versão juntada com os comandos abaixo.</span></div></li>
+    <li><div><b>Abra as configurações</b><span>No navegador, na página do repositório, clique na aba <em>Settings</em> (a última, com uma engrenagem). No menu da esquerda, na seção <em>Code and automation</em>, clique em <em>Pages</em>.</span></div></li>
+    <li><div><b>Escolha de onde vem o site</b><span>Em <em>Source</em>, escolha <em>Deploy from a branch</em>.</span></div></li>
+    <li><div><b>Escolha o branch e a pasta</b><span>Em <em>Branch</em>, escolha <code>main</code>. No menu ao lado, troque <code>/ (root)</code> por <code>/docs</code>. Clique em <em>Save</em>.</span></div></li>
+    <li><div><b>Espere e abra</b><span>Aguarde alguns minutos e atualize a página. Quando o site estiver no ar, aparece no topo a frase <em>Your site is live at</em> com o link. Ele tem este formato: <code>https://seu-usuario.github.io/central-ajuda-despesas/</code>.</span></div></li>
   </ol>
-  <div class="code-wrap" data-code="pull" data-tag="terminal"></div>
+  <div class="callout c-result"><b>O que você deve ver</b><p>O link abre o mesmo site que você viu no seu Mac na página 2.9b, agora na internet. O passo da task mostra “Confira se o valor total está certo.”.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O link mostra 404 (página não encontrada).</strong> A primeira publicação pode demorar. Em contas criadas há pouco tempo, pode levar até uns 20 minutos. Acompanhe na aba <em>Actions</em> do repositório: uma bolinha amarela quer dizer “publicando”, um ✓ verde quer dizer “pronto”.</li>
+    <li><strong>O menu de pasta não oferece <code>/docs</code>.</strong> A pasta <code>docs</code> não chegou ao GitHub. Gere o site, rode <code>git add .</code>, o commit e o <code>git push</code> de novo.</li>
+    <li><strong>O site mostra só a lista de arquivos ou outra página.</strong> A pasta escolhida foi <code>/ (root)</code>. Volte em <em>Settings → Pages</em> e escolha <code>/docs</code>.</li>
+    <li><strong>O push respondeu <code>Everything up-to-date</code>.</strong> Faltou o commit. Rode o passo 3 e depois o push.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="prose"><p>Os mesmos da página 3.7b. A pasta <code>docs</code> foi gerada de novo com o texto atualizado.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O GitHub Pages publica a pasta <code>docs</code> do <code>main</code>. Sempre que mudar um tópico: gere o site, faça o commit e o push.</p></div>
+</section>
+
+<section class="lesson" data-id="3-9b" data-mod="3" data-short="Pedir revisão (pull request)" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Peça uma revisão com um pull request</h1>
+  <p class="l-goal">Praticar o fluxo de revisão de uma equipe: branch, pull request, comentário e merge.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Em equipes, ninguém junta mudanças direto no <code>main</code>. Você envia um branch para o GitHub e abre um <strong>pull request</strong>, um pedido para revisarem e juntarem as suas mudanças. Outra pessoa lê, comenta e aprova. Só então a mudança entra. Aqui você faz os dois papéis.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · A mudança, no VS Code</h3>
+  <ol class="how">
+    <li><div><b>Crie um branch para a revisão</b><span>No terminal do VS Code, confira com <code>git status</code> se está no <code>main</code>. Depois rode:</span>
+      <div class="code-wrap" data-code="g-switch-pr" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisa-shortdesc'</pre></div></div></li>
+    <li><div><b>Troque o shortdesc da task</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Ache a linha que começa com <code>&lt;shortdesc&gt;</code>, selecione a linha inteira e cole a linha nova. Salve.</span>
+      <div class="code-wrap" data-code="g-shortdesc-new" data-tag="linha nova"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar · com a linha de antes e a de depois</span><pre class="code">  &lt;title&gt;Enviar um relatório de despesas&lt;/title&gt;
+  &lt;shortdesc&gt;Envie o relatório para o seu gestor aprovar o reembolso.&lt;/shortdesc&gt;
+  &lt;taskbody&gt;</pre></div></div></li>
+    <li><div><b>Gere o site de novo</b><span>Assim o site também recebe o texto novo.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div></div></li>
+    <li><div><b>Prepare e salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-pr" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · o código e os números mudam</span><pre class="code">[revisa-shortdesc 74bbea7] Deixa o shortdesc da tarefa mais direto
+ 2 files changed, 2 insertions(+), 2 deletions(-)</pre></div>
+      <span>Quer dizer: a versão foi salva no branch <code>revisa-shortdesc</code>, com a task e a página do site.</span></div></li>
+    <li><div><b>Envie o branch para o GitHub</b><span>Como o branch é novo, use <code>-u</code> e o nome dele.</span>
+      <div class="code-wrap" data-code="g-push-pr" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · as últimas linhas</span><pre class="code">remote:
+remote: Create a pull request for 'revisa-shortdesc' on GitHub by visiting:
+remote:      https://github.com/seu-usuario/central-ajuda-despesas/pull/new/revisa-shortdesc
+remote:
+To https://github.com/seu-usuario/central-ajuda-despesas.git
+ * [new branch]      revisa-shortdesc -&gt; revisa-shortdesc
+branch 'revisa-shortdesc' set up to track 'origin/revisa-shortdesc'.</pre></div>
+      <span>Quer dizer: o branch chegou ao GitHub. As linhas com <code>remote:</code> são o GitHub sugerindo o link para abrir o pull request.</span></div></li>
+  </ol>
+  <h3>Parte B · A revisão, no GitHub</h3>
+  <ol class="how">
+    <li><div><b>Abra o pull request</b><span>Na página do repositório aparece uma faixa amarela com o nome do branch e o botão <em>Compare &amp; pull request</em>. Clique nele.</span></div></li>
+    <li><div><b>Escreva o pedido</b><span>No título, escreva o que muda, por exemplo “Deixa o shortdesc da tarefa mais direto”. Na descrição, diga o que mudou e por quê. Clique em <em>Create pull request</em>.</span></div></li>
+    <li><div><b>Revise as linhas</b><span>Abra a aba <em>Files changed</em>. As linhas removidas aparecem em vermelho e as adicionadas em verde. Passe o mouse na linha verde do shortdesc, clique no <strong>+</strong> azul que aparece, escreva um comentário e clique em <em>Add single comment</em>.</span></div></li>
+    <li><div><b>Junte no main</b><span>Volte à aba <em>Conversation</em>, desça até o botão verde <em>Merge pull request</em>, clique nele e depois em <em>Confirm merge</em>. O pull request fica roxo, com a palavra <em>Merged</em>.</span></div></li>
+  </ol>
+  <h3>Parte C · Traga a versão final para o seu Mac</h3>
+  <ol class="how">
+    <li><div><b>Volte para o main</b><span>No terminal do VS Code, rode:</span>
+      <div class="code-wrap" data-code="g-switch-main" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to branch 'main'
+Your branch is up to date with 'origin/main'.</pre></div>
+      <span>A segunda linha compara com a última informação que o seu Mac tem do GitHub. Ele ainda não sabe do merge, por isso o shortdesc antigo aparece no VS Code.</span></div></li>
+    <li><div><b>Baixe o que mudou</b><span>O <code>pull</code> baixa do GitHub os commits novos.</span>
+      <div class="code-wrap" data-code="g-pull" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida com esta</span><pre class="code">From https://github.com/seu-usuario/central-ajuda-despesas
+   3c1a2bd..9f8e7d6  main       -&gt; origin/main
+Updating 3c1a2bd..9f8e7d6
+Fast-forward
+ docs/tarefa-enviar-relatorio.html | 2 +-
+ tarefa-enviar-relatorio.dita      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)</pre></div>
+      <span>Quer dizer: o seu <code>main</code> avançou até a versão juntada no GitHub. O shortdesc novo volta a aparecer no VS Code.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No GitHub, na aba <em>Pull requests</em> → <em>Closed</em>, o seu pull request aparece como <em>Merged</em>, com o comentário.</li>
+    <li>Alguns minutos depois do merge, o site publicado mostra o shortdesc novo.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>A faixa amarela não apareceu.</strong> Abra a aba <em>Pull requests</em>, clique em <em>New pull request</em> e, no menu <em>compare</em>, escolha <code>revisa-shortdesc</code>.</li>
+    <li><strong>O GitHub diz <em>There isn’t anything to compare</em>.</strong> O commit não foi feito ou não foi enviado. Rode <code>git status</code> e <code>git log --oneline</code>, faça o que faltar e rode o push do passo 5.</li>
+    <li><strong>O <code>git pull</code> respondeu <code>Already up to date</code>.</strong> O merge ainda não foi feito no GitHub. Confira se o pull request está roxo, com <em>Merged</em>.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="prose"><p>Os mesmos da página 3.7b. A task e a pasta <code>docs</code> têm o shortdesc novo.</p></div>
   <div class="callout c-result"><b>Resultado do Módulo 3</b><p>Um site público com link próprio e um pull request revisado no histórico. Esse é o fluxo “docs as code” completo.</p></div>
 </section>
 
