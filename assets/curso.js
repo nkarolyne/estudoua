@@ -35,17 +35,56 @@
     'java-test': 'java -version',
     'path-mac': "echo 'export PATH=\"$HOME/dita-ot/bin:$PATH\"' >> ~/.zshrc",
     'build': 'dita -i guia.ditamap -f html5 -o docs',
-    'git-config': 'git config --global user.name "Nicole Karolyne"\ngit config --global user.email "seu-email@exemplo.com"',
-    'git-test': 'git --version\ngit config --global user.name',
-    'git-a': 'git init\ngit status\ngit add .\ngit commit -m "Adiciona tópicos iniciais"',
-    'git-b': 'git switch -c revisao-tarefa\n# agora edite e salve a task no VS Code\ngit add tarefa-enviar-relatorio.dita\ngit commit -m "Melhora o texto dos passos"',
-    'git-c': 'git switch main\ngit merge revisao-tarefa\ngit log --oneline',
-    'push': 'git remote add origin https://github.com/SEU-USUARIO/central-ajuda-despesas.git\ngit branch -M main\ngit push -u origin main',
-    'pr': 'git switch -c revisa-shortdesc\n# edite um shortdesc no VS Code e salve\ngit add .\ngit commit -m "Deixa o shortdesc da tarefa mais direto"\ngit push -u origin revisa-shortdesc',
-    'pull': 'git switch main\ngit pull',
+    'git-test': "git config --global user.name\ngit config --global user.email",
     'gloss': '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE glossentry PUBLIC "-//OASIS//DTD DITA Glossary Entry//EN" "glossentry.dtd">\n<glossentry id="reembolso">\n  <glossterm>Reembolso</glossterm>\n  <glossdef>Pagamento que devolve ao funcionário o valor gasto a trabalho.</glossdef>\n</glossentry>',
     'abap-msg': 'MESSAGE e001(zdespesas) WITH lv_limite.',
     'abap-prazo': '* Despesas antigas demais não podem ser enviadas\nIF ls_despesa-data < lv_data_minima.\n  MESSAGE e003(zdespesas) WITH ls_despesa-data lv_prazo.\nENDIF.',
+    'conref-context': "    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>",
+    'task-conref-snip': "    <prereq>Todas as despesas precisam ter um recibo anexado.</prereq>\n    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>\n    <steps>",
+    'task-conref-full': "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE task PUBLIC \"-//OASIS//DTD DITA Task//EN\" \"task.dtd\">\n<task id=\"enviar-relatorio\">\n  <title>Enviar um relatório de despesas</title>\n  <shortdesc>Envie o relatório para que seu gestor possa aprovar o reembolso.</shortdesc>\n  <taskbody>\n    <prereq>Todas as despesas precisam ter um recibo anexado.</prereq>\n    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>\n    <steps>\n      <step>\n        <cmd>Abra o relatório em <uicontrol>Meus relatórios</uicontrol>.</cmd>\n      </step>\n      <step>\n        <cmd>Confira o valor total.</cmd>\n        <info>Se algum valor estiver errado, edite a despesa antes de enviar.</info>\n      </step>\n      <step>\n        <cmd>Anexe os recibos que faltam.</cmd>\n      </step>\n      <step>\n        <cmd>Clique em <uicontrol>Enviar</uicontrol>.</cmd>\n        <stepresult>O status muda para Enviado.</stepresult>\n      </step>\n    </steps>\n    <result>Seu gestor recebe uma notificação para aprovar.</result>\n  </taskbody>\n</task>",
+    'mv-dita': "mv ~/Downloads/dita-ot ~/dita-ot",
+    'ls-dita': "ls ~/dita-ot",
+    'which-dita': "which dita",
+    'dita-test': "dita --version",
+    'cmd-pwd': "pwd",
+    'cmd-ls': "ls",
+    'open-site': "open docs/index.html",
+    'git-version': "git --version",
+    'git-name': "git config --global user.name \"Nicole Karolyne\"",
+    'git-email': "git config --global user.email \"seu-email@exemplo.com\"",
+    'git-main': "git config --global init.defaultBranch main",
+    'g-init': "git init",
+    'g-status': "git status",
+    'g-add': "git add .",
+    'g-commit1': "git commit -m \"Adiciona tópicos iniciais\"",
+    'g-log': "git log --oneline",
+    'g-switch-c': "git switch -c revisao-tarefa",
+    'g-cmd-new': "Confira se o valor total está certo.",
+    'g-add-task': "git add tarefa-enviar-relatorio.dita",
+    'g-commit2': "git commit -m \"Melhora o passo de conferir o valor\"",
+    'g-switch-main': "git switch main",
+    'g-merge': "git merge revisao-tarefa",
+    'g-remote': "git remote add origin https://github.com/SEU-USUARIO/central-ajuda-despesas.git",
+    'g-remote-v': "git remote -v",
+    'g-branch-m': "git branch -M main",
+    'g-push1': "git push -u origin main",
+    'g-commit-site': "git commit -m \"Atualiza o site gerado\"",
+    'g-push': "git push",
+    'g-switch-pr': "git switch -c revisa-shortdesc",
+    'g-shortdesc-new': "Envie o relatório para o seu gestor aprovar o reembolso.",
+    'g-commit-pr': "git commit -m \"Deixa o shortdesc da tarefa mais direto\"",
+    'g-push-pr': "git push -u origin revisa-shortdesc",
+    'g-pull': "git pull",
+    'task2': "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE task PUBLIC \"-//OASIS//DTD DITA Task//EN\" \"task.dtd\">\n<task id=\"anexar-recibo\">\n  <title>Anexar um recibo</title>\n  <shortdesc>Anexe a foto do recibo a uma despesa para poder enviar o relatório.</shortdesc>\n  <taskbody>\n    <prereq>Tenha o recibo em mãos ou uma foto dele no celular.</prereq>\n    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>\n    <steps>\n      <step>\n        <cmd>Abra a despesa em <uicontrol>Meus relatórios</uicontrol>.</cmd>\n      </step>\n      <step>\n        <cmd>Toque em <uicontrol>Anexar recibo</uicontrol>.</cmd>\n      </step>\n      <step>\n        <cmd>Tire uma foto do recibo ou escolha uma foto da galeria.</cmd>\n      </step>\n      <step>\n        <cmd>Toque em <uicontrol>Salvar</uicontrol>.</cmd>\n        <stepresult>O ícone de recibo aparece ao lado da despesa.</stepresult>\n      </step>\n    </steps>\n  </taskbody>\n</task>",
+    'map-task2': "    <topicref href=\"tarefa-anexar-recibo.dita\"/>",
+    'g-commit-task2': "git commit -m \"Adiciona a tarefa de anexar recibo\"",
+    'gloss-recibo': "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE glossentry PUBLIC \"-//OASIS//DTD DITA Glossary Entry//EN\" \"glossentry.dtd\">\n<glossentry id=\"recibo\">\n  <glossterm>Recibo</glossterm>\n  <glossdef>Comprovante de pagamento de uma despesa, como uma nota fiscal ou um cupom.</glossdef>\n</glossentry>",
+    'gloss-gestor': "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE glossentry PUBLIC \"-//OASIS//DTD DITA Glossary Entry//EN\" \"glossentry.dtd\">\n<glossentry id=\"gestor\">\n  <glossterm>Gestor</glossterm>\n  <glossdef>Pessoa que aprova os relatórios de despesas da equipe.</glossdef>\n</glossentry>",
+    'map-gloss': "  <topichead navtitle=\"Glossário\">\n    <topicref href=\"glossario-reembolso.dita\"/>\n    <topicref href=\"glossario-recibo.dita\"/>\n    <topicref href=\"glossario-gestor.dita\"/>\n  </topichead>",
+    'map-final': "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE map PUBLIC \"-//OASIS//DTD DITA Map//EN\" \"map.dtd\">\n<map>\n  <title>Central de Ajuda: Relatório de Despesas</title>\n  <topicref href=\"conceito-relatorio.dita\">\n    <topicref href=\"tarefa-enviar-relatorio.dita\"/>\n    <topicref href=\"tarefa-anexar-recibo.dita\"/>\n    <topicref href=\"ref-limites.dita\"/>\n  </topicref>\n  <topichead navtitle=\"Glossário\">\n    <topicref href=\"glossario-reembolso.dita\"/>\n    <topicref href=\"glossario-recibo.dita\"/>\n    <topicref href=\"glossario-gestor.dita\"/>\n  </topichead>\n</map>",
+    'g-commit-gloss': "git commit -m \"Adiciona glossário com três termos\"",
+    'g-add-readme': "git add README.md",
+    'g-commit-readme': "git commit -m \"Adiciona README do projeto\"",
     'readme': '# Central de Ajuda: Relatório de Despesas\n\nProjeto de estudo de documentação estruturada em DITA.\n\n## O que tem aqui\n- 1 concept, 2 tasks e 1 reference\n- Aviso reutilizado com conref\n- Glossário com glossentry\n- Site gerado com DITA-OT (pasta docs/)\n\n## Decisões de conteúdo\n- Separei explicação (concept) de procedimento (task),\n  para cada página ter um só propósito.\n- Avisos que se repetem ficam em avisos.dita e são reutilizados.\n\n## Como gerar o site\ndita -i guia.ditamap -f html5 -o docs\n\n## Ver online\nhttps://SEU-USUARIO.github.io/central-ajuda-despesas/'
   };
 
@@ -688,7 +727,7 @@
     var c = g.getAttribute('data-complete'); if (c) { done[c] = true; store('done', JSON.stringify(done)); }
     show(g.getAttribute('data-go'));
   });
-  window.addEventListener('hashchange', function () { var m = location.hash.match(/^#l(\d-\d+)$/); if (m) show(m[1], true); });
+  window.addEventListener('hashchange', function () { var m = location.hash.match(/^#l(\d-\d+[a-z]?)$/); if (m) show(m[1], true); });
   openBtn.addEventListener('click', function () { side.classList.add('open'); scrim.hidden = false; openBtn.setAttribute('aria-expanded', 'true'); var c = $('a.is-current', nav); if (c) c.focus(); });
   document.getElementById('close-nav').addEventListener('click', closeNav);
   scrim.addEventListener('click', closeNav);
@@ -714,5 +753,5 @@
     location.reload();
   });
   if (!store('started')) showCover();
-  else show((location.hash.match(/^#l(\d-\d+)$/) || [])[1] || store('last') || ids[0], true);
+  else show((location.hash.match(/^#l(\d-\d+[a-z]?)$/) || [])[1] || store('last') || ids[0], true);
 })();

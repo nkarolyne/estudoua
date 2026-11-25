@@ -43,7 +43,7 @@
   <p class="l-eyebrow">Curso para Content Designers e UX Writers</p>
   <h1>DITA do zero</h1>
   <p class="l-goal">Documentação estruturada para quem já escreve bem: a lógica, o XML, o DITA, o versionamento e o trabalho de UA dentro do SAP. Uma página por vez, com prática em cada etapa.</p>
-  <div class="cover-meta"><span><b>43</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
+  <div class="cover-meta"><span><b>47</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
   <div class="modules">
     <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Do UX Writing à User Assistance.</span></div>
     <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas.</span></div>
@@ -754,14 +754,43 @@ git push</pre></div></div></li>
 <section class="lesson" data-id="2-8" data-mod="2" data-short="Reúso com conref" hidden>
   <p class="l-eyebrow">Módulo 2 · DITA</p>
   <h1>Reúso com conref</h1>
-  <p class="l-goal">Escrever um aviso uma vez e usá-lo em vários tópicos.</p>
-  <div class="prose"><p>Quando um trecho se repete, como uma regra ou um aviso legal, ele fica num arquivo só. Os outros tópicos apontam para ele. Mudou a regra? Você edita um lugar e todos se atualizam.</p></div>
-  <h2>Passo 1. Crie a fonte, com um id no trecho</h2>
+  <p class="l-goal">Escrever um aviso uma vez e usar o mesmo aviso em vários tópicos.</p>
+
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>Alguns trechos se repetem em muitos tópicos: uma regra, um aviso legal, um lembrete. Em vez de copiar e colar, você guarda o trecho num arquivo só e os outros tópicos apontam para ele. Quando a regra muda, você edita um lugar e todos os tópicos mudam juntos.</p>
+    <p>Esse apontamento se chama <strong>conref</strong>, de <em>content reference</em> (referência de conteúdo). O tópico guarda só o endereço do trecho. O texto de verdade fica no outro arquivo.</p>
+  </div>
+
+  <h3>O arquivo que guarda os trechos</h3>
   <div class="code-wrap" data-code="avisos" data-tag="avisos.dita"></div>
-  <h2>Passo 2. Aponte para ela de qualquer tópico</h2>
-  <div class="code-wrap" data-code="conref-use" data-tag="dentro de uma task"></div>
-  <div class="prose"><p>Leia o endereço assim: <code>avisos.dita</code> (o arquivo) <code>#avisos</code> (o id do tópico) <code>/recibo</code> (o id do trecho).</p></div>
-  <h2>Passo 3. Veja funcionando</h2>
+  <div class="prose"><p>Repare nos dois <strong>ids</strong>. Um id é um nome único dado a um elemento, como a etiqueta com nome numa gaveta. O tópico tem <code>id="avisos"</code> (na linha <code>&lt;topic&gt;</code>) e o aviso tem <code>id="recibo"</code> (na linha <code>&lt;note&gt;</code>). É por esses nomes que o conref encontra o trecho.</p></div>
+
+  <h3>Como ler o endereço</h3>
+  <div class="code-wrap" data-code="conref-use" data-tag="o conref"></div>
+  <div class="flow">
+    <div class="st"><em>1 · antes do #</em><b>avisos.dita</b><span>O arquivo onde está o trecho. Ele fica na mesma pasta do projeto.</span></div>
+    <div class="st"><em>2 · entre # e /</em><b>avisos</b><span>O id do tópico, na linha <code>&lt;topic id="avisos"&gt;</code>.</span></div>
+    <div class="st"><em>3 · depois da /</em><b>recibo</b><span>O id do trecho, na linha <code>&lt;note id="recibo"&gt;</code>.</span></div>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como um endereço de entrega: cidade, rua e número. O <code>#</code> e a <code>/</code> só separam as partes.</p></div>
+
+  <h3>Por que o avisos.dita não entra no mapa</h3>
+  <div class="prose"><p>O mapa lista as páginas do guia. O <code>avisos.dita</code> é uma gaveta de trechos, e não uma página para ler. Se ele entrasse no mapa, o site ganharia uma página chamada “Avisos reutilizáveis”, sem sentido para quem lê. O conref funciona mesmo assim, porque busca o arquivo direto pelo endereço.</p></div>
+
+  <h3>Por que o aviso fica dentro de &lt;context&gt;</h3>
+  <div class="prose">
+    <p>Na task, cada parte tem um lugar fixo, sempre nesta ordem:</p>
+    <ol>
+      <li><code>&lt;prereq&gt;</code>: o que a pessoa precisa antes de começar.</li>
+      <li><code>&lt;context&gt;</code>: por que ou quando fazer a tarefa.</li>
+      <li><code>&lt;steps&gt;</code>: os passos.</li>
+      <li><code>&lt;result&gt;</code>: o que acontece no fim.</li>
+    </ol>
+    <p>Um <code>&lt;note&gt;</code> não pode ficar solto entre essas partes. Ele precisa estar dentro de uma delas. O aviso explica uma regra antes dos passos, então o lugar dele é o <code>&lt;context&gt;</code>, logo depois do <code>&lt;prereq&gt;</code>.</p>
+  </div>
+
+  <h3>Veja funcionando</h3>
   <div class="reuse">
     <label for="reuse-in">Edite o aviso na fonte (avisos.dita)</label>
     <input id="reuse-in" type="text" value="Guarde o recibo original por 5 anos.">
@@ -770,50 +799,204 @@ git push</pre></div></div></li>
       <div class="reuse-card"><b>Anexar um recibo</b><span>1. Tire uma foto do recibo. 2. Toque em Anexar.</span><aside class="pv-note"><strong>Importante:</strong> <span data-reuse></span></aside><span class="src">conref → avisos.dita#avisos/recibo</span></div>
     </div>
   </div>
-  <div class="callout c-do"><b>Faça agora no VS Code</b><ol><li>Crie <code>avisos.dita</code> com o código do passo 1.</li><li>Na sua task, logo depois de <code>&lt;/prereq&gt;</code>, cole: <code>&lt;context&gt;&lt;note conref="avisos.dita#avisos/recibo"/&gt;&lt;/context&gt;</code></li></ol></div>
-  <div class="callout c-sum"><b>Você aprendeu</b><p>conref puxa um trecho de outro arquivo pelo id. É o vocabulário controlado aplicado a frases inteiras.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o projeto no VS Code</b><span>Abra o VS Code. Se a pasta <code>central-ajuda-despesas</code> não aparecer no Explorer (a lista de arquivos à esquerda), use <em>File → Open Folder</em> e escolha a pasta.</span></div></li>
+    <li><div><b>Crie o arquivo avisos.dita</b><span>No Explorer, passe o mouse sobre o nome da pasta e clique no ícone de novo arquivo (a folha com um +). Digite <code>avisos.dita</code>, tudo em minúsculas, e aperte Enter. O arquivo abre vazio.</span></div></li>
+    <li><div><b>Cole o conteúdo e salve</b><span>Clique em <em>Copiar</em> no bloco abaixo. Clique dentro do arquivo vazio, cole com <kbd>Cmd</kbd>+<kbd>V</kbd> e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="avisos" data-tag="avisos.dita"></div></div></li>
+    <li><div><b>Abra a sua task</b><span>No Explorer, clique em <code>tarefa-enviar-relatorio.dita</code>.</span></div></li>
+    <li><div><b>Ache a linha do prereq</b><span>Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>prereq</code>. O VS Code destaca a linha que começa com <code>&lt;prereq&gt;</code>. Aperte <kbd>Esc</kbd> para fechar a busca.</span></div></li>
+    <li><div><b>Abra uma linha nova logo abaixo</b><span>Clique no fim dessa linha, depois de <code>&lt;/prereq&gt;</code>, e aperte Enter.</span></div></li>
+    <li><div><b>Cole o bloco do aviso e salve</b><span>Copie o bloco abaixo, cole na linha nova e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="conref-context" data-tag="cole abaixo do &lt;/prereq&gt;"></div></div></li>
+    <li><div><b>Arrume o recuo</b><span>Se as linhas ficaram tortas, aperte <kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>. O VS Code alinha o arquivo sozinho. Salve de novo.</span></div></li>
+  </ol>
+
+  <h3>Como deve ficar</h3>
+  <div class="prose"><p>O trecho da task, com a linha de antes e a linha de depois:</p></div>
+  <div class="code-wrap" data-code="task-conref-snip" data-tag="tarefa-enviar-relatorio.dita"></div>
+  <div class="prose"><p>O arquivo completo, para conferir linha por linha:</p></div>
+  <div class="code-wrap" data-code="task-conref-full" data-tag="tarefa-enviar-relatorio.dita" data-lines="1"></div>
+
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No VS Code, a task mostra só a linha com o endereço. O texto do aviso não aparece ali, e isso é normal: o VS Code mostra o arquivo do jeito que ele foi escrito.</li>
+    <li>Quem troca o endereço pelo texto é a “gráfica”, o DITA-OT. Você vai ver o aviso dentro da task na página 2.9b, quando gerar o site.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O VS Code sublinhou uma tag em vermelho.</strong> Passe o mouse em cima para ler o aviso. Quase sempre falta fechar uma tag, como um <code>&lt;context&gt;</code> sem o <code>&lt;/context&gt;</code>. Apague o bloco e cole de novo pelo botão Copiar.</li>
+    <li><strong>O bloco ficou antes do <code>&lt;prereq&gt;</code> ou depois do <code>&lt;steps&gt;</code>.</strong> A ordem da task fica errada, e o DITA-OT mostra um erro quando você gerar o site na página 2.9b. Recorte o bloco com <kbd>Cmd</kbd>+<kbd>X</kbd> e cole entre <code>&lt;/prereq&gt;</code> e <code>&lt;steps&gt;</code>.</li>
+    <li><strong>O arquivo se chama Avisos.dita ou avisos.dita.txt.</strong> Clique com o botão direito no arquivo, escolha <em>Rename</em> e deixe <code>avisos.dita</code>. O nome precisa ser idêntico ao do endereço.</li>
+    <li><strong>Mudei um id.</strong> O endereço precisa bater com os ids do <code>avisos.dita</code>. Se lá está <code>id="recibos"</code>, o conref precisa terminar em <code>/recibos</code>.</li>
+    <li><strong>Colei o código do avisos.dita dentro da task.</strong> Desfaça com <kbd>Cmd</kbd>+<kbd>Z</kbd>. Cada código vai para o seu arquivo: o do passo 3 no <code>avisos.dita</code> e o do passo 7 na task.</li>
+  </ul></div>
+
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita   <span class="d">← editado</span>
+├── ref-limites.dita
+├── guia.ditamap
+└── avisos.dita                    <span class="d">← novo</span></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O conref puxa um trecho de outro arquivo pelo endereço <code>arquivo#id-do-tópico/id-do-trecho</code>. É o vocabulário controlado aplicado a frases inteiras.</p></div>
 </section>
 
-<section class="lesson" data-id="2-9" data-mod="2" data-short="Gerar o site" hidden>
-  <p class="l-eyebrow">Módulo 2 · No seu computador</p>
+<section class="lesson" data-id="2-9" data-mod="2" data-short="Instalar Java e DITA-OT" hidden>
+  <p class="l-eyebrow">Módulo 2 · No seu computador (Mac)</p>
+  <h1>Instale a gráfica: Java e DITA-OT</h1>
+  <p class="l-goal">Deixar o Mac pronto para transformar seus arquivos num site.</p>
+
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>O <strong>DITA-OT</strong> (DITA Open Toolkit) é o programa que lê seus tópicos e gera o site. É a “gráfica” do curso. Para funcionar, ele precisa do <strong>Java</strong>, um programa que faz outros programas rodarem. Pense no Java como a tomada onde a gráfica é ligada.</p>
+    <p>Você vai usar o <strong>terminal</strong>: uma janela onde você digita ordens para o computador, em vez de clicar. Cada ordem se chama <strong>comando</strong>. “Rodar um comando” é colar ou digitar o comando e apertar Enter. O Módulo 3 explica o terminal com mais calma.</p>
+    <p>São três partes, nesta ordem: instalar o Java, instalar o DITA-OT e avisar o Mac onde o DITA-OT está.</p>
+  </div>
+  <div class="callout c-warn"><b>Esta é a parte mais técnica do curso</b><p>Siga na ordem, um passo por vez. Se travar, pule para o Módulo 3 e volte depois. O Git não depende desta página.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · Java</h3>
+  <ol class="how">
+    <li><div><b>Abra o terminal no VS Code</b><span>Com a pasta do projeto aberta, clique no menu <em>Terminal → New Terminal</em>. Um painel abre embaixo, com uma linha que termina num cursor piscando. É ali que você cola os comandos.</span></div></li>
+    <li><div><b>Teste se o Java já existe</b><span>Copie o comando abaixo, clique no terminal, cole com <kbd>Cmd</kbd>+<kbd>V</kbd> e aperte Enter.</span>
+      <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
+      <span>Se o Java <strong>não</strong> estiver instalado, aparece esta mensagem. Siga para o passo 3.</span>
+      <div class="code-wrap"><span class="code-tag">saída · sem Java</span><pre class="code">The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.</pre></div>
+      <span>Se aparecer uma linha começando com <code>openjdk version</code> e um número 17 ou maior, o Java já está pronto. Pule para a Parte B.</span></div></li>
+    <li><div><b>Descubra o chip do seu Mac</b><span>Clique no menu Apple (o ícone da maçã) no canto superior esquerdo da tela e escolha <em>Sobre Este Mac</em>. Veja a linha <em>Chip</em> ou <em>Processador</em>. Se disser Apple M1, M2, M3 ou M4, o seu Mac é <strong>aarch64</strong>. Se disser Intel, é <strong>x64</strong>. Anote.</span></div></li>
+    <li><div><b>Baixe o Java (Temurin)</b><span>Acesse <a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a>. O site costuma detectar o seu Mac e mostrar um botão de download da versão LTS mais recente. LTS quer dizer versão com suporte longo, a mais estável. Baixe o arquivo que termina em <code>.pkg</code> e tem no nome <code>mac</code> e o tipo do seu chip (<code>aarch64</code> ou <code>x64</code>). É gratuito.</span></div></li>
+    <li><div><b>Instale</b><span>Abra a pasta Downloads no Finder e dê dois cliques no arquivo <code>.pkg</code>. Clique em <em>Continuar</em> em cada tela e depois em <em>Instalar</em>. O Mac pede a senha que você usa para entrar no computador.</span></div></li>
+    <li><div><b>Feche e abra o terminal</b><span>O terminal só enxerga programas novos quando abre. No painel do terminal, clique no ícone de lixeira para fechá-lo. Depois abra de novo em <em>Terminal → New Terminal</em>.</span></div></li>
+    <li><div><b>Teste de novo</b><span>Rode o mesmo comando do passo 2.</span>
+      <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">openjdk version "21.0.5" 2024-10-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.5+11 (build 21.0.5+11-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.5+11 (build 21.0.5+11-LTS, mixed mode)</pre></div>
+      <span>Os números podem ser outros no seu Mac. O que importa é a primeira linha: <code>openjdk version</code> e um número 17 ou maior. Isso quer dizer que o Java está instalado.</span></div></li>
+  </ol>
+
+  <h3>Parte B · DITA-OT</h3>
+  <ol class="how">
+    <li><div><b>Baixe o DITA-OT</b><span>Acesse <a href="https://www.dita-ot.org/download" target="_blank" rel="noopener">dita-ot.org/download</a> e baixe a versão mais recente, o arquivo <code>.zip</code>. O nome é parecido com <code>dita-ot-4.3.4.zip</code>.</span></div></li>
+    <li><div><b>Extraia o zip</b><span>No Finder, abra Downloads e dê dois cliques no zip. Aparece uma pasta com o mesmo nome, sem o <code>.zip</code>.</span></div></li>
+    <li><div><b>Renomeie a pasta para dita-ot</b><span>Clique uma vez na pasta nova, aperte Enter, apague o nome, digite <code>dita-ot</code> e aperte Enter. Tire o número da versão: o nome precisa ser exatamente <code>dita-ot</code>.</span></div></li>
+    <li><div><b>Mova a pasta para a sua pasta de usuário</b><span>A pasta de usuário é a que tem o seu nome e guarda Documentos e Downloads. No terminal, o símbolo <code>~</code> é um atalho para ela. Rode o comando abaixo. Ele move a pasta e não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="mv-dita" data-tag="terminal"></div></div></li>
+    <li><div><b>Confira se a pasta chegou</b><span>O comando <code>ls</code> lista o que tem dentro de uma pasta.</span>
+      <div class="code-wrap" data-code="ls-dita" data-tag="terminal"></div>
+      <span>Deve aparecer uma lista de nomes. Confira se <code>bin</code>, <code>lib</code> e <code>plugins</code> estão nela. A ordem e os outros nomes podem variar.</span></div></li>
+  </ol>
+
+  <h3>Parte C · Avise o Mac onde está o DITA-OT</h3>
+  <div class="prose"><p>Quando você digita <code>dita</code>, o Mac procura um programa com esse nome numa lista de pastas. Essa lista se chama <strong>PATH</strong>. Hoje a pasta do DITA-OT não está nela. O comando abaixo acrescenta a pasta <code>~/dita-ot/bin</code> na lista. Ele grava uma linha no arquivo <code>.zshrc</code>, um arquivo de configurações do terminal que fica escondido na sua pasta de usuário.</p></div>
+  <ol class="how">
+    <li><div><b>Acrescente a pasta no PATH</b><span>Rode o comando abaixo uma vez só. Ele não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="path-mac" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Feche e abra o terminal</b><span>Clique na lixeira do painel do terminal e abra outro em <em>Terminal → New Terminal</em>. O terminal novo lê o PATH atualizado.</span></div></li>
+    <li><div><b>Pergunte onde está o dita</b><span>O comando <code>which</code> mostra em que pasta o Mac encontrou um programa.</span>
+      <div class="code-wrap" data-code="which-dita" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">/Users/seu-usuario/dita-ot/bin/dita</pre></div></div></li>
+    <li><div><b>Veja a versão do DITA-OT</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="dita-test" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">DITA-OT version 4.3.4</pre></div>
+      <span>O número pode ser outro. Se apareceu um número de versão, a gráfica está pronta.</span></div></li>
+  </ol>
+
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li><code>java -version</code> mostra <code>openjdk version</code> com um número 17 ou maior.</li>
+    <li><code>which dita</code> mostra um caminho que termina em <code>dita-ot/bin/dita</code>.</li>
+    <li><code>dita --version</code> mostra um número de versão.</li>
+    <li>A pasta do projeto não muda nesta página. Você só instalou programas no Mac.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>zsh: command not found: dita</code></strong>. Rode <code>ls ~/dita-ot</code>. Se aparecer “No such file or directory”, a pasta não está no lugar certo ou tem outro nome: refaça os passos de renomear e mover. Se a lista aparecer, refaça a Parte C e não esqueça de fechar e abrir o terminal.</li>
+    <li><strong><code>permission denied</code></strong>. O Mac não deixou o arquivo rodar. Rode <code>chmod +x ~/dita-ot/bin/dita</code> (o <code>chmod +x</code> marca o arquivo como programa) e tente de novo.</li>
+    <li><strong>Continua aparecendo “Unable to locate a Java Runtime” depois de instalar.</strong> Feche e abra o terminal. Se continuar, baixe de novo o <code>.pkg</code> e confira se o tipo do chip no nome do arquivo bate com o do seu Mac.</li>
+    <li><strong>Rodei o comando do PATH duas vezes.</strong> Não estraga nada. A linha fica repetida no <code>.zshrc</code> e funciona igual.</li>
+  </ul></div>
+
+  <h3>Arquivos agora</h3>
+  <div class="tree"><span class="d">sua pasta de usuário/</span>
+├── dita-ot/                       <span class="d">← novo (a gráfica)</span>
+└── Documents/
+    └── central-ajuda-despesas/    <span class="d">sem mudanças nesta página</span>
+        ├── nota-versao.xml
+        ├── conceito-relatorio.dita
+        ├── tarefa-enviar-relatorio.dita
+        ├── ref-limites.dita
+        ├── guia.ditamap
+        └── avisos.dita</div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O DITA-OT precisa do Java. O PATH é a lista de pastas onde o Mac procura programas. Depois de mudar o PATH, feche e abra o terminal.</p></div>
+</section>
+
+<section class="lesson" data-id="2-9b" data-mod="2" data-short="Gerar o site" hidden>
+  <p class="l-eyebrow">Módulo 2 · No seu computador (Mac)</p>
   <h1>Gere o site de verdade</h1>
-  <p class="l-goal">Instalar a “gráfica” (DITA-OT) no Mac e transformar seus arquivos num site.</p>
-  <div class="callout c-warn"><b>Esta é a parte mais técnica do curso</b><p>Vá com calma e siga na ordem. Se algo der errado, veja “Problemas comuns” no fim da página. Se travar, pule para o Módulo 3 e volte depois.</p></div>
-  <h2>Parte A · Instale o Java</h2>
-  <ol class="how">
-    <li><div><b>Teste se já existe</b><span>No VS Code, abra o terminal com <kbd>Ctrl</kbd>+<kbd>`</kbd> e rode o comando abaixo. Se aparecer versão 17 ou maior, pule para a Parte B.</span></div></li>
-    <li><div><b>Baixe o Temurin</b><span>O DITA-OT precisa do Java 17 ou mais novo. Acesse <a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a> e baixe a versão LTS recomendada para macOS (arquivo <code>.pkg</code>). É gratuito.</span></div></li>
-    <li><div><b>Instale e teste de novo</b><span>Abra o <code>.pkg</code> e avance até o fim. Feche e abra o terminal e rode o teste outra vez.</span></div></li>
-  </ol>
-  <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
-  <h2>Parte B · Instale o DITA-OT</h2>
-  <ol class="how">
-    <li><div><b>Baixe</b><span>Acesse <a href="https://www.dita-ot.org/download" target="_blank" rel="noopener">dita-ot.org/download</a> e baixe o arquivo <code>.zip</code>.</span></div></li>
-    <li><div><b>Extraia e renomeie</b><span>Dê dois cliques no zip para extrair. Renomeie a pasta para <code>dita-ot</code> (sem o número da versão).</span></div></li>
-    <li><div><b>Mova para a sua pasta de usuário</b><span>No Finder, use <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd> para abrir a pasta com o seu nome e arraste <code>dita-ot</code> para lá.</span></div></li>
-    <li><div><b>Avise o Mac onde ela está (PATH)</b><span>O PATH é a lista de pastas onde o Mac procura programas. Rode no terminal o comando abaixo, uma vez só. Ele acrescenta a pasta <code>dita-ot/bin</code> nessa lista.</span></div></li>
-    <li><div><b>Feche e abra o terminal</b><span>O PATH só é lido quando o terminal abre. Feche o painel e abra de novo com <kbd>Ctrl</kbd>+<kbd>`</kbd>.</span></div></li>
-    <li><div><b>Teste</b><span>Digite <code>dita --version</code>. Deve aparecer um número.</span></div></li>
-  </ol>
-  <div class="code-wrap" data-code="path-mac" data-tag="terminal · uma vez só"></div>
-  <h2>Parte C · Gere o site</h2>
-  <ol class="how">
-    <li><div><b>Confira os arquivos</b><span>Na pasta do projeto você deve ter: <code>conceito-relatorio.dita</code>, <code>tarefa-enviar-relatorio.dita</code>, <code>ref-limites.dita</code>, <code>avisos.dita</code> e <code>guia.ditamap</code>.</span></div></li>
-    <li><div><b>Rode o comando</b><span>No terminal do VS Code (que já abre na pasta do projeto), digite o comando abaixo e aperte Enter. Leva alguns segundos.</span></div></li>
-    <li><div><b>Abra o resultado</b><span>Apareceu a pasta <code>docs</code>. Clique com o botão direito em <code>docs/index.html</code> → <em>Reveal in Finder</em> e abra o arquivo no navegador.</span></div></li>
-  </ol>
-  <div class="code-wrap" data-code="build" data-tag="terminal"></div>
-  <div class="prose"><p>Lendo o comando: <code>dita</code> é o programa, <code>-i</code> é a entrada (seu mapa), <code>-f</code> é o formato (html5) e <code>-o</code> é a pasta de saída. Quer PDF também? Acrescente <code>-f pdf</code>.</p></div>
-  <h2>Problemas comuns</h2>
+  <p class="l-goal">Transformar seus tópicos num site com sumário e ver o aviso do conref no lugar certo.</p>
+
+  <h2>Entenda</h2>
+  <div class="prose"><p>Um comando só faz o trabalho todo. O DITA-OT lê o mapa, junta os tópicos na ordem do sumário, troca cada conref pelo texto de verdade e cria uma pasta com o site pronto.</p></div>
+  <div class="code-wrap" data-code="build" data-tag="o comando"></div>
   <div class="scroll-x"><table class="tbl">
-    <thead><tr><th>Mensagem</th><th>O que fazer</th></tr></thead>
+    <thead><tr><th>Parte</th><th>O que quer dizer</th></tr></thead>
     <tbody>
-      <tr><td>“command not found: dita”</td><td>O PATH não está certo, ou o terminal não foi reaberto. Confira se a pasta se chama exatamente <code>dita-ot</code> e está na sua pasta de usuário. Refaça os passos 4 e 5.</td></tr>
-      <tr><td>“permission denied”</td><td>Rode <code>chmod +x ~/dita-ot/bin/dita</code> e tente de novo.</td></tr>
-      <tr><td>Erro falando de Java ou versão</td><td>O Java está desatualizado. Instale o Temurin 17 ou mais novo.</td></tr>
-      <tr><td>Erro com nome de arquivo e número de linha</td><td>É um erro no seu XML. Abra o arquivo e confira a linha, como no Módulo 1.</td></tr>
+      <tr><td><code>dita</code></td><td>O programa, a gráfica.</td></tr>
+      <tr><td><code>-i guia.ditamap</code></td><td>A entrada (<em>input</em>): o mapa que diz quais tópicos entram.</td></tr>
+      <tr><td><code>-f html5</code></td><td>O formato da saída. <code>html5</code> é site. Para PDF, troque por <code>pdf</code>.</td></tr>
+      <tr><td><code>-o docs</code></td><td>A pasta de saída (<em>output</em>), onde o site é criado. O nome <code>docs</code> é o que o GitHub usa para publicar o site no Módulo 3.</td></tr>
     </tbody>
   </table></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o terminal no VS Code</b><span>Com a pasta do projeto aberta, use <em>Terminal → New Terminal</em>.</span></div></li>
+    <li><div><b>Confira se está na pasta do projeto</b><span>O comando <code>pwd</code> mostra em qual pasta o terminal está.</span>
+      <div class="code-wrap" data-code="cmd-pwd" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">/Users/seu-usuario/Documents/central-ajuda-despesas</pre></div>
+      <span>Se o caminho terminar em outra pasta, feche o VS Code, abra de novo com <em>File → Open Folder</em> escolhendo <code>central-ajuda-despesas</code> e abra um terminal novo.</span></div></li>
+    <li><div><b>Confira os arquivos</b><span>O comando <code>ls</code> lista os arquivos da pasta.</span>
+      <div class="code-wrap" data-code="cmd-ls" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">avisos.dita                  nota-versao.xml
+conceito-relatorio.dita      ref-limites.dita
+guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
+      <span>A arrumação das colunas pode variar. Se faltar algum arquivo, volte à página onde ele foi criado (2.4 a 2.8).</span></div></li>
+    <li><div><b>Gere o site</b><span>Rode o comando abaixo e espere. Pode levar de alguns segundos a um minuto. Ele terminou quando a linha com o cursor piscando aparece de novo.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+      <span>Se tudo deu certo, o terminal mostra pouca coisa ou nada. Mensagens com a palavra <code>ERROR</code> indicam problema: veja “Deu errado?”.</span></div></li>
+    <li><div><b>Veja a pasta nova</b><span>No Explorer do VS Code apareceu a pasta <code>docs</code>. Clique na setinha ao lado dela: dentro há um <code>index.html</code> e uma página para cada tópico.</span></div></li>
+    <li><div><b>Abra o site no navegador</b><span>O comando <code>open</code> abre um arquivo no programa padrão do Mac. Para um <code>.html</code>, é o navegador.</span>
+      <div class="code-wrap" data-code="open-site" data-tag="terminal"></div></div></li>
+    <li><div><b>Ache o aviso</b><span>No site, clique em “Enviar um relatório de despesas”. Procure o texto “Guarde o recibo original por 5 anos.” antes dos passos. Ele veio do <code>avisos.dita</code> pelo conref.</span></div></li>
+  </ol>
+
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>Uma página inicial com o sumário: o título do seu concept (“O que é um relatório de despesas”, se você seguiu a página 2.4) e, dentro dele, a task e a reference.</li>
+    <li>Na página da task, o aviso do recibo aparece em destaque antes dos passos.</li>
+    <li>Não existe página “Avisos reutilizáveis”, porque o <code>avisos.dita</code> não está no mapa.</li>
+    <li>Alguns títulos e rótulos criados pelo DITA-OT podem aparecer em inglês. Isso é normal: o DITA-OT usa inglês quando os arquivos não dizem o idioma.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>zsh: command not found: dita</code></strong>. A instalação da página 2.9 não terminou. Volte à Parte C de lá.</li>
+    <li><strong>Erro com nome de arquivo e número de linha.</strong> É um erro no XML daquele arquivo. Abra o arquivo, vá até a linha (<kbd>Ctrl</kbd>+<kbd>G</kbd> e digite o número) e confira, como no Módulo 1.</li>
+    <li><strong>Erro que cita <code>avisos.dita</code> ou o endereço do conref.</strong> O nome do arquivo ou um dos ids não bate com o endereço. Veja o “Deu errado?” da página 2.8.</li>
+    <li><strong>O site abriu, mas o aviso não aparece.</strong> A task talvez não esteja salva. Uma bolinha branca na aba do arquivo quer dizer “não salvo”. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd> e rode o comando de gerar de novo.</li>
+  </ul></div>
+  <div class="callout c-analogy"><b>Mudou um tópico?</b><p>O site não se atualiza sozinho. Sempre que mudar um tópico, rode o comando de gerar de novo. Ele regrava as páginas da pasta <code>docs</code>. Por isso, nunca edite os arquivos dentro de <code>docs</code>: edite os <code>.dita</code> e gere de novo.</p></div>
+
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── ref-limites.dita
+├── guia.ditamap
+├── avisos.dita
+└── docs/                          <span class="d">← novo (site gerado, não edite)</span>
+    ├── index.html
+    └── <span class="d">uma página .html para cada tópico</span></div>
   <div class="callout c-result"><b>Resultado do Módulo 2</b><p>Um site de ajuda com sumário, gerado a partir dos seus tópicos. É o mesmo fluxo de um time de documentação real.</p></div>
 </section>
 
@@ -823,44 +1006,44 @@ git push</pre></div></div></li>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>O que é controle de versão</h1>
   <p class="l-goal">Entender o que o Git faz antes de digitar qualquer comando.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>O <strong>Git</strong> guarda o histórico do seu projeto. Cada vez que você salva uma versão, ele tira uma “foto” de todos os arquivos e guarda junto uma frase explicando o que mudou. Essa foto se chama <strong>commit</strong>.</p>
-    <p>Com isso, você pode ver quem mudou o quê, comparar versões e voltar no tempo se algo der errado.</p>
+    <p>Com isso, você vê quem mudou o quê, compara versões e volta no tempo se algo der errado.</p>
   </div>
   <div class="callout c-analogy"><b>Git x GitHub</b><p><strong>Git</strong> é o programa no seu computador, como uma câmera que tira as fotos. <strong>GitHub</strong> é um site onde você guarda uma cópia online, como um álbum compartilhado. Lá a equipe vê, comenta e aprova as mudanças.</p></div>
-  <h2>As palavras do Git</h2>
+  <h3>As palavras do Git</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Palavra</th><th>Significado</th></tr></thead>
     <tbody>
       <tr><td>Repositório</td><td>A pasta do projeto com o histórico do Git. Também chamado de “repo”.</td></tr>
-      <tr><td>Commit</td><td>Uma versão salva, com mensagem.</td></tr>
+      <tr><td>Commit</td><td>Uma versão salva, com uma mensagem.</td></tr>
       <tr><td>Branch</td><td>Uma linha paralela para trabalhar sem mexer na versão oficial.</td></tr>
       <tr><td>Merge</td><td>Juntar um branch de volta na versão oficial.</td></tr>
       <tr><td>Push</td><td>Enviar seus commits para o GitHub.</td></tr>
+      <tr><td>Pull</td><td>Baixar do GitHub os commits que ainda não estão no seu computador.</td></tr>
       <tr><td>Pull request</td><td>Pedido, no GitHub, para revisarem e juntarem suas mudanças.</td></tr>
     </tbody>
   </table></div>
+  <h2>Faça no seu computador</h2>
+  <div class="callout c-do"><b>Nada ainda</b><p>Esta página é só leitura. Você instala o Git na página 3.3 e usa no seu projeto a partir da 3.7.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>Git guarda versões (commits) no seu computador. GitHub guarda uma cópia online e organiza as revisões.</p></div>
 </section>
 
 <section class="lesson" data-id="3-2" data-mod="3" data-short="Terminal sem medo" hidden>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>Terminal sem medo</h1>
-  <p class="l-goal">Abrir o terminal e entender como um comando é escrito.</p>
-  <div class="prose"><p>O <strong>terminal</strong> é uma janela onde você digita ordens para o computador, em vez de clicar. O Git é usado principalmente por ele. Não tem perigo: os comandos deste curso só criam e salvam coisas.</p></div>
-  <h2>Como abrir</h2>
-  <div class="prose"><ul>
-    <li><strong>Jeito mais fácil:</strong> no VS Code, aperte <kbd>Ctrl</kbd>+<kbd>`</kbd> (ou <em>View → Terminal</em>). Ele já abre dentro da pasta do projeto.</li>
-    <li><strong>Fora do VS Code:</strong> o app Terminal. Aperte <kbd>Cmd</kbd>+<kbd>Espaço</kbd>, digite “Terminal” e Enter.</li>
-  </ul></div>
-  <h2>Como ler um comando</h2>
+  <p class="l-goal">Abrir o terminal, entender como um comando é escrito e descobrir onde você está.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>O <strong>terminal</strong> é uma janela onde você digita ordens para o computador, em vez de clicar. Cada ordem é um <strong>comando</strong>. O Git é usado principalmente por ele. Não tem perigo: os comandos deste curso só criam, mostram e salvam coisas.</p></div>
+  <h3>Como ler um comando</h3>
   <div class="anat" style="font-size:clamp(14px,2.4vw,18px)"><button type="button" class="t" tabindex="-1">git</button><button type="button" tabindex="-1"> </button><button type="button" class="a" tabindex="-1">commit</button><button type="button" tabindex="-1"> </button><button type="button" class="x" tabindex="-1">-m "Adiciona aviso"</button></div>
   <div class="prose"><ol>
-    <li><strong>O programa:</strong> <code>git</code></li>
-    <li><strong>A ação:</strong> <code>commit</code> (salvar uma versão)</li>
-    <li><strong>Opções:</strong> começam com hífen. <code>-m</code> quer dizer “mensagem”, e o texto vem entre aspas.</li>
+    <li><strong>O programa:</strong> <code>git</code>.</li>
+    <li><strong>A ação:</strong> <code>commit</code>, salvar uma versão.</li>
+    <li><strong>As opções:</strong> começam com hífen. <code>-m</code> quer dizer “mensagem”, e o texto vem entre aspas.</li>
   </ol></div>
-  <h2>Comandos para se localizar</h2>
+  <h3>Comandos para se localizar</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
     <tbody>
@@ -870,55 +1053,101 @@ git push</pre></div></div></li>
       <tr><td><code>cd ..</code></td><td>Volta uma pasta para cima.</td></tr>
     </tbody>
   </table></div>
-  <div class="callout c-analogy"><b>Atalhos que salvam tempo</b><ul><li><code>Tab</code> completa nomes de arquivos.</li><li>Seta para cima repete o último comando.</li><li><code>Ctrl+C</code> cancela algo que travou.</li></ul></div>
-  <div class="callout c-sum"><b>Você aprendeu</b><p>Um comando tem programa, ação e opções. Para se localizar: pwd, ls e cd.</p></div>
+  <div class="callout c-analogy"><b>Atalhos que salvam tempo</b><ul><li><kbd>Tab</kbd> completa nomes de arquivos e pastas.</li><li>A seta para cima traz de volta o último comando.</li><li><kbd>Ctrl</kbd>+<kbd>C</kbd> cancela um comando que travou.</li></ul></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o terminal no VS Code</b><span>Abra a pasta do projeto no VS Code e use o menu <em>Terminal → New Terminal</em>. O atalho é <kbd>Ctrl</kbd>+<kbd>`</kbd> (é o Ctrl mesmo, não o Cmd). O terminal do VS Code já abre dentro da pasta do projeto.</span></div></li>
+    <li><div><b>Veja onde você está</b><span>Copie, cole no terminal e aperte Enter.</span>
+      <div class="code-wrap" data-code="cmd-pwd" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">/Users/seu-usuario/Documents/central-ajuda-despesas</pre></div>
+      <span>É o caminho da pasta, de fora para dentro: a pasta de usuário, depois Documents, depois a pasta do projeto.</span></div></li>
+    <li><div><b>Liste os arquivos</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="cmd-ls" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">avisos.dita                  guia.ditamap                 tarefa-enviar-relatorio.dita
+conceito-relatorio.dita      nota-versao.xml
+docs                         ref-limites.dita</pre></div>
+      <span>A arrumação das colunas pode variar. São os mesmos arquivos do Explorer do VS Code. O <code>docs</code> só aparece se você gerou o site na página 2.9b.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><p>O <code>pwd</code> termina em <code>central-ajuda-despesas</code> e o <code>ls</code> lista os seus arquivos <code>.dita</code>.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O <code>pwd</code> mostra só <code>/Users/seu-usuario</code>.</strong> Você abriu o app Terminal do Mac, ou o VS Code está com um arquivo aberto em vez da pasta. Use o terminal do VS Code com a pasta aberta (<em>File → Open Folder</em>).</li>
+    <li><strong>Apareceu <code>zsh: command not found</code>.</strong> O comando foi digitado com erro. Use o botão Copiar e cole.</li>
+  </ul></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Um comando tem programa, ação e opções. Para se localizar, use <code>pwd</code> e <code>ls</code>.</p></div>
 </section>
 
 <section class="lesson" data-id="3-3" data-mod="3" data-short="Instalar o Git" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
   <h1>Instale e configure o Git</h1>
-  <p class="l-goal">Deixar o Git pronto para usar.</p>
+  <p class="l-goal">Deixar o Git pronto e dizer a ele quem você é.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>No Mac, o Git vem junto com as ferramentas de desenvolvedor da Apple (<em>command line developer tools</em>). Muitas vezes já está instalado. Depois de instalado, você grava seu nome e e-mail no Git, uma vez só. O Git coloca esses dados em cada commit, para mostrar quem fez cada mudança.</p></div>
+
+  <h2>Faça no seu computador</h2>
   <ol class="how">
-    <li><div><b>Confira se já existe</b><span>No Mac, o Git vem junto com as ferramentas de desenvolvedor da Apple. No terminal do VS Code, digite <code>git --version</code>. Se aparecer um número, já está instalado.</span><span>Se aparecer uma janela oferecendo instalar as “ferramentas de linha de comando”, clique em <em>Instalar</em> e espere terminar.</span></div></li>
-    <li><div><b>Feche e abra o VS Code</b><span>Para o terminal enxergar o Git recém-instalado.</span></div></li>
-    <li><div><b>Diga quem você é</b><span>O Git coloca seu nome e e-mail em cada commit. Use o mesmo e-mail que vai usar no GitHub. Isso é feito uma vez só.</span></div></li>
+    <li><div><b>Abra o terminal no VS Code</b><span>Use <em>Terminal → New Terminal</em>.</span></div></li>
+    <li><div><b>Veja se o Git já existe</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="git-version" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">git version 2.39.5 (Apple Git-154)</pre></div>
+      <span>O número pode ser outro. Se apareceu uma linha assim, o Git está instalado. Pule para o passo 4.</span></div></li>
+    <li><div><b>Instale, se o Mac pedir</b><span>Se em vez do número apareceu uma janela oferecendo instalar as ferramentas de linha de comando, clique em <em>Instalar</em> e aceite a licença. A instalação pode levar alguns minutos. Quando terminar, feche e abra o VS Code e rode o passo 2 de novo.</span></div></li>
+    <li><div><b>Grave o seu nome</b><span>Copie o comando, troque o nome entre as aspas se quiser e aperte Enter. Ele não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="git-name" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Grave o seu e-mail</b><span>Troque o texto entre as aspas pelo e-mail que você vai usar no GitHub. Mantenha as aspas.</span>
+      <div class="code-wrap" data-code="git-email" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Defina main como nome do branch principal</b><span>Assim os seus projetos começam com o mesmo nome usado no curso e no GitHub. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="git-main" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Confira o que ficou gravado</b><span>Rode os dois comandos abaixo, um de cada vez.</span>
+      <div class="code-wrap" data-code="git-test" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Nicole Karolyne
+seu-email@exemplo.com</pre></div>
+      <span>Cada comando responde com o que você gravou.</span></div></li>
   </ol>
-  <div class="code-wrap" data-code="git-config" data-tag="terminal · uma vez só"></div>
-  <div class="code-wrap" data-code="git-test" data-tag="terminal · teste"></div>
-  <div class="callout c-result"><b>Resultado</b><p><code>git --version</code> mostra um número, e <code>git config --global user.name</code> mostra o seu nome.</p></div>
+  <div class="callout c-result"><b>O que você deve ver</b><p><code>git --version</code> mostra um número, e os testes do passo 7 mostram o seu nome e o seu e-mail.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O teste não mostrou nada.</strong> O nome ou o e-mail não foi gravado. Rode de novo o passo 4 ou 5.</li>
+    <li><strong>Gravei o e-mail errado.</strong> Rode o comando do passo 5 de novo com o e-mail certo. O novo substitui o antigo.</li>
+    <li><strong>Depois de instalar, o terminal ainda não reconhece o git.</strong> Feche o VS Code por completo (<kbd>Cmd</kbd>+<kbd>Q</kbd>), abra de novo e teste.</li>
+  </ul></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O Git já vem no Mac ou é instalado com as ferramentas da Apple. Nome e e-mail são gravados uma vez e aparecem em todos os commits.</p></div>
 </section>
 
 <section class="lesson" data-id="3-4" data-mod="3" data-short="As 3 áreas e o commit" hidden>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>As 3 áreas e o commit</h1>
   <p class="l-goal">Entender o caminho de um arquivo até virar uma versão salva.</p>
+  <h2>Entenda</h2>
   <div class="areas-dg">
     <div class="box3"><b>Pasta de trabalho</b><span>Onde você edita os arquivos no VS Code.</span></div>
     <div class="arr">git add →</div>
-    <div class="box3"><b>Preparação</b><span>O que vai entrar na próxima versão.</span></div>
+    <div class="box3"><b>Preparação</b><span>O que vai entrar na próxima versão. Em inglês, <em>staging</em>.</span></div>
     <div class="arr">git commit →</div>
     <div class="box3"><b>Histórico</b><span>As versões salvas, cada uma com mensagem.</span></div>
   </div>
   <div class="callout c-analogy"><b>Comparação</b><p>É como uma foto em grupo. <code>git add</code> chama as pessoas para a foto. <code>git commit</code> tira a foto e escreve a legenda. Você pode ter mexido em 5 arquivos e escolher fotografar só 2.</p></div>
-  <h2>Os comandos desta etapa</h2>
+  <h3>Os comandos desta etapa</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
     <tbody>
       <tr><td><code>git init</code></td><td>Liga o Git na pasta. Só uma vez por projeto.</td></tr>
       <tr><td><code>git status</code></td><td>Mostra o que mudou e o que está preparado. Use sempre que tiver dúvida.</td></tr>
-      <tr><td><code>git add arquivo</code></td><td>Prepara um arquivo. <code>git add .</code> prepara tudo.</td></tr>
+      <tr><td><code>git add arquivo</code></td><td>Prepara um arquivo. <code>git add .</code> prepara todos. O ponto quer dizer “esta pasta inteira”.</td></tr>
       <tr><td><code>git commit -m "mensagem"</code></td><td>Salva a versão com a mensagem.</td></tr>
       <tr><td><code>git log --oneline</code></td><td>Mostra o histórico, uma linha por versão.</td></tr>
     </tbody>
   </table></div>
-  <div class="callout c-warn"><b>Mensagem de commit é microcopy</b><p>Verbo no presente, curta e específica: “Adiciona passo de anexar recibo”. Evite “ajustes” ou “mudanças”. Em equipes com Jira, comece pelo número da tarefa: “DOC-12 Adiciona passo…”.</p></div>
-  <div class="callout c-sum"><b>Você aprendeu</b><p>Edite → <code>git add</code> → <code>git commit -m "..."</code>. Na dúvida, <code>git status</code>.</p></div>
+  <div class="callout c-warn"><b>Mensagem de commit é microcopy</b><p>Use verbo no presente e seja curta e específica: “Adiciona passo de anexar recibo”. Evite “ajustes” ou “mudanças”. Em equipes com Jira, comece pelo número da tarefa: “DOC-12 Adiciona passo…”.</p></div>
+  <h2>Faça no seu computador</h2>
+  <div class="callout c-do"><b>Nada ainda</b><p>Você pratica esses comandos no simulador da página 3.6 e no seu projeto na página 3.7.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Edite, depois <code>git add</code>, depois <code>git commit -m "..."</code>. Na dúvida, <code>git status</code>.</p></div>
 </section>
 
 <section class="lesson" data-id="3-5" data-mod="3" data-short="Branch e merge" hidden>
   <p class="l-eyebrow">Módulo 3 · Git e GitHub</p>
   <h1>Branch e merge</h1>
   <p class="l-goal">Trabalhar numa cópia segura e juntar quando estiver pronto.</p>
+  <h2>Entenda</h2>
   <div class="prose"><p>A versão oficial do projeto fica num branch chamado <code>main</code>. Para revisar algo sem mexer nela, você cria um <strong>branch</strong>: uma linha paralela. Quando terminar, faz o <strong>merge</strong>, que junta as mudanças de volta.</p></div>
   <div class="scroll-x" style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px">
     <svg class="svg-dg" viewBox="0 0 640 170" role="img" aria-label="Diagrama: o branch revisao sai do main, recebe um commit e volta para o main com um merge">
@@ -936,21 +1165,30 @@ git push</pre></div></div></li>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
     <tbody>
-      <tr><td><code>git switch -c nome</code></td><td>Cria um branch e já entra nele.</td></tr>
+      <tr><td><code>git switch -c nome</code></td><td>Cria um branch e já entra nele. O <code>-c</code> quer dizer “criar”.</td></tr>
       <tr><td><code>git switch main</code></td><td>Volta para o main.</td></tr>
       <tr><td><code>git branch</code></td><td>Lista os branches. O atual tem um asterisco.</td></tr>
       <tr><td><code>git merge nome</code></td><td>Junta o branch “nome” no branch em que você está.</td></tr>
     </tbody>
   </table></div>
-  <div class="callout c-analogy"><b>Comparação</b><p>É como pedir para revisar um texto numa cópia do documento, em vez de mexer no original. Quando a revisão é aprovada, as mudanças entram no original.</p></div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como revisar um texto numa cópia do documento, sem mexer no original. Quando a revisão é aprovada, as mudanças entram no original.</p></div>
+  <h2>Faça no seu computador</h2>
+  <div class="callout c-do"><b>Nada ainda</b><p>Você pratica branch e merge no simulador da página 3.6 e no seu projeto na página 3.7b.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>Branch é uma linha paralela. Merge junta de volta. Para fazer merge, você precisa estar no branch que vai receber as mudanças.</p></div>
 </section>
 
 <section class="lesson" data-id="3-6" data-mod="3" data-short="Prática: terminal simulado" hidden>
   <p class="l-eyebrow">Módulo 3 · Prática</p>
   <h1>Prática: terminal simulado</h1>
-  <p class="l-goal">Usar o Git sem medo de errar. Nada aqui afeta seu computador.</p>
-  <div class="callout c-do"><b>Como usar</b><ol><li>Siga as missões na ordem.</li><li>Toque num comando cinza da lista para preenchê-lo. Depois aperte Enter.</li><li>Depois de cada comando, olhe o quadro “Onde estão os arquivos”.</li><li>Digite <code>help</code> para ver todos os comandos.</li></ol></div>
+  <p class="l-goal">Usar o Git sem medo de errar. Nada aqui afeta o seu computador.</p>
+  <h2>Faça nesta página</h2>
+  <ol class="how">
+    <li><div><b>Leia a primeira missão</b><span>As missões ficam no quadro “Missões”. Faça na ordem, de cima para baixo.</span></div></li>
+    <li><div><b>Preencha o comando</b><span>Toque no comando cinza embaixo da missão. Ele aparece na linha do terminal escuro, ao lado do <code>$</code>. Você também pode digitar.</span></div></li>
+    <li><div><b>Aperte Enter</b><span>O terminal responde com a saída do comando, como no seu computador.</span></div></li>
+    <li><div><b>Olhe o quadro “Onde estão os arquivos”</b><span>Ele mostra em qual das 3 áreas cada arquivo está depois do comando. A missão fica marcada quando você acerta.</span></div></li>
+    <li><div><b>Se ficar perdida</b><span>Digite <code>help</code> e aperte Enter para ver todos os comandos que o simulador entende.</span></div></li>
+  </ol>
   <div class="term-grid">
     <div class="term">
       <div class="term-out" id="term-out" aria-live="polite"></div>
@@ -961,64 +1199,347 @@ git push</pre></div></div></li>
       <div class="panel"><span class="out-label">Onde estão os arquivos</span><div class="areas" id="areas"></div></div>
     </div>
   </div>
+  <div class="callout c-result"><b>O que você deve ver</b><p>Todas as missões marcadas com ✓. Na próxima página, você faz o mesmo no seu projeto de verdade.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>O ciclo completo: iniciar, salvar versões, criar um branch, editar e juntar de volta.</p></div>
 </section>
 
 <section class="lesson" data-id="3-7" data-mod="3" data-short="Git no seu projeto" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
-  <h1>Git no seu projeto de verdade</h1>
-  <p class="l-goal">Repetir o que você fez no simulador, agora na sua pasta.</p>
-  <div class="prose"><p>Abra a pasta <code>central-ajuda-despesas</code> no VS Code e o terminal (<em>Terminal → New Terminal</em>). Rode um comando por vez.</p></div>
-  <h2>Parte A · Primeira versão</h2>
-  <div class="code-wrap" data-code="git-a" data-tag="terminal"></div>
-  <h2>Parte B · Revisão num branch</h2>
-  <div class="code-wrap" data-code="git-b" data-tag="terminal"></div>
-  <div class="prose"><p>Entre os comandos, abra <code>tarefa-enviar-relatorio.dita</code>, faça uma mudança (por exemplo, melhore um <code>&lt;cmd&gt;</code>) e salve.</p></div>
-  <h2>Parte C · Juntar no main</h2>
-  <div class="code-wrap" data-code="git-c" data-tag="terminal"></div>
+  <h1>Git no seu projeto: a primeira versão</h1>
+  <p class="l-goal">Ligar o Git na pasta do projeto e salvar a primeira versão de todos os arquivos.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Você vai repetir o que fez no simulador, agora na sua pasta. São cinco comandos: ligar o Git, ver o que ele encontrou, preparar os arquivos, salvar a versão e ver o histórico. Depois de cada comando, compare o que apareceu no seu terminal com a saída esperada.</p></div>
+  <div class="callout c-analogy"><b>As cores do terminal</b><p>No terminal, o Git pinta de vermelho o que ainda não foi preparado e de verde o que já foi preparado para o commit. Nas saídas esperadas deste módulo, os códigos das versões (como <code>4057579</code>), os números e o nome de usuário vão ser diferentes no seu computador. Compare as palavras.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o projeto e o terminal</b><span>No VS Code, abra a pasta <code>central-ajuda-despesas</code> (<em>File → Open Folder</em>) e depois <em>Terminal → New Terminal</em>. Rode <code>pwd</code> e confira se o caminho termina em <code>central-ajuda-despesas</code>.</span></div></li>
+    <li><div><b>Ligue o Git na pasta</b><span>Rode o comando abaixo. Faça isso uma vez só por projeto.</span>
+      <div class="code-wrap" data-code="g-init" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Initialized empty Git repository in /Users/seu-usuario/Documents/central-ajuda-despesas/.git/</pre></div>
+      <span>Quer dizer: o Git criou um repositório vazio. Ele guarda o histórico numa pasta escondida chamada <code>.git</code>. Não apague essa pasta.</span></div></li>
+    <li><div><b>Veja o que o Git encontrou</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+	avisos.dita
+	conceito-relatorio.dita
+	docs/
+	guia.ditamap
+	nota-versao.xml
+	ref-limites.dita
+	tarefa-enviar-relatorio.dita
+
+nothing added to commit but untracked files present (use "git add" to track)</pre></div>
+      <span>Quer dizer: você está no branch <code>main</code>, ainda não há nenhuma versão salva e estes arquivos ainda não são acompanhados pelo Git (<em>untracked</em>).</span></div></li>
+    <li><div><b>Prepare todos os arquivos</b><span>O ponto no fim quer dizer “esta pasta inteira”. O comando não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div></div></li>
+    <li><div><b>Confira o que foi preparado</b><span>Rode <code>git status</code> de novo.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+	new file:   avisos.dita
+	new file:   conceito-relatorio.dita
+	new file:   docs/index.html
+	…
+	new file:   tarefa-enviar-relatorio.dita</pre></div>
+      <span>Quer dizer: estes arquivos estão na área de preparação e vão entrar no próximo commit (<em>changes to be committed</em>).</span></div></li>
+    <li><div><b>Salve a primeira versão</b><span>Rode o commit com a mensagem entre aspas.</span>
+      <div class="code-wrap" data-code="g-commit1" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[main (root-commit) 4057579] Adiciona tópicos iniciais
+ 14 files changed, 412 insertions(+)
+ create mode 100644 avisos.dita
+ create mode 100644 conceito-relatorio.dita
+ create mode 100644 docs/index.html
+ …
+ create mode 100644 tarefa-enviar-relatorio.dita</pre></div>
+      <span>Quer dizer: a versão foi salva no branch <code>main</code>. O <code>4057579</code> é o código dessa versão. <em>Root-commit</em> é o primeiro commit do projeto, e há uma linha <em>create mode</em> para cada arquivo novo.</span></div></li>
+    <li><div><b>Veja o histórico</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-log" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">4057579 (HEAD -&gt; main) Adiciona tópicos iniciais</pre></div>
+      <span>Quer dizer: há uma versão no histórico. <code>HEAD -&gt; main</code> mostra onde você está agora: no branch <code>main</code>, nesta versão.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>O <code>git log --oneline</code> mostra uma linha com a mensagem “Adiciona tópicos iniciais”.</li>
+    <li>Um <code>git status</code> agora responde <code>nothing to commit, working tree clean</code>: tudo o que está na pasta já está salvo.</li>
+    <li>No VS Code, os nomes dos arquivos deixam de aparecer em verde no Explorer.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>fatal: not a git repository</code></strong>. O terminal está fora da pasta do projeto. Rode <code>pwd</code>, abra a pasta certa no VS Code e abra um terminal novo.</li>
+    <li><strong>A primeira linha diz <code>On branch master</code>.</strong> O Git usou outro nome para o branch principal. Rode <code>git branch -M main</code> para trocar o nome para <code>main</code>.</li>
+    <li><strong>Apareceu um texto longo que começa com <code>Committer:</code></strong>. O nome e o e-mail não foram gravados na página 3.3. A versão foi salva mesmo assim. Volte à 3.3 e grave os dois para os próximos commits.</li>
+    <li><strong>O terminal virou uma tela cheia com til (<code>~</code>) no lado esquerdo.</strong> Você rodou o commit sem o <code>-m</code> e abriu um editor de texto do terminal. Aperte <kbd>Esc</kbd>, digite <code>:q!</code> e aperte Enter. O commit é cancelado. Rode de novo com <code>-m "mensagem"</code>.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/                          <span class="d">← novo, escondido (o histórico)</span>
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── ref-limites.dita
+├── guia.ditamap
+├── avisos.dita
+└── docs/</div>
   <div class="callout c-analogy"><b>Também dá para usar com cliques</b><p>O ícone <em>Source Control</em> na barra da esquerda do VS Code mostra os arquivos alterados. O “+” ao lado de um arquivo faz o <code>git add</code>, e o botão <em>Commit</em> faz o commit com a mensagem que você digitar. Aprenda primeiro pelo terminal, para entender o que cada clique faz.</p></div>
-  <div class="callout c-warn"><b>Apareceu uma tela estranha no terminal?</b><p>Se o <code>git log</code> encher a tela e travar, aperte <code>q</code> para sair. Se você esqueceu o <code>-m</code> no commit e abriu um editor, escreva a mensagem na primeira linha, salve e feche a aba.</p></div>
-  <div class="callout c-result"><b>Resultado</b><p>O <code>git log --oneline</code> mostra pelo menos 2 commits, e o branch de revisão já foi juntado ao main.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p><code>git init</code> liga o Git, <code>git add .</code> prepara, <code>git commit -m</code> salva e <code>git log --oneline</code> mostra o histórico.</p></div>
+</section>
+
+<section class="lesson" data-id="3-7b" data-mod="3" data-short="Branch no seu projeto" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Revise num branch e junte no main</h1>
+  <p class="l-goal">Fazer uma mudança numa linha paralela e juntar de volta, como numa revisão de verdade.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Você vai melhorar o texto de um passo da task num branch chamado <code>revisao-tarefa</code>. A versão oficial, no <code>main</code>, fica intacta até você fazer o merge. É o mesmo ciclo da página 3.5.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o branch e entre nele</b><span>No terminal do VS Code, rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-switch-c" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisao-tarefa'</pre></div>
+      <span>Quer dizer: o branch foi criado e você já está nele. O nome do branch também aparece no canto inferior esquerdo do VS Code.</span></div></li>
+    <li><div><b>Abra a task e ache o passo</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>Confira o valor</code>. O VS Code destaca a linha.</span></div></li>
+    <li><div><b>Troque o texto do passo e salve</b><span>Selecione só o texto <code>Confira o valor total.</code>, que fica entre <code>&lt;cmd&gt;</code> e <code>&lt;/cmd&gt;</code>. Cole o texto novo no lugar e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="g-cmd-new" data-tag="texto novo"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">      &lt;step&gt;
+        &lt;cmd&gt;Confira se o valor total está certo.&lt;/cmd&gt;
+        &lt;info&gt;Se algum valor estiver errado, edite a despesa antes de enviar.&lt;/info&gt;</pre></div></div></li>
+    <li><div><b>Veja o que mudou</b><span>Rode <code>git status</code>.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">On branch revisao-tarefa
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   tarefa-enviar-relatorio.dita
+
+no changes added to commit (use "git add" and/or "git commit -a")</pre></div>
+      <span>Quer dizer: você está no branch <code>revisao-tarefa</code> e a task foi alterada (<em>modified</em>), mas ainda não foi preparada.</span></div></li>
+    <li><div><b>Prepare só a task</b><span>Desta vez, prepare um arquivo só, pelo nome. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="g-add-task" data-tag="terminal"></div></div></li>
+    <li><div><b>Salve a versão no branch</b><span>Rode o commit.</span>
+      <div class="code-wrap" data-code="g-commit2" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[revisao-tarefa 2086e57] Melhora o passo de conferir o valor
+ 1 file changed, 1 insertion(+), 1 deletion(-)</pre></div>
+      <span>Quer dizer: a versão foi salva no branch <code>revisao-tarefa</code>. Uma linha saiu e uma linha entrou, porque você trocou o texto de uma linha.</span></div></li>
+    <li><div><b>Volte para o main</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="g-switch-main" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to branch 'main'</pre></div>
+      <span>Olhe a task no VS Code: o passo voltou para “Confira o valor total.”. Isso é esperado. O <code>main</code> ainda não recebeu a mudança, que está guardada no branch.</span></div></li>
+    <li><div><b>Junte o branch no main</b><span>Rode o merge.</span>
+      <div class="code-wrap" data-code="g-merge" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Updating 4057579..2086e57
+Fast-forward
+ tarefa-enviar-relatorio.dita | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)</pre></div>
+      <span>Quer dizer: o <code>main</code> avançou até a versão do branch. <em>Fast-forward</em> é o merge mais simples: o main só andou para a frente. A task no VS Code volta a mostrar o texto novo.</span></div></li>
+    <li><div><b>Veja o histórico</b><span>Rode <code>git log --oneline</code>.</span>
+      <div class="code-wrap" data-code="g-log" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">2086e57 (HEAD -&gt; main, revisao-tarefa) Melhora o passo de conferir o valor
+4057579 Adiciona tópicos iniciais</pre></div>
+      <span>Quer dizer: há duas versões. A mais nova fica em cima, e o <code>main</code> e o <code>revisao-tarefa</code> agora apontam para a mesma versão.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>O histórico tem 2 commits.</li>
+    <li>Você está no <code>main</code>, e a task mostra “Confira se o valor total está certo.”.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>fatal: invalid reference</code></strong> ou <strong><code>not something we can merge</code></strong>. O nome do branch foi digitado com erro. Rode <code>git branch</code> para ver os nomes certos e use o botão Copiar.</li>
+    <li><strong>Editei a task antes de criar o branch.</strong> Sem problema. O <code>git switch -c</code> leva as mudanças não salvas junto para o branch novo. Siga do passo 4.</li>
+    <li><strong>O <code>git status</code> diz <code>nothing to commit</code>.</strong> A task não foi salva no VS Code. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd> e rode o <code>git status</code> de novo.</li>
+    <li><strong>O <code>git log</code> encheu a tela e não volta.</strong> Aperte <kbd>q</kbd> para sair.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita   <span class="d">← editado</span>
+├── ref-limites.dita
+├── guia.ditamap
+├── avisos.dita
+└── docs/                          <span class="d">ainda com o texto antigo (você gera de novo na 3.9)</span></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Crie o branch, edite, faça o commit, volte ao <code>main</code> e faça o merge. O merge sempre traz as mudanças para o branch em que você está.</p></div>
 </section>
 
 <section class="lesson" data-id="3-8" data-mod="3" data-short="Enviar para o GitHub" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
   <h1>Envie o projeto para o GitHub</h1>
-  <p class="l-goal">Colocar uma cópia do projeto online.</p>
+  <p class="l-goal">Colocar uma cópia do projeto online, com todo o histórico.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Até aqui, o histórico está só no seu Mac. Agora você cria um repositório vazio no GitHub e diz ao Git o endereço dele. Esse endereço online se chama <strong>remote</strong>. O Git dá a ele o apelido <code>origin</code>. O <code>push</code> envia os seus commits para lá.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · No site do GitHub</h3>
   <ol class="how">
-    <li><div><b>Crie a conta</b><span>Em <a href="https://github.com" target="_blank" rel="noopener">github.com</a>, clique em “Sign up”. Escolha um nome de usuário profissional. Ele vai aparecer no link do seu site.</span></div></li>
-    <li><div><b>Crie o repositório</b><span>Clique no “+” no canto superior direito → <em>New repository</em>. Nome: <code>central-ajuda-despesas</code>. Marque <em>Public</em>. <strong>Não</strong> marque “Add a README”. Clique em <em>Create repository</em>.</span></div></li>
-    <li><div><b>Copie a URL</b><span>A página seguinte mostra um endereço terminado em <code>.git</code>. Copie.</span></div></li>
-    <li><div><b>Ligue e envie</b><span>No terminal do VS Code, rode os comandos abaixo, trocando a URL pela sua.</span></div></li>
-    <li><div><b>Entre na conta</b><span>Na primeira vez, abre uma janela do navegador pedindo para entrar no GitHub. Autorize.</span></div></li>
-    <li><div><b>Confira</b><span>Atualize a página do repositório no GitHub. Seus arquivos estão lá.</span></div></li>
+    <li><div><b>Crie a conta</b><span>Em <a href="https://github.com" target="_blank" rel="noopener">github.com</a>, clique em <em>Sign up</em>. Preencha e-mail, senha e nome de usuário. Escolha um nome de usuário profissional: ele aparece no link do seu site. O GitHub manda um código para o seu e-mail. Digite o código para confirmar a conta.</span></div></li>
+    <li><div><b>Comece um repositório novo</b><span>Com a conta aberta, clique no <strong>+</strong> no canto superior direito e escolha <em>New repository</em>.</span></div></li>
+    <li><div><b>Preencha e crie</b><span>Em <em>Repository name</em>, digite <code>central-ajuda-despesas</code>. Marque <em>Public</em>. Deixe desmarcada a opção <em>Add a README file</em>. Clique em <em>Create repository</em>.</span></div></li>
+    <li><div><b>Copie o endereço</b><span>A página seguinte tem o título <em>Quick setup</em>. Confira se o botão <em>HTTPS</em> está selecionado e clique no ícone de copiar ao lado do endereço. Ele termina em <code>.git</code>.</span></div></li>
   </ol>
-  <div class="code-wrap" data-code="push" data-tag="terminal"></div>
-  <div class="prose"><p><code>remote add origin</code> diz ao Git qual é o endereço online. <code>push</code> envia seus commits para lá. Daqui para frente, para enviar novas versões, basta <code>git push</code>.</p></div>
-  <div class="callout c-result"><b>Resultado</b><p>O projeto está online no GitHub, com todo o histórico de versões.</p></div>
+  <h3>Parte B · No terminal do VS Code</h3>
+  <ol class="how">
+    <li><div><b>Diga ao Git o endereço online</b><span>Copie o comando abaixo e cole no terminal sem apertar Enter. Troque <code>SEU-USUARIO</code> pelo seu nome de usuário do GitHub (ou apague o endereço inteiro e cole o que você copiou). Aperte Enter. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="g-remote" data-tag="terminal"></div></div></li>
+    <li><div><b>Confira o endereço</b><span>O <code>-v</code> pede para mostrar os detalhes.</span>
+      <div class="code-wrap" data-code="g-remote-v" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">origin	https://github.com/seu-usuario/central-ajuda-despesas.git (fetch)
+origin	https://github.com/seu-usuario/central-ajuda-despesas.git (push)</pre></div>
+      <span>Quer dizer: o apelido <code>origin</code> aponta para o seu repositório. <em>Fetch</em> é baixar e <em>push</em> é enviar.</span></div></li>
+    <li><div><b>Garanta o nome main</b><span>Este comando confirma que o branch principal se chama <code>main</code>, como no GitHub. Não mostra mensagem.</span>
+      <div class="code-wrap" data-code="g-branch-m" data-tag="terminal"></div></div></li>
+    <li><div><b>Envie</b><span>O <code>-u</code> liga o seu <code>main</code> ao <code>main</code> do GitHub. Depois disso, um <code>git push</code> sozinho já basta.</span>
+      <div class="code-wrap" data-code="g-push1" data-tag="terminal"></div></div></li>
+    <li><div><b>Entre na conta, na primeira vez</b><span>O VS Code mostra um aviso pedindo para entrar no GitHub. Clique em <em>Allow</em>. O navegador abre: entre na sua conta e autorize o VS Code. Volte ao VS Code. O envio continua sozinho.</span>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+ * [new branch]      main -&gt; main
+branch 'main' set up to track 'origin/main'.</pre></div>
+      <span>Antes dessas linhas podem aparecer outras com contagens, como <code>Writing objects: 100%</code>. Quer dizer: o <code>main</code> foi criado no GitHub (<em>new branch</em>) e ficou ligado ao seu.</span></div></li>
+    <li><div><b>Confira no GitHub</b><span>Volte à página do repositório no navegador e atualize com <kbd>Cmd</kbd>+<kbd>R</kbd>. Os seus arquivos aparecem, e perto do topo há um link com o número de commits.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><p>No GitHub, a lista dos seus arquivos e a pasta <code>docs</code>. Ao clicar no número de commits, aparecem as 2 versões que você salvou.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>error: remote origin already exists.</code></strong> O endereço já foi gravado antes. Para corrigir um endereço errado, rode <code>git remote set-url origin</code> seguido do endereço certo.</li>
+    <li><strong>O terminal pediu <code>Username</code> e <code>Password</code>.</strong> O GitHub não aceita a senha da conta no terminal. Aperte <kbd>Ctrl</kbd>+<kbd>C</kbd> para cancelar e rode o push pelo terminal do VS Code, que abre o login pelo navegador.</li>
+    <li><strong>Apareceu <code>Repository not found</code>.</strong> O endereço tem um erro, quase sempre no nome de usuário. Confira com <code>git remote -v</code> e corrija com <code>git remote set-url origin</code> e o endereço certo.</li>
+    <li><strong>O push foi recusado com a palavra <code>rejected</code>.</strong> O repositório foi criado com o README marcado. O caminho mais simples: no GitHub, abra <em>Settings</em> do repositório, desça até <em>Delete this repository</em>, apague e crie de novo sem o README. Depois rode o push outra vez.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="prose"><p>A pasta do seu Mac não muda. Agora existe uma cópia igual no GitHub, em <code>github.com/seu-usuario/central-ajuda-despesas</code>.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p><code>git remote add origin</code> grava o endereço online e <code>git push</code> envia os commits para lá.</p></div>
 </section>
 
-<section class="lesson" data-id="3-9" data-mod="3" data-short="Publicar e pedir revisão" hidden>
+<section class="lesson" data-id="3-9" data-mod="3" data-short="Publicar o site" hidden>
   <p class="l-eyebrow">Módulo 3 · No seu computador</p>
-  <h1>Publique o site e peça uma revisão</h1>
-  <p class="l-goal">Ter um link público e praticar o fluxo de revisão de uma equipe.</p>
-  <h2>Parte A · Publique com o GitHub Pages</h2>
+  <h1>Publique o site com o GitHub Pages</h1>
+  <p class="l-goal">Ter um link público para a sua central de ajuda.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>O <strong>GitHub Pages</strong> é um serviço gratuito do GitHub que publica um site a partir de uma pasta do repositório. Você vai apontar para a pasta <code>docs</code>. Antes, gere o site de novo, porque a task mudou na página 3.7b e a pasta <code>docs</code> ainda tem o texto antigo.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · Atualize o site e envie</h3>
   <ol class="how">
-    <li><div><b>Confira a pasta docs</b><span>O site gerado no Módulo 2 está em <code>docs/</code>. Se você mudou algum tópico depois, gere de novo com o comando do DITA-OT, faça um commit e um <code>git push</code>.</span></div></li>
-    <li><div><b>Abra as configurações</b><span>No repositório do GitHub: aba <em>Settings</em> → no menu da esquerda, <em>Pages</em>.</span></div></li>
-    <li><div><b>Escolha a origem</b><span>Em “Source”, escolha <em>Deploy from a branch</em>. Em “Branch”, escolha <code>main</code> e a pasta <code>/docs</code>. Clique em <em>Save</em>.</span></div></li>
-    <li><div><b>Espere e abra</b><span>Em 1 ou 2 minutos, o link aparece no topo dessa mesma página: <code>https://seu-usuario.github.io/central-ajuda-despesas/</code>.</span></div></li>
+    <li><div><b>Gere o site de novo</b><span>No terminal do VS Code, rode o comando da página 2.9b.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div></div></li>
+    <li><div><b>Veja o que mudou</b><span>Rode <code>git status</code>.</span>
+      <div class="code-wrap" data-code="g-status" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+	modified:   docs/tarefa-enviar-relatorio.html</pre></div>
+      <span>Quer dizer: a página da task no site foi refeita com o texto novo. <em>Up to date with 'origin/main'</em> quer dizer que o GitHub tem os mesmos commits que você.</span></div></li>
+    <li><div><b>Prepare e salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-site" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[main 3c1a2bd] Atualiza o site gerado
+ 1 file changed, 2 insertions(+), 2 deletions(-)</pre></div></div></li>
+    <li><div><b>Envie</b><span>Agora basta <code>git push</code>.</span>
+      <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+   2086e57..3c1a2bd  main -&gt; main</pre></div>
+      <span>Quer dizer: o <code>main</code> do GitHub avançou da versão antiga para a nova.</span></div></li>
   </ol>
-  <h2>Parte B · Pull request: o pedido de revisão</h2>
-  <div class="prose"><p>Em equipes, ninguém junta mudanças direto no main. Você envia um branch e abre um <strong>pull request</strong>. Outra pessoa lê, comenta e aprova. Só então a mudança entra.</p></div>
-  <div class="code-wrap" data-code="pr" data-tag="terminal"></div>
+  <h3>Parte B · Ligue o GitHub Pages</h3>
   <ol class="how">
-    <li><div><b>Abra o pull request</b><span>No GitHub aparece um botão amarelo <em>Compare &amp; pull request</em>. Clique, escreva um título claro e uma descrição do que mudou e por quê.</span></div></li>
-    <li><div><b>Revise</b><span>Na aba <em>Files changed</em>, você vê as linhas removidas (vermelho) e adicionadas (verde). Deixe um comentário numa linha, como faria numa revisão de texto.</span></div></li>
-    <li><div><b>Junte</b><span>Clique em <em>Merge pull request</em> → <em>Confirm</em>.</span></div></li>
-    <li><div><b>Atualize seu computador</b><span>Volte ao main e baixe a versão juntada com os comandos abaixo.</span></div></li>
+    <li><div><b>Abra as configurações</b><span>No navegador, na página do repositório, clique na aba <em>Settings</em> (a última, com uma engrenagem). No menu da esquerda, na seção <em>Code and automation</em>, clique em <em>Pages</em>.</span></div></li>
+    <li><div><b>Escolha de onde vem o site</b><span>Em <em>Source</em>, escolha <em>Deploy from a branch</em>.</span></div></li>
+    <li><div><b>Escolha o branch e a pasta</b><span>Em <em>Branch</em>, escolha <code>main</code>. No menu ao lado, troque <code>/ (root)</code> por <code>/docs</code>. Clique em <em>Save</em>.</span></div></li>
+    <li><div><b>Espere e abra</b><span>Aguarde alguns minutos e atualize a página. Quando o site estiver no ar, aparece no topo a frase <em>Your site is live at</em> com o link. Ele tem este formato: <code>https://seu-usuario.github.io/central-ajuda-despesas/</code>.</span></div></li>
   </ol>
-  <div class="code-wrap" data-code="pull" data-tag="terminal"></div>
+  <div class="callout c-result"><b>O que você deve ver</b><p>O link abre o mesmo site que você viu no seu Mac na página 2.9b, agora na internet. O passo da task mostra “Confira se o valor total está certo.”.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O link mostra 404 (página não encontrada).</strong> A primeira publicação pode demorar. Em contas criadas há pouco tempo, pode levar até uns 20 minutos. Acompanhe na aba <em>Actions</em> do repositório: uma bolinha amarela quer dizer “publicando”, um ✓ verde quer dizer “pronto”.</li>
+    <li><strong>O menu de pasta não oferece <code>/docs</code>.</strong> A pasta <code>docs</code> não chegou ao GitHub. Gere o site, rode <code>git add .</code>, o commit e o <code>git push</code> de novo.</li>
+    <li><strong>O site mostra só a lista de arquivos ou outra página.</strong> A pasta escolhida foi <code>/ (root)</code>. Volte em <em>Settings → Pages</em> e escolha <code>/docs</code>.</li>
+    <li><strong>O push respondeu <code>Everything up-to-date</code>.</strong> Faltou o commit. Rode o passo 3 da Parte A e depois o push.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="prose"><p>Os mesmos da página 3.7b. A pasta <code>docs</code> foi gerada de novo com o texto atualizado.</p></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O GitHub Pages publica a pasta <code>docs</code> do <code>main</code>. Sempre que mudar um tópico: gere o site, faça o commit e o push.</p></div>
+</section>
+
+<section class="lesson" data-id="3-9b" data-mod="3" data-short="Pedir revisão (pull request)" hidden>
+  <p class="l-eyebrow">Módulo 3 · No seu computador</p>
+  <h1>Peça uma revisão com um pull request</h1>
+  <p class="l-goal">Praticar o fluxo de revisão de uma equipe: branch, pull request, comentário e merge.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Em equipes, ninguém junta mudanças direto no <code>main</code>. Você envia um branch para o GitHub e abre um <strong>pull request</strong>, um pedido para revisarem e juntarem as suas mudanças. Outra pessoa lê, comenta e aprova. Só então a mudança entra. Aqui você faz os dois papéis.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · A mudança, no VS Code</h3>
+  <ol class="how">
+    <li><div><b>Crie um branch para a revisão</b><span>No terminal do VS Code, confira com <code>git status</code> se está no <code>main</code>. Depois rode:</span>
+      <div class="code-wrap" data-code="g-switch-pr" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisa-shortdesc'</pre></div></div></li>
+    <li><div><b>Troque o shortdesc da task</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Ache a linha que começa com <code>&lt;shortdesc&gt;</code>. Selecione só o texto entre <code>&lt;shortdesc&gt;</code> e <code>&lt;/shortdesc&gt;</code>, cole o texto novo no lugar e salve.</span>
+      <div class="code-wrap" data-code="g-shortdesc-new" data-tag="texto novo"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">  &lt;title&gt;Enviar um relatório de despesas&lt;/title&gt;
+  &lt;shortdesc&gt;Envie o relatório para o seu gestor aprovar o reembolso.&lt;/shortdesc&gt;
+  &lt;taskbody&gt;</pre></div></div></li>
+    <li><div><b>Gere o site de novo</b><span>Assim o site também recebe o texto novo.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div></div></li>
+    <li><div><b>Prepare e salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-pr" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">[revisa-shortdesc 74bbea7] Deixa o shortdesc da tarefa mais direto
+ 2 files changed, 2 insertions(+), 2 deletions(-)</pre></div>
+      <span>Quer dizer: a versão foi salva no branch <code>revisa-shortdesc</code>, com a task e a página do site.</span></div></li>
+    <li><div><b>Envie o branch para o GitHub</b><span>Como o branch é novo, use <code>-u</code> e o nome dele.</span>
+      <div class="code-wrap" data-code="g-push-pr" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">remote:
+remote: Create a pull request for 'revisa-shortdesc' on GitHub by visiting:
+remote:      https://github.com/seu-usuario/central-ajuda-despesas/pull/new/revisa-shortdesc
+remote:
+To https://github.com/seu-usuario/central-ajuda-despesas.git
+ * [new branch]      revisa-shortdesc -&gt; revisa-shortdesc
+branch 'revisa-shortdesc' set up to track 'origin/revisa-shortdesc'.</pre></div>
+      <span>Quer dizer: o branch chegou ao GitHub. As linhas com <code>remote:</code> são o GitHub sugerindo o link para abrir o pull request.</span></div></li>
+  </ol>
+  <h3>Parte B · A revisão, no GitHub</h3>
+  <ol class="how">
+    <li><div><b>Abra o pull request</b><span>Na página do repositório aparece uma faixa amarela com o nome do branch e o botão <em>Compare &amp; pull request</em>. Clique nele.</span></div></li>
+    <li><div><b>Escreva o pedido</b><span>No título, escreva o que muda, por exemplo “Deixa o shortdesc da tarefa mais direto”. Na descrição, diga o que mudou e por quê. Clique em <em>Create pull request</em>.</span></div></li>
+    <li><div><b>Revise as linhas</b><span>Abra a aba <em>Files changed</em>. As linhas removidas aparecem em vermelho e as adicionadas em verde. Passe o mouse na linha verde do shortdesc, clique no <strong>+</strong> azul que aparece, escreva um comentário e clique em <em>Add single comment</em>.</span></div></li>
+    <li><div><b>Junte no main</b><span>Volte à aba <em>Conversation</em>, desça até o botão verde <em>Merge pull request</em>, clique nele e depois em <em>Confirm merge</em>. O pull request fica roxo, com a palavra <em>Merged</em>.</span></div></li>
+  </ol>
+  <h3>Parte C · Traga a versão final para o seu Mac</h3>
+  <ol class="how">
+    <li><div><b>Volte para o main</b><span>No terminal do VS Code, rode:</span>
+      <div class="code-wrap" data-code="g-switch-main" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to branch 'main'
+Your branch is up to date with 'origin/main'.</pre></div>
+      <span>A segunda linha compara com a última informação que o seu Mac tem do GitHub. Ele ainda não sabe do merge, por isso o shortdesc antigo aparece no VS Code.</span></div></li>
+    <li><div><b>Baixe o que mudou</b><span>O <code>pull</code> baixa do GitHub os commits novos.</span>
+      <div class="code-wrap" data-code="g-pull" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">From https://github.com/seu-usuario/central-ajuda-despesas
+   3c1a2bd..9f8e7d6  main       -&gt; origin/main
+Updating 3c1a2bd..9f8e7d6
+Fast-forward
+ docs/tarefa-enviar-relatorio.html | 2 +-
+ tarefa-enviar-relatorio.dita      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)</pre></div>
+      <span>Quer dizer: o seu <code>main</code> avançou até a versão juntada no GitHub. O shortdesc novo volta a aparecer no VS Code.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No GitHub, na aba <em>Pull requests</em> → <em>Closed</em>, o seu pull request aparece como <em>Merged</em>, com o comentário.</li>
+    <li>Alguns minutos depois do merge, o site publicado mostra o shortdesc novo.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>A faixa amarela não apareceu.</strong> Abra a aba <em>Pull requests</em>, clique em <em>New pull request</em> e, no menu <em>compare</em>, escolha <code>revisa-shortdesc</code>.</li>
+    <li><strong>O GitHub diz <em>There isn’t anything to compare</em>.</strong> O commit não foi feito ou não foi enviado. Rode <code>git status</code> e <code>git log --oneline</code>, faça o que faltar e rode o push do passo 5 da Parte A.</li>
+    <li><strong>O <code>git pull</code> respondeu <code>Already up to date</code>.</strong> O merge ainda não foi feito no GitHub. Confira se o pull request está roxo, com <em>Merged</em>.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="prose"><p>Os mesmos da página 3.7b. A task e a pasta <code>docs</code> têm o shortdesc novo.</p></div>
   <div class="callout c-result"><b>Resultado do Módulo 3</b><p>Um site público com link próprio e um pull request revisado no histórico. Esse é o fluxo “docs as code” completo.</p></div>
 </section>
 
@@ -1027,43 +1548,213 @@ git push</pre></div></div></li>
 <section class="lesson" data-id="4-1" data-mod="4" data-short="Seu projeto final" hidden>
   <p class="l-eyebrow">Projeto final</p>
   <h1>Central de Ajuda do Relatório de Despesas</h1>
-  <p class="l-goal">Completar o projeto para colocar no portfólio.</p>
-  <div class="prose"><p>Você já construiu quase tudo durante o curso. Agora é completar o que falta e revisar com calma.</p></div>
-  <div class="callout c-warn"><b>Dica forte: faça a versão final em inglês</b><p>A documentação de empresas globais de software costuma ser escrita em inglês. Um projeto em inglês mostra na prática o seu nível C1.</p></div>
-  <h2>Estrutura final da pasta</h2>
+  <p class="l-goal">Completar o projeto para colocar no portfólio. Nesta página: a segunda task.</p>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Você já construiu quase tudo durante o curso. Faltam três coisas, uma por página: uma segunda task (esta página), um glossário (página 4.1b) e o README que apresenta o projeto (página 4.2). No fim da 4.2 há uma lista para conferir a entrega.</p></div>
+  <h3>Como a pasta vai ficar no fim</h3>
   <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── nota-versao.xml
 ├── conceito-relatorio.dita
 ├── tarefa-enviar-relatorio.dita
-├── tarefa-anexar-recibo.dita   <span class="d">← nova</span>
+├── tarefa-anexar-recibo.dita      <span class="d">← nova (4.1)</span>
 ├── ref-limites.dita
 ├── avisos.dita
-├── glossario.dita              <span class="d">← nova</span>
-├── guia.ditamap
-├── README.md
-└── <span class="d">docs/                        ← site gerado</span></div>
-  <h2>O que falta: um glossário</h2>
-  <div class="prose"><p>O tipo <code>glossentry</code> define um termo. Crie um arquivo para cada termo (ou use um tópico com vários) e adicione ao mapa.</p></div>
+├── glossario-reembolso.dita       <span class="d">← nova (4.1b)</span>
+├── glossario-recibo.dita          <span class="d">← nova (4.1b)</span>
+├── glossario-gestor.dita          <span class="d">← nova (4.1b)</span>
+├── guia.ditamap                   <span class="d">← editado (4.1 e 4.1b)</span>
+├── README.md                      <span class="d">← novo (4.2)</span>
+└── docs/                          <span class="d">site gerado</span></div>
+  <div class="prose"><p>A segunda task ensina a anexar um recibo. Ela usa o mesmo aviso do <code>avisos.dita</code>, pelo mesmo conref. Agora o reúso é de verdade: um aviso, duas tasks.</p></div>
+  <div class="callout c-warn"><b>Dica forte: faça a versão final em inglês</b><p>A documentação de empresas globais de software costuma ser escrita em inglês. Um projeto em inglês mostra na prática o seu nível C1. Se quiser, termine o projeto em português e depois traduza os textos, mantendo as tags iguais.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o arquivo da task</b><span>No Explorer do VS Code, passe o mouse sobre o nome da pasta, clique no ícone de novo arquivo e digite <code>tarefa-anexar-recibo.dita</code>. Aperte Enter.</span></div></li>
+    <li><div><b>Cole o conteúdo e salve</b><span>Copie o bloco abaixo, cole no arquivo vazio e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>. Repare no <code>&lt;context&gt;</code>: é o mesmo conref da página 2.8.</span>
+      <div class="code-wrap" data-code="task2" data-tag="tarefa-anexar-recibo.dita" data-lines="1"></div></div></li>
+    <li><div><b>Abra o mapa</b><span>No Explorer, clique em <code>guia.ditamap</code>.</span></div></li>
+    <li><div><b>Ache a linha da primeira task</b><span>Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>tarefa-enviar</code>. O VS Code destaca a linha que começa com <code>&lt;topicref href="tarefa-enviar-relatorio.dita"</code>.</span></div></li>
+    <li><div><b>Acrescente a nova task logo abaixo</b><span>Clique no fim dessa linha, aperte Enter, cole a linha abaixo e salve.</span>
+      <div class="code-wrap" data-code="map-task2" data-tag="guia.ditamap"></div>
+      <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">  &lt;topicref href="conceito-relatorio.dita"&gt;
+    &lt;topicref href="tarefa-enviar-relatorio.dita"/&gt;
+    &lt;topicref href="tarefa-anexar-recibo.dita"/&gt;
+    &lt;topicref href="ref-limites.dita"/&gt;
+  &lt;/topicref&gt;</pre></div></div></li>
+    <li><div><b>Confira as tags</b><span>Se o VS Code sublinhar alguma tag em vermelho na task ou no mapa, passe o mouse em cima para ler o aviso e compare o arquivo com o bloco do passo.</span></div></li>
+    <li><div><b>Gere o site e confira</b><span>No terminal do VS Code, rode o comando de gerar e depois o de abrir o site.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="open-site" data-tag="terminal"></div>
+      <span>No sumário, “Anexar um recibo” aparece dentro do concept (“O que é um relatório de despesas”), entre as duas outras páginas.</span></div></li>
+    <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-task2" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">[main 5b6c7d8] Adiciona a tarefa de anexar recibo
+ 4 files changed, 60 insertions(+), 3 deletions(-)
+ create mode 100644 docs/tarefa-anexar-recibo.html
+ create mode 100644 tarefa-anexar-recibo.dita</pre></div>
+      <span>Quer dizer: a versão com a task nova, o mapa e as páginas do site foi salva no <code>main</code>.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No site gerado, a página “Anexar um recibo” tem o aviso “Guarde o recibo original por 5 anos.”, igual ao da outra task.</li>
+    <li>O <code>git log --oneline</code> mostra o commit novo no topo.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>A página nova não aparece no sumário.</strong> O mapa não foi salvo, ou o nome no <code>href</code> não bate com o nome do arquivo. Confira letra por letra e gere o site de novo.</li>
+    <li><strong>O DITA-OT mostra erro com o nome <code>tarefa-anexar-recibo.dita</code> e um número de linha.</strong> Algo mudou no colar. Apague todo o conteúdo do arquivo, cole de novo pelo botão Copiar e salve.</li>
+    <li><strong>A linha nova ficou fora do <code>&lt;topicref href="conceito-relatorio.dita"&gt;</code>.</strong> Então a task aparece no sumário no mesmo nível do concept. Recorte a linha e cole antes do <code>&lt;/topicref&gt;</code>, como no “como deve ficar”.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita      <span class="d">← nova</span>
+├── ref-limites.dita
+├── avisos.dita
+├── guia.ditamap                   <span class="d">← editado</span>
+└── docs/</div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>Uma task nova entra no guia em dois lugares: o arquivo <code>.dita</code> e uma linha <code>topicref</code> no mapa. O conref deixa o mesmo aviso nas duas tasks.</p></div>
+</section>
+
+<section class="lesson" data-id="4-1b" data-mod="4" data-short="Glossário" hidden>
+  <p class="l-eyebrow">Projeto final</p>
+  <h1>Crie o glossário</h1>
+  <p class="l-goal">Definir três termos do produto e publicar a versão final do site.</p>
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>O DITA tem um tipo de tópico só para definir termos: o <strong>glossentry</strong> (entrada de glossário). Cada termo fica num arquivo. Ele tem duas partes:</p>
+    <ul>
+      <li><code>&lt;glossterm&gt;</code>: o termo, como aparece no produto.</li>
+      <li><code>&lt;glossdef&gt;</code>: a definição, numa frase simples.</li>
+    </ul>
+    <p>No mapa, os termos ficam juntos dentro de um <code>&lt;topichead&gt;</code>. O <code>topichead</code> cria um título de grupo no sumário, “Glossário”, sem ter uma página própria.</p>
+  </div>
   <div class="code-wrap" data-code="gloss" data-tag="glossario-reembolso.dita"></div>
-  <h2>Checklist de entrega</h2>
-  <ul class="checklist" id="checklist">
-    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, todos válidos</label></li>
-    <li><label><input type="checkbox" id="ck-2">Um aviso reutilizado com conref nas 2 tasks</label></li>
-    <li><label><input type="checkbox" id="ck-3">Glossário com 3 termos</label></li>
-    <li><label><input type="checkbox" id="ck-4">Mapa com hierarquia e site gerado em <code>docs/</code></label></li>
-    <li><label><input type="checkbox" id="ck-5">Pelo menos 5 commits com mensagens claras</label></li>
-    <li><label><input type="checkbox" id="ck-6">Um pull request revisado e juntado</label></li>
-    <li><label><input type="checkbox" id="ck-7">README explicando o projeto e as decisões</label></li>
-    <li><label><input type="checkbox" id="ck-8">Site publicado no GitHub Pages</label></li>
-  </ul>
+  <div class="callout c-analogy"><b>Comparação</b><p>É o seu vocabulário controlado da Renner, com uma ficha para cada termo.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o primeiro termo</b><span>Crie o arquivo <code>glossario-reembolso.dita</code>, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="gloss" data-tag="glossario-reembolso.dita"></div></div></li>
+    <li><div><b>Crie o segundo termo</b><span>Crie o arquivo <code>glossario-recibo.dita</code>, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="gloss-recibo" data-tag="glossario-recibo.dita"></div></div></li>
+    <li><div><b>Crie o terceiro termo</b><span>Crie o arquivo <code>glossario-gestor.dita</code>, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="gloss-gestor" data-tag="glossario-gestor.dita"></div></div></li>
+    <li><div><b>Abra o mapa e ache a última linha</b><span>Abra <code>guia.ditamap</code>. A última linha é <code>&lt;/map&gt;</code>.</span></div></li>
+    <li><div><b>Acrescente o grupo do glossário</b><span>Clique no começo da linha <code>&lt;/map&gt;</code> e aperte Enter. Uma linha vazia aparece acima dela. Clique nessa linha vazia, cole o bloco abaixo e salve.</span>
+      <div class="code-wrap" data-code="map-gloss" data-tag="guia.ditamap"></div></div></li>
+    <li><div><b>Arrume e confira o mapa</b><span>Aperte <kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> para alinhar e salve. Compare com o mapa completo abaixo.</span>
+      <div class="code-wrap" data-code="map-final" data-tag="guia.ditamap" data-lines="1"></div></div></li>
+    <li><div><b>Gere o site e confira</b><span>Rode o comando de gerar e depois o de abrir o site.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="open-site" data-tag="terminal"></div></div></li>
+    <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-gloss" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">[main 8e9f0a1] Adiciona glossário com três termos
+ 8 files changed, 75 insertions(+), 2 deletions(-)
+ create mode 100644 glossario-gestor.dita
+ create mode 100644 glossario-recibo.dita
+ create mode 100644 glossario-reembolso.dita
+ …</pre></div></div></li>
+    <li><div><b>Publique</b><span>Envie tudo para o GitHub. O GitHub Pages atualiza o site sozinho em alguns minutos.</span>
+      <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+   5b6c7d8..8e9f0a1  main -&gt; main</pre></div></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No site gerado, o sumário tem um grupo “Glossário” com Reembolso, Recibo e Gestor. Cada termo abre uma página com a definição.</li>
+    <li>Alguns minutos depois do push, o site publicado no GitHub Pages mostra a task nova e o glossário.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O grupo “Glossário” não aparece.</strong> O bloco foi colado depois do <code>&lt;/map&gt;</code>. Ele precisa ficar acima dessa linha. Compare com o mapa completo.</li>
+    <li><strong>Um termo não aparece no grupo.</strong> O nome do arquivo e o <code>href</code> não batem. Confira letra por letra, sem acentos.</li>
+    <li><strong>O site publicado ainda está antigo.</strong> Espere alguns minutos e atualize com <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>, que ignora a cópia guardada pelo navegador. Acompanhe a publicação na aba <em>Actions</em> do repositório.</li>
+  </ul></div>
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita
+├── ref-limites.dita
+├── avisos.dita
+├── glossario-reembolso.dita       <span class="d">← nova</span>
+├── glossario-recibo.dita          <span class="d">← nova</span>
+├── glossario-gestor.dita          <span class="d">← nova</span>
+├── guia.ditamap                   <span class="d">← editado</span>
+└── docs/</div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O glossentry define um termo com <code>glossterm</code> e <code>glossdef</code>. O <code>topichead</code> agrupa os termos no sumário.</p></div>
 </section>
 
 <section class="lesson" data-id="4-2" data-mod="4" data-short="Apresentar no portfólio" hidden>
   <p class="l-eyebrow">Projeto final</p>
   <h1>Apresente no portfólio</h1>
-  <p class="l-goal">Explicar o projeto de um jeito que recrutadores entendam em um minuto.</p>
-  <h2>O README do repositório</h2>
-  <div class="prose"><p>O README é a primeira coisa que aparece no GitHub. Crie <code>README.md</code> na pasta, adapte o modelo abaixo, faça commit e push.</p></div>
-  <div class="code-wrap" data-code="readme" data-tag="README.md · modelo"></div>
+  <p class="l-goal">Escrever o README e explicar o projeto de um jeito que recrutadores entendam em um minuto.</p>
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>O <strong>README</strong> é a apresentação do repositório. O GitHub mostra esse arquivo logo abaixo da lista de arquivos, então é a primeira coisa que um recrutador lê.</p>
+    <p>Ele é escrito em <strong>Markdown</strong>, um jeito simples de formatar texto com símbolos: <code>#</code> no começo da linha vira título, <code>##</code> vira subtítulo e <code>-</code> vira item de lista. Por isso o arquivo termina em <code>.md</code>.</p>
+  </div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Crie o arquivo</b><span>No Explorer do VS Code, crie o arquivo <code>README.md</code> na pasta do projeto. Escreva README em maiúsculas.</span></div></li>
+    <li><div><b>Cole o modelo e salve</b><span>Copie o modelo abaixo, cole no arquivo e salve.</span>
+      <div class="code-wrap" data-code="readme" data-tag="README.md · modelo"></div></div></li>
+    <li><div><b>Adapte o texto</b><span>Na última linha, troque <code>SEU-USUARIO</code> pelo seu nome de usuário do GitHub. Leia o resto e ajuste com as suas palavras, principalmente a seção “Decisões de conteúdo”. Salve.</span></div></li>
+    <li><div><b>Veja como vai ficar</b><span>Com o README aberto, aperte <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>. O VS Code abre uma prévia formatada, parecida com o que o GitHub vai mostrar. Feche a prévia quando terminar.</span></div></li>
+    <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
+      <div class="code-wrap" data-code="g-add-readme" data-tag="terminal"></div>
+      <div class="code-wrap" data-code="g-commit-readme" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída parecida</span><pre class="code">[main 2a3b4c5] Adiciona README do projeto
+ 1 file changed, 20 insertions(+)
+ create mode 100644 README.md</pre></div></div></li>
+    <li><div><b>Envie</b><span>Rode o push.</span>
+      <div class="code-wrap" data-code="g-push" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">To https://github.com/seu-usuario/central-ajuda-despesas.git
+   8e9f0a1..2a3b4c5  main -&gt; main</pre></div></div></li>
+    <li><div><b>Confira no GitHub</b><span>Abra a página do repositório e atualize. O README aparece formatado abaixo da lista de arquivos.</span></div></li>
+  </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><p>Na página do repositório no GitHub, o README aparece abaixo da lista de arquivos, com títulos e listas formatados. O link do site, na última linha, abre a sua central de ajuda.</p></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>O README aparece como texto corrido, sem títulos.</strong> O arquivo foi salvo com outro final, como <code>README.txt</code>. Renomeie para <code>README.md</code>, faça o commit e o push.</li>
+    <li><strong>O link do site no README não abre.</strong> Faltou trocar <code>SEU-USUARIO</code>. Corrija, salve, faça o commit e o push.</li>
+  </ul></div>
+
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita
+├── ref-limites.dita
+├── avisos.dita
+├── glossario-reembolso.dita
+├── glossario-recibo.dita
+├── glossario-gestor.dita
+├── guia.ditamap
+├── README.md                      <span class="d">← novo</span>
+└── docs/</div>
+
+  <h2>Confira a entrega</h2>
+  <div class="prose"><p>Marque cada item depois de conferir. As marcas ficam salvas neste navegador.</p></div>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, e o site gera sem mensagens de <code>ERROR</code></label></li>
+    <li><label><input type="checkbox" id="ck-2">O mesmo aviso, com conref, nas 2 tasks</label></li>
+    <li><label><input type="checkbox" id="ck-3">Glossário com 3 termos</label></li>
+    <li><label><input type="checkbox" id="ck-4">Mapa com hierarquia e site gerado em <code>docs/</code></label></li>
+    <li><label><input type="checkbox" id="ck-5">Pelo menos 5 commits com mensagens claras (<code>git log --oneline</code>)</label></li>
+    <li><label><input type="checkbox" id="ck-6">Um pull request revisado e juntado (página 3.9b)</label></li>
+    <li><label><input type="checkbox" id="ck-7">README explicando o projeto e as decisões</label></li>
+    <li><label><input type="checkbox" id="ck-8">Site publicado no GitHub Pages, com o link funcionando</label></li>
+  </ul>
+
   <h2>O case no portfólio</h2>
   <ol class="how">
     <li><div><b>Contexto</b><span>“Projeto de estudo para aplicar documentação estruturada em DITA a um produto de despesas corporativas.”</span></div></li>
@@ -1087,22 +1778,23 @@ git push</pre></div></div></li>
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>O trabalho de UA dentro do sistema SAP</h1>
   <p class="l-goal">Entender que textos a pessoa de UA escreve dentro do sistema e onde o ABAP entra nisso.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>Até aqui você aprendeu a escrever <strong>guias</strong>: tópicos DITA publicados num portal de ajuda. Mas boa parte do texto que o usuário lê fica <strong>dentro do próprio sistema SAP</strong>, junto com o produto.</p>
-    <p>A pessoa de UA não programa. Ela entra no sistema, encontra o objeto certo (um campo, uma mensagem, um programa) e escreve ou revisa o texto ligado a ele.</p>
+    <p>A pessoa de UA não programa. Ela entra no sistema, encontra o objeto certo e escreve ou revisa o texto ligado a ele. No SAP, <strong>objeto</strong> é qualquer peça do sistema que tem nome próprio, como um campo, uma mensagem ou um programa.</p>
   </div>
-  <h2>Os textos que ficam no sistema</h2>
+  <h3>Os textos que ficam no sistema</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Texto</th><th>Onde o usuário vê</th><th>Equivalente na Renner</th></tr></thead>
     <tbody>
       <tr><td>Rótulo de campo</td><td>O nome do campo na tela, em até 4 tamanhos.</td><td>Label de formulário</td></tr>
       <tr><td>Ajuda de campo (F1)</td><td>Ao apertar F1 com o cursor num campo.</td><td>Texto de ajuda ou tooltip</td></tr>
-      <tr><td>Mensagem curta</td><td>Na barra de status, em baixo da tela.</td><td>Mensagem de erro ou snackbar</td></tr>
+      <tr><td>Mensagem curta</td><td>Na barra de status, a faixa na parte de baixo da tela.</td><td>Mensagem de erro ou snackbar</td></tr>
       <tr><td>Texto longo da mensagem</td><td>Ao clicar na mensagem: causa e o que fazer.</td><td>Tela de erro com explicação</td></tr>
       <tr><td>Documentação de programa</td><td>No botão de informação de um relatório ou transação.</td><td>Onboarding de uma função</td></tr>
     </tbody>
   </table></div>
-  <h2>E o ABAP?</h2>
+  <h3>E o ABAP?</h3>
   <div class="prose"><p>O ABAP é a linguagem em que os desenvolvedores constroem o sistema. É o código que decide <strong>quando</strong> uma tela, um campo ou uma mensagem aparece. Para quem escreve, ler um trecho de ABAP serve para uma coisa só: descobrir em que situação o texto aparece, para escrever a mensagem certa. Você não escreve código.</p></div>
   <div class="callout c-warn"><b>Este módulo está em revisão</b><p>O conteúdo será ajustado com materiais de um UA developer. Ferramentas e nomes podem variar de empresa para empresa e de time para time.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>Em UA no SAP, você também escreve textos que vivem dentro do sistema: rótulos, ajuda F1, mensagens e documentação de programas. O ABAP só ajuda a entender quando esses textos aparecem.</p></div>
@@ -1112,9 +1804,10 @@ git push</pre></div></div></li>
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>SAP Logon e transações</h1>
   <p class="l-goal">Saber como se entra no sistema e como se chega às telas onde os textos são editados.</p>
-  <h2>SAP Logon: a porta de entrada</h2>
+  <h2>Entenda</h2>
+  <h3>SAP Logon: a porta de entrada</h3>
   <div class="prose">
-    <p>O <strong>SAP Logon</strong> é o programa instalado no computador para entrar nos sistemas SAP. Ele mostra uma lista de sistemas. Você escolhe um, digita usuário e senha, e abre a interface do sistema, chamada <strong>SAP GUI</strong>. No Mac, ele vem no pacote <em>SAP GUI for Java</em>.</p>
+    <p>O <strong>SAP Logon</strong> é o programa instalado no computador para entrar nos sistemas SAP. Ele mostra uma lista de sistemas. Você escolhe um, digita usuário e senha, e abre a interface do sistema, chamada <strong>SAP GUI</strong> (as telas onde você trabalha). No Mac, ele vem no pacote <em>SAP GUI for Java</em>.</p>
     <p>Normalmente a empresa tem pelo menos três sistemas, cada um com um papel:</p>
   </div>
   <div class="areas-dg">
@@ -1124,21 +1817,23 @@ git push</pre></div></div></li>
     <div class="arr">→</div>
     <div class="box3"><b>PRD · Produção</b><span>O sistema que os usuários reais usam.</span></div>
   </div>
-  <h2>Transações: atalhos para cada tela</h2>
-  <div class="prose"><p>Dentro do sistema, cada tela tem um código curto, chamado <strong>transação</strong>. Você digita o código no campo de comando, no topo da tela, e aperta Enter. Estas são as mais ligadas ao trabalho de texto:</p></div>
+  <h3>Transações: atalhos para cada tela</h3>
+  <div class="prose"><p>Dentro do sistema, cada tela tem um código curto, chamado <strong>transação</strong>. Você digita o código no campo de comando, a caixa de texto no topo da tela, e aperta Enter. Estas são as mais ligadas ao trabalho de texto:</p></div>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Transação</th><th>Para que serve</th></tr></thead>
     <tbody>
       <tr><td><code>SE91</code></td><td>Mensagens: texto curto e texto longo de cada mensagem.</td></tr>
       <tr><td><code>SE61</code></td><td>Documentos: textos longos e documentação de objetos.</td></tr>
-      <tr><td><code>SE11</code></td><td>Dicionário de dados: rótulos de campo e documentação F1 dos elementos de dados.</td></tr>
+      <tr><td><code>SE11</code></td><td>Dicionário de dados: rótulos de campo e documentação F1. Esses textos ficam no <strong>elemento de dados</strong>, a definição que descreve um campo.</td></tr>
       <tr><td><code>SE63</code></td><td>Tradução dos textos para outros idiomas.</td></tr>
       <tr><td><code>SE09</code> / <code>SE10</code></td><td>Ordens de transporte: o versionamento (próxima página).</td></tr>
     </tbody>
   </table></div>
   <div class="callout c-warn"><b>Confirme com o time</b><p>Essas transações são padrão, mas cada time usa um conjunto e pode ter ferramentas próprias. Use a tabela como mapa inicial.</p></div>
-  <h2>Rótulos de campo têm tamanho fixo</h2>
-  <div class="prose"><p>Um campo pode ter até quatro rótulos, e o sistema escolhe qual mostrar conforme o espaço na tela. Teste abaixo:</p></div>
+  <h3>Rótulos de campo têm tamanho fixo</h3>
+  <div class="prose"><p>Um campo pode ter até quatro rótulos, e o sistema escolhe qual mostrar conforme o espaço na tela.</p></div>
+  <h2>Faça nesta página</h2>
+  <div class="prose"><p>Edite os quatro rótulos abaixo e acompanhe a checagem. O número entre parênteses é o limite de caracteres de cada um.</p></div>
   <div class="msg-lab" id="lbl-lab">
     <div class="msg-in">
       <label for="lbl-s">Curto (até 10)</label><input id="lbl-s" type="text" autocomplete="off" value="Venc.">
@@ -1159,17 +1854,19 @@ git push</pre></div></div></li>
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>Versionamento dentro do SAP</h1>
   <p class="l-goal">Entender como uma mudança de texto é registrada e chega aos usuários.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>Dentro do SAP não se usa Git para os textos do sistema. As mudanças são registradas em <strong>ordens de transporte</strong> (em inglês, <em>transport requests</em>). Uma ordem é um “pacote” com tudo que mudou numa tarefa, com nome, autor e data.</p>
     <p>O SAP Logon é só a porta de entrada: o versionamento acontece dentro do sistema, nessas ordens.</p>
   </div>
-  <h2>Veja uma mudança de texto viajar</h2>
+  <h2>Faça nesta página</h2>
+  <div class="prose"><p>Clique em “Próximo passo” e acompanhe a ordem de transporte passando de um sistema para o outro. <strong>Liberar</strong> a ordem é fechá-la para que ela possa seguir. <strong>Importar</strong> é aplicar a ordem no sistema seguinte.</p></div>
   <div class="transport" id="transport">
     <div class="tr-systems"></div>
     <p class="tr-cap" aria-live="polite"></p>
     <div class="stepper-nav"><button class="btn-ghost" type="button" data-tr-prev>← Anterior</button><button class="btn-ghost" type="button" data-tr-next>Próximo passo →</button><span data-tr-count></span></div>
   </div>
-  <h2>Git x SAP: o que equivale a quê</h2>
+  <h3>Git x SAP: o que equivale a quê</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>No Git (Módulo 3)</th><th>Dentro do SAP</th></tr></thead>
     <tbody>
@@ -1190,20 +1887,22 @@ git push</pre></div></div></li>
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>Ler o código só para achar o texto</h1>
   <p class="l-goal">Usar um trecho de ABAP para descobrir quando uma mensagem aparece. Só isso.</p>
-  <div class="prose"><p>Imagine que você precisa escrever as mensagens de uma regra nova. O desenvolvedor manda o trecho abaixo. Você não precisa entender tudo: procure as palavras <code>IF</code> (condição) e <code>MESSAGE</code> (mensagem). Toque nas linhas.</p></div>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Imagine que você precisa escrever as mensagens de uma regra nova. O desenvolvedor manda o trecho abaixo. Você não precisa entender tudo. Procure duas palavras: <code>IF</code> (“se”, a condição) e <code>MESSAGE</code> (a mensagem que aparece). Toque em cada linha para ler a explicação.</p></div>
   <div class="explain" data-explain="abap2"></div>
   <div class="callout c-analogy"><b>Em português</b><p>Para cada despesa do relatório: se não tiver recibo, mostre o erro 002. Senão, se o valor passar do limite, mostre o aviso 001.</p></div>
-  <h2>Como ler a chamada da mensagem</h2>
+  <h3>Como ler a chamada da mensagem</h3>
   <div class="code-wrap" data-code="abap-msg" data-tag="no código"></div>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Parte</th><th>No exemplo</th><th>O que diz para você</th></tr></thead>
     <tbody>
       <tr><td>Tipo</td><td><code>e</code></td><td>A primeira letra: <code>e</code> erro, <code>w</code> aviso, <code>i</code> informação, <code>s</code> sucesso.</td></tr>
       <tr><td>Número</td><td><code>001</code></td><td>Qual mensagem você vai escrever.</td></tr>
-      <tr><td>Classe</td><td><code>zdespesas</code></td><td>Onde ela fica guardada. É o que você abre na SE91.</td></tr>
-      <tr><td>Valores</td><td><code>WITH lv_limite</code></td><td>O que entra no lugar de <code>&amp;1</code> no seu texto.</td></tr>
+      <tr><td>Classe</td><td><code>zdespesas</code></td><td>A <strong>classe de mensagem</strong>, o grupo onde a mensagem fica guardada. É o que você abre na SE91.</td></tr>
+      <tr><td>Valores</td><td><code>WITH lv_limite</code></td><td>O valor que entra no lugar de <code>&amp;1</code> no seu texto. O <code>&amp;1</code> é um <strong>marcador</strong>: um espaço que o sistema preenche na hora de mostrar a mensagem.</td></tr>
     </tbody>
   </table></div>
+  <h2>Faça nesta página</h2>
   <div class="quiz" data-answer="1" data-explain="O aviso 001 está no ELSEIF: aparece quando a despesa tem recibo, mas o valor passa do limite. É isso que a mensagem precisa explicar.">
     <span class="quiz-k">Faça agora</span><p class="quiz-q">Quando o aviso 001 aparece para a pessoa?</p>
     <div class="quiz-opts"><button>Quando a despesa está sem recibo</button><button>Quando a despesa tem recibo, mas o valor passa do limite</button><button>Sempre, para todas as despesas</button></div><p class="quiz-fb" aria-live="polite"></p>
@@ -1215,14 +1914,22 @@ git push</pre></div></div></li>
   <p class="l-eyebrow">Extra · Prática <span class="draft">rascunho</span></p>
   <h1>Prática: escreva a mensagem de erro</h1>
   <p class="l-goal">Reescrever uma mensagem provisória respeitando os limites do sistema.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>O desenvolvedor criou uma regra: despesas mais antigas que o prazo não podem ser enviadas. Ele deixou uma mensagem provisória na SE91. Sua vez de melhorar.</p>
     <ul>
       <li><strong>Texto curto:</strong> aparece na barra de status. Limite de <strong>73 caracteres</strong>, contando os marcadores.</li>
       <li><strong>Texto longo:</strong> abre quando a pessoa clica na mensagem. Explica a causa e o que fazer.</li>
-      <li><strong>Marcadores:</strong> <code>&amp;1</code> vira a data da despesa (15/06/2026) e <code>&amp;2</code> vira o prazo em dias (60).</li>
+      <li><strong>Marcadores:</strong> espaços que o sistema preenche. <code>&amp;1</code> vira a data da despesa (15/06/2026) e <code>&amp;2</code> vira o prazo em dias (60).</li>
     </ul>
   </div>
+  <h2>Faça nesta página</h2>
+  <ol class="how">
+    <li><div><b>Leia a mensagem provisória</b><span>Ela já está no campo do texto curto. Veja como aparece em “Como a pessoa vê”.</span></div></li>
+    <li><div><b>Reescreva o texto curto</b><span>Diga o problema em poucas palavras. Use <code>&amp;1</code> e <code>&amp;2</code> onde entram a data e o prazo. Acompanhe o contador: até 73 caracteres.</span></div></li>
+    <li><div><b>Escreva o texto longo</b><span>Explique a causa e o que a pessoa pode fazer agora.</span></div></li>
+    <li><div><b>Confira a checagem</b><span>Ajuste até todos os itens ficarem verdes. Depois, se quiser, clique em “Ver um exemplo” e compare.</span></div></li>
+  </ol>
   <div class="msg-lab" id="msg-lab">
     <div class="msg-in">
       <label for="msg-short">Texto curto da mensagem 003</label>
@@ -1248,6 +1955,7 @@ git push</pre></div></div></li>
   <h1>Próximos passos</h1>
   <p class="l-goal">Saber o que perguntar ao time e como falar disso numa entrevista.</p>
   <h2>Perguntas para um UA developer</h2>
+  <div class="prose"><p>Use a lista numa conversa com alguém da área. Marque cada pergunta depois de ter a resposta.</p></div>
   <ul class="checklist" id="questions">
     <li><label><input type="checkbox" id="q-1">Quais textos vocês mais escrevem dentro do sistema: mensagens, F1, documentação de programas?</label></li>
     <li><label><input type="checkbox" id="q-2">Quais transações ou ferramentas vocês usam no dia a dia?</label></li>
@@ -1269,6 +1977,6 @@ git push</pre></div></div></li>
 </div>
 
 
-<script src="assets/curso.js"></script>
+<script src="assets/curso.js?v=2"></script>
 </body>
 </html>
