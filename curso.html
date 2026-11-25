@@ -1761,22 +1761,23 @@ Fast-forward
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>O trabalho de UA dentro do sistema SAP</h1>
   <p class="l-goal">Entender que textos a pessoa de UA escreve dentro do sistema e onde o ABAP entra nisso.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>Até aqui você aprendeu a escrever <strong>guias</strong>: tópicos DITA publicados num portal de ajuda. Mas boa parte do texto que o usuário lê fica <strong>dentro do próprio sistema SAP</strong>, junto com o produto.</p>
-    <p>A pessoa de UA não programa. Ela entra no sistema, encontra o objeto certo (um campo, uma mensagem, um programa) e escreve ou revisa o texto ligado a ele.</p>
+    <p>A pessoa de UA não programa. Ela entra no sistema, encontra o objeto certo e escreve ou revisa o texto ligado a ele. No SAP, <strong>objeto</strong> é qualquer peça do sistema que tem nome próprio, como um campo, uma mensagem ou um programa.</p>
   </div>
-  <h2>Os textos que ficam no sistema</h2>
+  <h3>Os textos que ficam no sistema</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Texto</th><th>Onde o usuário vê</th><th>Equivalente na Renner</th></tr></thead>
     <tbody>
       <tr><td>Rótulo de campo</td><td>O nome do campo na tela, em até 4 tamanhos.</td><td>Label de formulário</td></tr>
       <tr><td>Ajuda de campo (F1)</td><td>Ao apertar F1 com o cursor num campo.</td><td>Texto de ajuda ou tooltip</td></tr>
-      <tr><td>Mensagem curta</td><td>Na barra de status, em baixo da tela.</td><td>Mensagem de erro ou snackbar</td></tr>
+      <tr><td>Mensagem curta</td><td>Na barra de status, a faixa na parte de baixo da tela.</td><td>Mensagem de erro ou snackbar</td></tr>
       <tr><td>Texto longo da mensagem</td><td>Ao clicar na mensagem: causa e o que fazer.</td><td>Tela de erro com explicação</td></tr>
       <tr><td>Documentação de programa</td><td>No botão de informação de um relatório ou transação.</td><td>Onboarding de uma função</td></tr>
     </tbody>
   </table></div>
-  <h2>E o ABAP?</h2>
+  <h3>E o ABAP?</h3>
   <div class="prose"><p>O ABAP é a linguagem em que os desenvolvedores constroem o sistema. É o código que decide <strong>quando</strong> uma tela, um campo ou uma mensagem aparece. Para quem escreve, ler um trecho de ABAP serve para uma coisa só: descobrir em que situação o texto aparece, para escrever a mensagem certa. Você não escreve código.</p></div>
   <div class="callout c-warn"><b>Este módulo está em revisão</b><p>O conteúdo será ajustado com materiais de um UA developer. Ferramentas e nomes podem variar de empresa para empresa e de time para time.</p></div>
   <div class="callout c-sum"><b>Você aprendeu</b><p>Em UA no SAP, você também escreve textos que vivem dentro do sistema: rótulos, ajuda F1, mensagens e documentação de programas. O ABAP só ajuda a entender quando esses textos aparecem.</p></div>
@@ -1786,9 +1787,10 @@ Fast-forward
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>SAP Logon e transações</h1>
   <p class="l-goal">Saber como se entra no sistema e como se chega às telas onde os textos são editados.</p>
-  <h2>SAP Logon: a porta de entrada</h2>
+  <h2>Entenda</h2>
+  <h3>SAP Logon: a porta de entrada</h3>
   <div class="prose">
-    <p>O <strong>SAP Logon</strong> é o programa instalado no computador para entrar nos sistemas SAP. Ele mostra uma lista de sistemas. Você escolhe um, digita usuário e senha, e abre a interface do sistema, chamada <strong>SAP GUI</strong>. No Mac, ele vem no pacote <em>SAP GUI for Java</em>.</p>
+    <p>O <strong>SAP Logon</strong> é o programa instalado no computador para entrar nos sistemas SAP. Ele mostra uma lista de sistemas. Você escolhe um, digita usuário e senha, e abre a interface do sistema, chamada <strong>SAP GUI</strong> (as telas onde você trabalha). No Mac, ele vem no pacote <em>SAP GUI for Java</em>.</p>
     <p>Normalmente a empresa tem pelo menos três sistemas, cada um com um papel:</p>
   </div>
   <div class="areas-dg">
@@ -1798,21 +1800,23 @@ Fast-forward
     <div class="arr">→</div>
     <div class="box3"><b>PRD · Produção</b><span>O sistema que os usuários reais usam.</span></div>
   </div>
-  <h2>Transações: atalhos para cada tela</h2>
-  <div class="prose"><p>Dentro do sistema, cada tela tem um código curto, chamado <strong>transação</strong>. Você digita o código no campo de comando, no topo da tela, e aperta Enter. Estas são as mais ligadas ao trabalho de texto:</p></div>
+  <h3>Transações: atalhos para cada tela</h3>
+  <div class="prose"><p>Dentro do sistema, cada tela tem um código curto, chamado <strong>transação</strong>. Você digita o código no campo de comando, a caixa de texto no topo da tela, e aperta Enter. Estas são as mais ligadas ao trabalho de texto:</p></div>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Transação</th><th>Para que serve</th></tr></thead>
     <tbody>
       <tr><td><code>SE91</code></td><td>Mensagens: texto curto e texto longo de cada mensagem.</td></tr>
       <tr><td><code>SE61</code></td><td>Documentos: textos longos e documentação de objetos.</td></tr>
-      <tr><td><code>SE11</code></td><td>Dicionário de dados: rótulos de campo e documentação F1 dos elementos de dados.</td></tr>
+      <tr><td><code>SE11</code></td><td>Dicionário de dados: rótulos de campo e documentação F1. Esses textos ficam no <strong>elemento de dados</strong>, a definição que descreve um campo.</td></tr>
       <tr><td><code>SE63</code></td><td>Tradução dos textos para outros idiomas.</td></tr>
       <tr><td><code>SE09</code> / <code>SE10</code></td><td>Ordens de transporte: o versionamento (próxima página).</td></tr>
     </tbody>
   </table></div>
   <div class="callout c-warn"><b>Confirme com o time</b><p>Essas transações são padrão, mas cada time usa um conjunto e pode ter ferramentas próprias. Use a tabela como mapa inicial.</p></div>
-  <h2>Rótulos de campo têm tamanho fixo</h2>
-  <div class="prose"><p>Um campo pode ter até quatro rótulos, e o sistema escolhe qual mostrar conforme o espaço na tela. Teste abaixo:</p></div>
+  <h3>Rótulos de campo têm tamanho fixo</h3>
+  <div class="prose"><p>Um campo pode ter até quatro rótulos, e o sistema escolhe qual mostrar conforme o espaço na tela.</p></div>
+  <h2>Faça nesta página</h2>
+  <div class="prose"><p>Edite os quatro rótulos abaixo e acompanhe a checagem. O número entre parênteses é o limite de caracteres de cada um.</p></div>
   <div class="msg-lab" id="lbl-lab">
     <div class="msg-in">
       <label for="lbl-s">Curto (até 10)</label><input id="lbl-s" type="text" autocomplete="off" value="Venc.">
@@ -1833,17 +1837,19 @@ Fast-forward
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>Versionamento dentro do SAP</h1>
   <p class="l-goal">Entender como uma mudança de texto é registrada e chega aos usuários.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>Dentro do SAP não se usa Git para os textos do sistema. As mudanças são registradas em <strong>ordens de transporte</strong> (em inglês, <em>transport requests</em>). Uma ordem é um “pacote” com tudo que mudou numa tarefa, com nome, autor e data.</p>
     <p>O SAP Logon é só a porta de entrada: o versionamento acontece dentro do sistema, nessas ordens.</p>
   </div>
-  <h2>Veja uma mudança de texto viajar</h2>
+  <h2>Faça nesta página</h2>
+  <div class="prose"><p>Clique em “Próximo passo” e acompanhe a ordem de transporte passando de um sistema para o outro. <strong>Liberar</strong> a ordem é fechá-la para que ela possa seguir. <strong>Importar</strong> é aplicar a ordem no sistema seguinte.</p></div>
   <div class="transport" id="transport">
     <div class="tr-systems"></div>
     <p class="tr-cap" aria-live="polite"></p>
     <div class="stepper-nav"><button class="btn-ghost" type="button" data-tr-prev>← Anterior</button><button class="btn-ghost" type="button" data-tr-next>Próximo passo →</button><span data-tr-count></span></div>
   </div>
-  <h2>Git x SAP: o que equivale a quê</h2>
+  <h3>Git x SAP: o que equivale a quê</h3>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>No Git (Módulo 3)</th><th>Dentro do SAP</th></tr></thead>
     <tbody>
@@ -1864,20 +1870,22 @@ Fast-forward
   <p class="l-eyebrow">Extra · UA no sistema SAP <span class="draft">rascunho</span></p>
   <h1>Ler o código só para achar o texto</h1>
   <p class="l-goal">Usar um trecho de ABAP para descobrir quando uma mensagem aparece. Só isso.</p>
-  <div class="prose"><p>Imagine que você precisa escrever as mensagens de uma regra nova. O desenvolvedor manda o trecho abaixo. Você não precisa entender tudo: procure as palavras <code>IF</code> (condição) e <code>MESSAGE</code> (mensagem). Toque nas linhas.</p></div>
+  <h2>Entenda</h2>
+  <div class="prose"><p>Imagine que você precisa escrever as mensagens de uma regra nova. O desenvolvedor manda o trecho abaixo. Você não precisa entender tudo. Procure duas palavras: <code>IF</code> (“se”, a condição) e <code>MESSAGE</code> (a mensagem que aparece). Toque em cada linha para ler a explicação.</p></div>
   <div class="explain" data-explain="abap2"></div>
   <div class="callout c-analogy"><b>Em português</b><p>Para cada despesa do relatório: se não tiver recibo, mostre o erro 002. Senão, se o valor passar do limite, mostre o aviso 001.</p></div>
-  <h2>Como ler a chamada da mensagem</h2>
+  <h3>Como ler a chamada da mensagem</h3>
   <div class="code-wrap" data-code="abap-msg" data-tag="no código"></div>
   <div class="scroll-x"><table class="tbl">
     <thead><tr><th>Parte</th><th>No exemplo</th><th>O que diz para você</th></tr></thead>
     <tbody>
       <tr><td>Tipo</td><td><code>e</code></td><td>A primeira letra: <code>e</code> erro, <code>w</code> aviso, <code>i</code> informação, <code>s</code> sucesso.</td></tr>
       <tr><td>Número</td><td><code>001</code></td><td>Qual mensagem você vai escrever.</td></tr>
-      <tr><td>Classe</td><td><code>zdespesas</code></td><td>Onde ela fica guardada. É o que você abre na SE91.</td></tr>
-      <tr><td>Valores</td><td><code>WITH lv_limite</code></td><td>O que entra no lugar de <code>&amp;1</code> no seu texto.</td></tr>
+      <tr><td>Classe</td><td><code>zdespesas</code></td><td>A <strong>classe de mensagem</strong>, o grupo onde a mensagem fica guardada. É o que você abre na SE91.</td></tr>
+      <tr><td>Valores</td><td><code>WITH lv_limite</code></td><td>O valor que entra no lugar de <code>&amp;1</code> no seu texto. O <code>&amp;1</code> é um <strong>marcador</strong>: um espaço que o sistema preenche na hora de mostrar a mensagem.</td></tr>
     </tbody>
   </table></div>
+  <h2>Faça nesta página</h2>
   <div class="quiz" data-answer="1" data-explain="O aviso 001 está no ELSEIF: aparece quando a despesa tem recibo, mas o valor passa do limite. É isso que a mensagem precisa explicar.">
     <span class="quiz-k">Faça agora</span><p class="quiz-q">Quando o aviso 001 aparece para a pessoa?</p>
     <div class="quiz-opts"><button>Quando a despesa está sem recibo</button><button>Quando a despesa tem recibo, mas o valor passa do limite</button><button>Sempre, para todas as despesas</button></div><p class="quiz-fb" aria-live="polite"></p>
@@ -1889,14 +1897,22 @@ Fast-forward
   <p class="l-eyebrow">Extra · Prática <span class="draft">rascunho</span></p>
   <h1>Prática: escreva a mensagem de erro</h1>
   <p class="l-goal">Reescrever uma mensagem provisória respeitando os limites do sistema.</p>
+  <h2>Entenda</h2>
   <div class="prose">
     <p>O desenvolvedor criou uma regra: despesas mais antigas que o prazo não podem ser enviadas. Ele deixou uma mensagem provisória na SE91. Sua vez de melhorar.</p>
     <ul>
       <li><strong>Texto curto:</strong> aparece na barra de status. Limite de <strong>73 caracteres</strong>, contando os marcadores.</li>
       <li><strong>Texto longo:</strong> abre quando a pessoa clica na mensagem. Explica a causa e o que fazer.</li>
-      <li><strong>Marcadores:</strong> <code>&amp;1</code> vira a data da despesa (15/06/2026) e <code>&amp;2</code> vira o prazo em dias (60).</li>
+      <li><strong>Marcadores:</strong> espaços que o sistema preenche. <code>&amp;1</code> vira a data da despesa (15/06/2026) e <code>&amp;2</code> vira o prazo em dias (60).</li>
     </ul>
   </div>
+  <h2>Faça nesta página</h2>
+  <ol class="how">
+    <li><div><b>Leia a mensagem provisória</b><span>Ela já está no campo do texto curto. Veja como aparece em “Como a pessoa vê”.</span></div></li>
+    <li><div><b>Reescreva o texto curto</b><span>Diga o problema em poucas palavras. Use <code>&amp;1</code> e <code>&amp;2</code> onde entram a data e o prazo. Acompanhe o contador: até 73 caracteres.</span></div></li>
+    <li><div><b>Escreva o texto longo</b><span>Explique a causa e o que a pessoa pode fazer agora.</span></div></li>
+    <li><div><b>Confira a checagem</b><span>Ajuste até todos os itens ficarem verdes. Depois, se quiser, clique em “Ver um exemplo” e compare.</span></div></li>
+  </ol>
   <div class="msg-lab" id="msg-lab">
     <div class="msg-in">
       <label for="msg-short">Texto curto da mensagem 003</label>
@@ -1922,6 +1938,7 @@ Fast-forward
   <h1>Próximos passos</h1>
   <p class="l-goal">Saber o que perguntar ao time e como falar disso numa entrevista.</p>
   <h2>Perguntas para um UA developer</h2>
+  <div class="prose"><p>Use a lista numa conversa com alguém da área. Marque cada pergunta depois de ter a resposta.</p></div>
   <ul class="checklist" id="questions">
     <li><label><input type="checkbox" id="q-1">Quais textos vocês mais escrevem dentro do sistema: mensagens, F1, documentação de programas?</label></li>
     <li><label><input type="checkbox" id="q-2">Quais transações ou ferramentas vocês usam no dia a dia?</label></li>
