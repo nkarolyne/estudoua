@@ -823,10 +823,10 @@ git push</pre></div></div></li>
   <div class="callout c-result"><b>O que você deve ver</b><ul>
     <li>No VS Code, a task mostra só a linha com o endereço. O texto do aviso não aparece ali, e isso é normal: o VS Code mostra o arquivo do jeito que ele foi escrito.</li>
     <li>Quem troca o endereço pelo texto é a “gráfica”, o DITA-OT. Você vai ver o aviso dentro da task na página 2.9b, quando gerar o site.</li>
-    <li>Na aba <em>Problems</em> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>) não deve aparecer nenhum erro novo nesses dois arquivos.</li>
   </ul></div>
   <div class="callout c-warn"><b>Deu errado?</b><ul>
-    <li><strong>Sublinhado vermelho na task.</strong> Quase sempre o bloco foi colado no lugar errado. Confira se o <code>&lt;context&gt;</code> está depois do <code>&lt;/prereq&gt;</code> e antes do <code>&lt;steps&gt;</code>. Se não estiver, recorte o bloco com <kbd>Cmd</kbd>+<kbd>X</kbd> e cole no lugar certo.</li>
+    <li><strong>O VS Code sublinhou uma tag em vermelho.</strong> Passe o mouse em cima para ler o aviso. Quase sempre falta fechar uma tag, como um <code>&lt;context&gt;</code> sem o <code>&lt;/context&gt;</code>. Apague o bloco e cole de novo pelo botão Copiar.</li>
+    <li><strong>O bloco ficou antes do <code>&lt;prereq&gt;</code> ou depois do <code>&lt;steps&gt;</code>.</strong> A ordem da task fica errada, e o DITA-OT mostra um erro quando você gerar o site na página 2.9b. Recorte o bloco com <kbd>Cmd</kbd>+<kbd>X</kbd> e cole entre <code>&lt;/prereq&gt;</code> e <code>&lt;steps&gt;</code>.</li>
     <li><strong>O arquivo se chama Avisos.dita ou avisos.dita.txt.</strong> Clique com o botão direito no arquivo, escolha <em>Rename</em> e deixe <code>avisos.dita</code>. O nome precisa ser idêntico ao do endereço.</li>
     <li><strong>Mudei um id.</strong> O endereço precisa bater com os ids do <code>avisos.dita</code>. Se lá está <code>id="recibos"</code>, o conref precisa terminar em <code>/recibos</code>.</li>
     <li><strong>Colei o código do avisos.dita dentro da task.</strong> Desfaça com <kbd>Cmd</kbd>+<kbd>Z</kbd>. Cada código vai para o seu arquivo: o do passo 3 no <code>avisos.dita</code> e o do passo 7 na task.</li>
@@ -973,7 +973,7 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
   </ol>
 
   <div class="callout c-result"><b>O que você deve ver</b><ul>
-    <li>Uma página inicial com o sumário: “Relatório de despesas” e, dentro dele, a task e a reference.</li>
+    <li>Uma página inicial com o sumário: o título do seu concept (“O que é um relatório de despesas”, se você seguiu a página 2.4) e, dentro dele, a task e a reference.</li>
     <li>Na página da task, o aviso do recibo aparece em destaque antes dos passos.</li>
     <li>Não existe página “Avisos reutilizáveis”, porque o <code>avisos.dita</code> não está no mapa.</li>
     <li>Alguns títulos e rótulos criados pelo DITA-OT podem aparecer em inglês. Isso é normal: o DITA-OT usa inglês quando os arquivos não dizem o idioma.</li>
@@ -984,7 +984,7 @@ guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
     <li><strong>Erro que cita <code>avisos.dita</code> ou o endereço do conref.</strong> O nome do arquivo ou um dos ids não bate com o endereço. Veja o “Deu errado?” da página 2.8.</li>
     <li><strong>O site abriu, mas o aviso não aparece.</strong> A task talvez não esteja salva. Uma bolinha branca na aba do arquivo quer dizer “não salvo”. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd> e rode o comando de gerar de novo.</li>
   </ul></div>
-  <div class="callout c-analogy"><b>Mudou um tópico?</b><p>O site não se atualiza sozinho. Sempre que mudar um tópico, rode o comando de gerar de novo. Ele substitui a pasta <code>docs</code> inteira. Por isso, nunca edite os arquivos dentro de <code>docs</code>: edite os <code>.dita</code> e gere de novo.</p></div>
+  <div class="callout c-analogy"><b>Mudou um tópico?</b><p>O site não se atualiza sozinho. Sempre que mudar um tópico, rode o comando de gerar de novo. Ele regrava as páginas da pasta <code>docs</code>. Por isso, nunca edite os arquivos dentro de <code>docs</code>: edite os <code>.dita</code> e gere de novo.</p></div>
 
   <h3>Arquivos na pasta agora</h3>
   <div class="tree"><span class="d">central-ajuda-despesas/</span>
@@ -1306,8 +1306,8 @@ Changes to be committed:
       <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisao-tarefa'</pre></div>
       <span>Quer dizer: o branch foi criado e você já está nele. O nome do branch também aparece no canto inferior esquerdo do VS Code.</span></div></li>
     <li><div><b>Abra a task e ache o passo</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>Confira o valor</code>. O VS Code destaca a linha.</span></div></li>
-    <li><div><b>Troque o texto do passo e salve</b><span>Selecione a linha inteira e cole a linha nova no lugar. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
-      <div class="code-wrap" data-code="g-cmd-new" data-tag="linha nova"></div>
+    <li><div><b>Troque o texto do passo e salve</b><span>Selecione só o texto <code>Confira o valor total.</code>, que fica entre <code>&lt;cmd&gt;</code> e <code>&lt;/cmd&gt;</code>. Cole o texto novo no lugar e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="g-cmd-new" data-tag="texto novo"></div>
       <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">      &lt;step&gt;
         &lt;cmd&gt;Confira se o valor total está certo.&lt;/cmd&gt;
         &lt;info&gt;Se algum valor estiver errado, edite a despesa antes de enviar.&lt;/info&gt;</pre></div></div></li>
@@ -1460,7 +1460,7 @@ Changes not staged for commit:
     <li><strong>O link mostra 404 (página não encontrada).</strong> A primeira publicação pode demorar. Em contas criadas há pouco tempo, pode levar até uns 20 minutos. Acompanhe na aba <em>Actions</em> do repositório: uma bolinha amarela quer dizer “publicando”, um ✓ verde quer dizer “pronto”.</li>
     <li><strong>O menu de pasta não oferece <code>/docs</code>.</strong> A pasta <code>docs</code> não chegou ao GitHub. Gere o site, rode <code>git add .</code>, o commit e o <code>git push</code> de novo.</li>
     <li><strong>O site mostra só a lista de arquivos ou outra página.</strong> A pasta escolhida foi <code>/ (root)</code>. Volte em <em>Settings → Pages</em> e escolha <code>/docs</code>.</li>
-    <li><strong>O push respondeu <code>Everything up-to-date</code>.</strong> Faltou o commit. Rode o passo 3 e depois o push.</li>
+    <li><strong>O push respondeu <code>Everything up-to-date</code>.</strong> Faltou o commit. Rode o passo 3 da Parte A e depois o push.</li>
   </ul></div>
   <h3>Arquivos na pasta agora</h3>
   <div class="prose"><p>Os mesmos da página 3.7b. A pasta <code>docs</code> foi gerada de novo com o texto atualizado.</p></div>
@@ -1480,8 +1480,8 @@ Changes not staged for commit:
     <li><div><b>Crie um branch para a revisão</b><span>No terminal do VS Code, confira com <code>git status</code> se está no <code>main</code>. Depois rode:</span>
       <div class="code-wrap" data-code="g-switch-pr" data-tag="terminal"></div>
       <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">Switched to a new branch 'revisa-shortdesc'</pre></div></div></li>
-    <li><div><b>Troque o shortdesc da task</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Ache a linha que começa com <code>&lt;shortdesc&gt;</code>, selecione a linha inteira e cole a linha nova. Salve.</span>
-      <div class="code-wrap" data-code="g-shortdesc-new" data-tag="linha nova"></div>
+    <li><div><b>Troque o shortdesc da task</b><span>Abra <code>tarefa-enviar-relatorio.dita</code>. Ache a linha que começa com <code>&lt;shortdesc&gt;</code>. Selecione só o texto entre <code>&lt;shortdesc&gt;</code> e <code>&lt;/shortdesc&gt;</code>, cole o texto novo no lugar e salve.</span>
+      <div class="code-wrap" data-code="g-shortdesc-new" data-tag="texto novo"></div>
       <div class="code-wrap"><span class="code-tag">como deve ficar</span><pre class="code">  &lt;title&gt;Enviar um relatório de despesas&lt;/title&gt;
   &lt;shortdesc&gt;Envie o relatório para o seu gestor aprovar o reembolso.&lt;/shortdesc&gt;
   &lt;taskbody&gt;</pre></div></div></li>
@@ -1535,7 +1535,7 @@ Fast-forward
   </ul></div>
   <div class="callout c-warn"><b>Deu errado?</b><ul>
     <li><strong>A faixa amarela não apareceu.</strong> Abra a aba <em>Pull requests</em>, clique em <em>New pull request</em> e, no menu <em>compare</em>, escolha <code>revisa-shortdesc</code>.</li>
-    <li><strong>O GitHub diz <em>There isn’t anything to compare</em>.</strong> O commit não foi feito ou não foi enviado. Rode <code>git status</code> e <code>git log --oneline</code>, faça o que faltar e rode o push do passo 5.</li>
+    <li><strong>O GitHub diz <em>There isn’t anything to compare</em>.</strong> O commit não foi feito ou não foi enviado. Rode <code>git status</code> e <code>git log --oneline</code>, faça o que faltar e rode o push do passo 5 da Parte A.</li>
     <li><strong>O <code>git pull</code> respondeu <code>Already up to date</code>.</strong> O merge ainda não foi feito no GitHub. Confira se o pull request está roxo, com <em>Merged</em>.</li>
   </ul></div>
   <h3>Arquivos na pasta agora</h3>
@@ -1582,11 +1582,11 @@ Fast-forward
     &lt;topicref href="tarefa-anexar-recibo.dita"/&gt;
     &lt;topicref href="ref-limites.dita"/&gt;
   &lt;/topicref&gt;</pre></div></div></li>
-    <li><div><b>Confira se não há erros</b><span>Abra a aba <em>Problems</em> com <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. Não deve haver erro novo na task nem no mapa.</span></div></li>
+    <li><div><b>Confira as tags</b><span>Se o VS Code sublinhar alguma tag em vermelho na task ou no mapa, passe o mouse em cima para ler o aviso e compare o arquivo com o bloco do passo.</span></div></li>
     <li><div><b>Gere o site e confira</b><span>No terminal do VS Code, rode o comando de gerar e depois o de abrir o site.</span>
       <div class="code-wrap" data-code="build" data-tag="terminal"></div>
       <div class="code-wrap" data-code="open-site" data-tag="terminal"></div>
-      <span>No sumário, “Anexar um recibo” aparece dentro de “Relatório de despesas”, entre as duas outras páginas.</span></div></li>
+      <span>No sumário, “Anexar um recibo” aparece dentro do concept (“O que é um relatório de despesas”), entre as duas outras páginas.</span></div></li>
     <li><div><b>Salve a versão</b><span>Rode os dois comandos, um de cada vez.</span>
       <div class="code-wrap" data-code="g-add" data-tag="terminal"></div>
       <div class="code-wrap" data-code="g-commit-task2" data-tag="terminal"></div>
@@ -1720,15 +1720,32 @@ Fast-forward
    8e9f0a1..2a3b4c5  main -&gt; main</pre></div></div></li>
     <li><div><b>Confira no GitHub</b><span>Abra a página do repositório e atualize. O README aparece formatado abaixo da lista de arquivos.</span></div></li>
   </ol>
+  <div class="callout c-result"><b>O que você deve ver</b><p>Na página do repositório no GitHub, o README aparece abaixo da lista de arquivos, com títulos e listas formatados. O link do site, na última linha, abre a sua central de ajuda.</p></div>
   <div class="callout c-warn"><b>Deu errado?</b><ul>
     <li><strong>O README aparece como texto corrido, sem títulos.</strong> O arquivo foi salvo com outro final, como <code>README.txt</code>. Renomeie para <code>README.md</code>, faça o commit e o push.</li>
     <li><strong>O link do site no README não abre.</strong> Faltou trocar <code>SEU-USUARIO</code>. Corrija, salve, faça o commit e o push.</li>
   </ul></div>
 
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── .git/
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── tarefa-anexar-recibo.dita
+├── ref-limites.dita
+├── avisos.dita
+├── glossario-reembolso.dita
+├── glossario-recibo.dita
+├── glossario-gestor.dita
+├── guia.ditamap
+├── README.md                      <span class="d">← novo</span>
+└── docs/</div>
+
   <h2>Confira a entrega</h2>
   <div class="prose"><p>Marque cada item depois de conferir. As marcas ficam salvas neste navegador.</p></div>
   <ul class="checklist" id="checklist">
-    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, sem erros na aba Problems</label></li>
+    <li><label><input type="checkbox" id="ck-1">1 concept, 2 tasks e 1 reference, e o site gera sem mensagens de <code>ERROR</code></label></li>
     <li><label><input type="checkbox" id="ck-2">O mesmo aviso, com conref, nas 2 tasks</label></li>
     <li><label><input type="checkbox" id="ck-3">Glossário com 3 termos</label></li>
     <li><label><input type="checkbox" id="ck-4">Mapa com hierarquia e site gerado em <code>docs/</code></label></li>
