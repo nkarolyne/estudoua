@@ -43,7 +43,7 @@
   <p class="l-eyebrow">Curso para Content Designers e UX Writers</p>
   <h1>DITA do zero</h1>
   <p class="l-goal">Documentação estruturada para quem já escreve bem: a lógica, o XML, o DITA, o versionamento e o trabalho de UA dentro do SAP. Uma página por vez, com prática em cada etapa.</p>
-  <div class="cover-meta"><span><b>43</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
+  <div class="cover-meta"><span><b>44</b> páginas curtas</span><span><b>7 a 9</b> horas no total</span><span><b>0</b> programação necessária</span></div>
   <div class="modules">
     <div class="mcard"><span class="k">Introdução</span><b>A lógica</b><span>Do UX Writing à User Assistance.</span></div>
     <div class="mcard"><span class="k">Módulo 1</span><b>XML</b><span>A linguagem das etiquetas.</span></div>
@@ -754,14 +754,43 @@ git push</pre></div></div></li>
 <section class="lesson" data-id="2-8" data-mod="2" data-short="Reúso com conref" hidden>
   <p class="l-eyebrow">Módulo 2 · DITA</p>
   <h1>Reúso com conref</h1>
-  <p class="l-goal">Escrever um aviso uma vez e usá-lo em vários tópicos.</p>
-  <div class="prose"><p>Quando um trecho se repete, como uma regra ou um aviso legal, ele fica num arquivo só. Os outros tópicos apontam para ele. Mudou a regra? Você edita um lugar e todos se atualizam.</p></div>
-  <h2>Passo 1. Crie a fonte, com um id no trecho</h2>
+  <p class="l-goal">Escrever um aviso uma vez e usar o mesmo aviso em vários tópicos.</p>
+
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>Alguns trechos se repetem em muitos tópicos: uma regra, um aviso legal, um lembrete. Em vez de copiar e colar, você guarda o trecho num arquivo só e os outros tópicos apontam para ele. Quando a regra muda, você edita um lugar e todos os tópicos mudam juntos.</p>
+    <p>Esse apontamento se chama <strong>conref</strong>, de <em>content reference</em> (referência de conteúdo). O tópico guarda só o endereço do trecho. O texto de verdade fica no outro arquivo.</p>
+  </div>
+
+  <h3>O arquivo que guarda os trechos</h3>
   <div class="code-wrap" data-code="avisos" data-tag="avisos.dita"></div>
-  <h2>Passo 2. Aponte para ela de qualquer tópico</h2>
-  <div class="code-wrap" data-code="conref-use" data-tag="dentro de uma task"></div>
-  <div class="prose"><p>Leia o endereço assim: <code>avisos.dita</code> (o arquivo) <code>#avisos</code> (o id do tópico) <code>/recibo</code> (o id do trecho).</p></div>
-  <h2>Passo 3. Veja funcionando</h2>
+  <div class="prose"><p>Repare nos dois <strong>ids</strong>. Um id é um nome único dado a um elemento, como a etiqueta com nome numa gaveta. O tópico tem <code>id="avisos"</code> (na linha <code>&lt;topic&gt;</code>) e o aviso tem <code>id="recibo"</code> (na linha <code>&lt;note&gt;</code>). É por esses nomes que o conref encontra o trecho.</p></div>
+
+  <h3>Como ler o endereço</h3>
+  <div class="code-wrap" data-code="conref-use" data-tag="o conref"></div>
+  <div class="flow">
+    <div class="st"><em>1 · antes do #</em><b>avisos.dita</b><span>O arquivo onde está o trecho. Ele fica na mesma pasta do projeto.</span></div>
+    <div class="st"><em>2 · entre # e /</em><b>avisos</b><span>O id do tópico, na linha <code>&lt;topic id="avisos"&gt;</code>.</span></div>
+    <div class="st"><em>3 · depois da /</em><b>recibo</b><span>O id do trecho, na linha <code>&lt;note id="recibo"&gt;</code>.</span></div>
+  </div>
+  <div class="callout c-analogy"><b>Comparação</b><p>É como um endereço de entrega: cidade, rua e número. O <code>#</code> e a <code>/</code> só separam as partes.</p></div>
+
+  <h3>Por que o avisos.dita não entra no mapa</h3>
+  <div class="prose"><p>O mapa lista as páginas do guia. O <code>avisos.dita</code> é uma gaveta de trechos, e não uma página para ler. Se ele entrasse no mapa, o site ganharia uma página chamada “Avisos reutilizáveis”, sem sentido para quem lê. O conref funciona mesmo assim, porque busca o arquivo direto pelo endereço.</p></div>
+
+  <h3>Por que o aviso fica dentro de &lt;context&gt;</h3>
+  <div class="prose">
+    <p>Na task, cada parte tem um lugar fixo, sempre nesta ordem:</p>
+    <ol>
+      <li><code>&lt;prereq&gt;</code>: o que a pessoa precisa antes de começar.</li>
+      <li><code>&lt;context&gt;</code>: por que ou quando fazer a tarefa.</li>
+      <li><code>&lt;steps&gt;</code>: os passos.</li>
+      <li><code>&lt;result&gt;</code>: o que acontece no fim.</li>
+    </ol>
+    <p>Um <code>&lt;note&gt;</code> não pode ficar solto entre essas partes. Ele precisa estar dentro de uma delas. O aviso explica uma regra antes dos passos, então o lugar dele é o <code>&lt;context&gt;</code>, logo depois do <code>&lt;prereq&gt;</code>.</p>
+  </div>
+
+  <h3>Veja funcionando</h3>
   <div class="reuse">
     <label for="reuse-in">Edite o aviso na fonte (avisos.dita)</label>
     <input id="reuse-in" type="text" value="Guarde o recibo original por 5 anos.">
@@ -770,50 +799,204 @@ git push</pre></div></div></li>
       <div class="reuse-card"><b>Anexar um recibo</b><span>1. Tire uma foto do recibo. 2. Toque em Anexar.</span><aside class="pv-note"><strong>Importante:</strong> <span data-reuse></span></aside><span class="src">conref → avisos.dita#avisos/recibo</span></div>
     </div>
   </div>
-  <div class="callout c-do"><b>Faça agora no VS Code</b><ol><li>Crie <code>avisos.dita</code> com o código do passo 1.</li><li>Na sua task, logo depois de <code>&lt;/prereq&gt;</code>, cole: <code>&lt;context&gt;&lt;note conref="avisos.dita#avisos/recibo"/&gt;&lt;/context&gt;</code></li></ol></div>
-  <div class="callout c-sum"><b>Você aprendeu</b><p>conref puxa um trecho de outro arquivo pelo id. É o vocabulário controlado aplicado a frases inteiras.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o projeto no VS Code</b><span>Abra o VS Code. Se a pasta <code>central-ajuda-despesas</code> não aparecer no Explorer (a lista de arquivos à esquerda), use <em>File → Open Folder</em> e escolha a pasta.</span></div></li>
+    <li><div><b>Crie o arquivo avisos.dita</b><span>No Explorer, passe o mouse sobre o nome da pasta e clique no ícone de novo arquivo (a folha com um +). Digite <code>avisos.dita</code>, tudo em minúsculas, e aperte Enter. O arquivo abre vazio.</span></div></li>
+    <li><div><b>Cole o conteúdo e salve</b><span>Clique em <em>Copiar</em> no bloco abaixo. Clique dentro do arquivo vazio, cole com <kbd>Cmd</kbd>+<kbd>V</kbd> e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="avisos" data-tag="avisos.dita"></div></div></li>
+    <li><div><b>Abra a sua task</b><span>No Explorer, clique em <code>tarefa-enviar-relatorio.dita</code>.</span></div></li>
+    <li><div><b>Ache a linha do prereq</b><span>Aperte <kbd>Cmd</kbd>+<kbd>F</kbd> e digite <code>prereq</code>. O VS Code destaca a linha que começa com <code>&lt;prereq&gt;</code>. Aperte <kbd>Esc</kbd> para fechar a busca.</span></div></li>
+    <li><div><b>Abra uma linha nova logo abaixo</b><span>Clique no fim dessa linha, depois de <code>&lt;/prereq&gt;</code>, e aperte Enter.</span></div></li>
+    <li><div><b>Cole o bloco do aviso e salve</b><span>Copie o bloco abaixo, cole na linha nova e salve com <kbd>Cmd</kbd>+<kbd>S</kbd>.</span>
+      <div class="code-wrap" data-code="conref-context" data-tag="cole abaixo do &lt;/prereq&gt;"></div></div></li>
+    <li><div><b>Arrume o recuo</b><span>Se as linhas ficaram tortas, aperte <kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>. O VS Code alinha o arquivo sozinho. Salve de novo.</span></div></li>
+  </ol>
+
+  <h3>Como deve ficar</h3>
+  <div class="prose"><p>O trecho da task, com a linha de antes e a linha de depois:</p></div>
+  <div class="code-wrap" data-code="task-conref-snip" data-tag="tarefa-enviar-relatorio.dita · trecho"></div>
+  <div class="prose"><p>O arquivo completo, para conferir linha por linha:</p></div>
+  <div class="code-wrap" data-code="task-conref-full" data-tag="tarefa-enviar-relatorio.dita · completo" data-lines="1"></div>
+
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>No VS Code, a task mostra só a linha com o endereço. O texto do aviso não aparece ali, e isso é normal: o VS Code mostra o arquivo do jeito que ele foi escrito.</li>
+    <li>Quem troca o endereço pelo texto é a “gráfica”, o DITA-OT. Você vai ver o aviso dentro da task na página 2.9b, quando gerar o site.</li>
+    <li>Na aba <em>Problems</em> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>) não deve aparecer nenhum erro novo nesses dois arquivos.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong>Sublinhado vermelho na task.</strong> Quase sempre o bloco foi colado no lugar errado. Confira se o <code>&lt;context&gt;</code> está depois do <code>&lt;/prereq&gt;</code> e antes do <code>&lt;steps&gt;</code>. Se não estiver, recorte o bloco com <kbd>Cmd</kbd>+<kbd>X</kbd> e cole no lugar certo.</li>
+    <li><strong>O arquivo se chama Avisos.dita ou avisos.dita.txt.</strong> Clique com o botão direito no arquivo, escolha <em>Rename</em> e deixe <code>avisos.dita</code>. O nome precisa ser idêntico ao do endereço.</li>
+    <li><strong>Mudei um id.</strong> O endereço precisa bater com os ids do <code>avisos.dita</code>. Se lá está <code>id="recibos"</code>, o conref precisa terminar em <code>/recibos</code>.</li>
+    <li><strong>Colei o código do avisos.dita dentro da task.</strong> Desfaça com <kbd>Cmd</kbd>+<kbd>Z</kbd>. Cada código vai para o seu arquivo: o do passo 3 no <code>avisos.dita</code> e o do passo 7 na task.</li>
+  </ul></div>
+
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita   <span class="d">← editado</span>
+├── ref-limites.dita
+├── guia.ditamap
+└── avisos.dita                    <span class="d">← novo</span></div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O conref puxa um trecho de outro arquivo pelo endereço <code>arquivo#id-do-tópico/id-do-trecho</code>. É o vocabulário controlado aplicado a frases inteiras.</p></div>
 </section>
 
-<section class="lesson" data-id="2-9" data-mod="2" data-short="Gerar o site" hidden>
-  <p class="l-eyebrow">Módulo 2 · No seu computador</p>
+<section class="lesson" data-id="2-9" data-mod="2" data-short="Instalar Java e DITA-OT" hidden>
+  <p class="l-eyebrow">Módulo 2 · No seu computador (Mac)</p>
+  <h1>Instale a gráfica: Java e DITA-OT</h1>
+  <p class="l-goal">Deixar o Mac pronto para transformar seus arquivos num site.</p>
+
+  <h2>Entenda</h2>
+  <div class="prose">
+    <p>O <strong>DITA-OT</strong> (DITA Open Toolkit) é o programa que lê seus tópicos e gera o site. É a “gráfica” do curso. Para funcionar, ele precisa do <strong>Java</strong>, um programa que faz outros programas rodarem. Pense no Java como a tomada onde a gráfica é ligada.</p>
+    <p>Você vai usar o <strong>terminal</strong>: uma janela onde você digita ordens para o computador, em vez de clicar. Cada ordem se chama <strong>comando</strong>. “Rodar um comando” é colar ou digitar o comando e apertar Enter. O Módulo 3 explica o terminal com mais calma.</p>
+    <p>São três partes, nesta ordem: instalar o Java, instalar o DITA-OT e avisar o Mac onde o DITA-OT está.</p>
+  </div>
+  <div class="callout c-warn"><b>Esta é a parte mais técnica do curso</b><p>Siga na ordem, um passo por vez. Se travar, pule para o Módulo 3 e volte depois. O Git não depende desta página.</p></div>
+
+  <h2>Faça no seu computador</h2>
+  <h3>Parte A · Java</h3>
+  <ol class="how">
+    <li><div><b>Abra o terminal no VS Code</b><span>Com a pasta do projeto aberta, clique no menu <em>Terminal → New Terminal</em>. Um painel abre embaixo, com uma linha que termina num cursor piscando. É ali que você cola os comandos.</span></div></li>
+    <li><div><b>Teste se o Java já existe</b><span>Copie o comando abaixo, clique no terminal, cole com <kbd>Cmd</kbd>+<kbd>V</kbd> e aperte Enter.</span>
+      <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
+      <span>Se o Java <strong>não</strong> estiver instalado, aparece esta mensagem. Siga para o passo 3.</span>
+      <div class="code-wrap"><span class="code-tag">saída · sem Java</span><pre class="code">The operation couldn’t be completed. Unable to locate a Java Runtime.
+Please visit http://www.java.com for information on installing Java.</pre></div>
+      <span>Se aparecer uma linha começando com <code>openjdk version</code> e um número 17 ou maior, o Java já está pronto. Pule para a Parte B.</span></div></li>
+    <li><div><b>Descubra o chip do seu Mac</b><span>Clique no menu Apple (o ícone da maçã) no canto superior esquerdo da tela e escolha <em>Sobre Este Mac</em>. Veja a linha <em>Chip</em> ou <em>Processador</em>. Se disser Apple M1, M2, M3 ou M4, o seu Mac é <strong>aarch64</strong>. Se disser Intel, é <strong>x64</strong>. Anote.</span></div></li>
+    <li><div><b>Baixe o Java (Temurin)</b><span>Acesse <a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a>. O site costuma detectar o seu Mac e mostrar um botão de download da versão LTS mais recente. LTS quer dizer versão com suporte longo, a mais estável. Baixe o arquivo que termina em <code>.pkg</code> e tem no nome <code>mac</code> e o tipo do seu chip (<code>aarch64</code> ou <code>x64</code>). É gratuito.</span></div></li>
+    <li><div><b>Instale</b><span>Abra a pasta Downloads no Finder e dê dois cliques no arquivo <code>.pkg</code>. Clique em <em>Continuar</em> em cada tela e depois em <em>Instalar</em>. O Mac pede a senha que você usa para entrar no computador.</span></div></li>
+    <li><div><b>Feche e abra o terminal</b><span>O terminal só enxerga programas novos quando abre. No painel do terminal, clique no ícone de lixeira para fechá-lo. Depois abra de novo em <em>Terminal → New Terminal</em>.</span></div></li>
+    <li><div><b>Teste de novo</b><span>Rode o mesmo comando do passo 2.</span>
+      <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · os números podem ser outros</span><pre class="code">openjdk version "21.0.5" 2024-10-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.5+11 (build 21.0.5+11-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.5+11 (build 21.0.5+11-LTS, mixed mode)</pre></div>
+      <span>O que importa é a primeira linha: <code>openjdk version</code> e um número 17 ou maior. Isso quer dizer que o Java está instalado.</span></div></li>
+  </ol>
+
+  <h3>Parte B · DITA-OT</h3>
+  <ol class="how">
+    <li><div><b>Baixe o DITA-OT</b><span>Acesse <a href="https://www.dita-ot.org/download" target="_blank" rel="noopener">dita-ot.org/download</a> e baixe a versão mais recente, o arquivo <code>.zip</code>. O nome é parecido com <code>dita-ot-4.3.4.zip</code>.</span></div></li>
+    <li><div><b>Extraia o zip</b><span>No Finder, abra Downloads e dê dois cliques no zip. Aparece uma pasta com o mesmo nome, sem o <code>.zip</code>.</span></div></li>
+    <li><div><b>Renomeie a pasta para dita-ot</b><span>Clique uma vez na pasta nova, aperte Enter, apague o nome, digite <code>dita-ot</code> e aperte Enter. Tire o número da versão: o nome precisa ser exatamente <code>dita-ot</code>.</span></div></li>
+    <li><div><b>Mova a pasta para a sua pasta de usuário</b><span>A pasta de usuário é a que tem o seu nome e guarda Documentos e Downloads. No terminal, o símbolo <code>~</code> é um atalho para ela. Rode o comando abaixo. Ele move a pasta e não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="mv-dita" data-tag="terminal"></div></div></li>
+    <li><div><b>Confira se a pasta chegou</b><span>O comando <code>ls</code> lista o que tem dentro de uma pasta.</span>
+      <div class="code-wrap" data-code="ls-dita" data-tag="terminal"></div>
+      <span>Deve aparecer uma lista de nomes. Confira se <code>bin</code>, <code>lib</code> e <code>plugins</code> estão nela. A ordem e os outros nomes podem variar.</span></div></li>
+  </ol>
+
+  <h3>Parte C · Avise o Mac onde está o DITA-OT</h3>
+  <div class="prose"><p>Quando você digita <code>dita</code>, o Mac procura um programa com esse nome numa lista de pastas. Essa lista se chama <strong>PATH</strong>. Hoje a pasta do DITA-OT não está nela. O comando abaixo acrescenta a pasta <code>~/dita-ot/bin</code> na lista. Ele grava uma linha no arquivo <code>.zshrc</code>, um arquivo de configurações do terminal que fica escondido na sua pasta de usuário.</p></div>
+  <ol class="how">
+    <li><div><b>Acrescente a pasta no PATH</b><span>Rode o comando abaixo uma vez só. Ele não mostra nenhuma mensagem.</span>
+      <div class="code-wrap" data-code="path-mac" data-tag="terminal · uma vez só"></div></div></li>
+    <li><div><b>Feche e abra o terminal</b><span>Clique na lixeira do painel do terminal e abra outro em <em>Terminal → New Terminal</em>. O terminal novo lê o PATH atualizado.</span></div></li>
+    <li><div><b>Pergunte onde está o dita</b><span>O comando <code>which</code> mostra em que pasta o Mac encontrou um programa.</span>
+      <div class="code-wrap" data-code="which-dita" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · com o seu nome de usuário</span><pre class="code">/Users/seu-usuario/dita-ot/bin/dita</pre></div></div></li>
+    <li><div><b>Veja a versão do DITA-OT</b><span>Rode o comando abaixo.</span>
+      <div class="code-wrap" data-code="dita-test" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · o número pode ser outro</span><pre class="code">DITA-OT version 4.3.4</pre></div>
+      <span>Se apareceu um número de versão, a gráfica está pronta.</span></div></li>
+  </ol>
+
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li><code>java -version</code> mostra <code>openjdk version</code> com um número 17 ou maior.</li>
+    <li><code>which dita</code> mostra um caminho que termina em <code>dita-ot/bin/dita</code>.</li>
+    <li><code>dita --version</code> mostra um número de versão.</li>
+    <li>A pasta do projeto não muda nesta página. Você só instalou programas no Mac.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>zsh: command not found: dita</code></strong>. Rode <code>ls ~/dita-ot</code>. Se aparecer “No such file or directory”, a pasta não está no lugar certo ou tem outro nome: refaça os passos de renomear e mover. Se a lista aparecer, refaça a Parte C e não esqueça de fechar e abrir o terminal.</li>
+    <li><strong><code>permission denied</code></strong>. O Mac não deixou o arquivo rodar. Rode <code>chmod +x ~/dita-ot/bin/dita</code> (o <code>chmod +x</code> marca o arquivo como programa) e tente de novo.</li>
+    <li><strong>Continua aparecendo “Unable to locate a Java Runtime” depois de instalar.</strong> Feche e abra o terminal. Se continuar, baixe de novo o <code>.pkg</code> e confira se o tipo do chip no nome do arquivo bate com o do seu Mac.</li>
+    <li><strong>Rodei o comando do PATH duas vezes.</strong> Não estraga nada. A linha fica repetida no <code>.zshrc</code> e funciona igual.</li>
+  </ul></div>
+
+  <h3>Arquivos agora</h3>
+  <div class="tree"><span class="d">sua pasta de usuário/</span>
+├── dita-ot/                       <span class="d">← novo (a gráfica)</span>
+└── Documents/
+    └── central-ajuda-despesas/    <span class="d">sem mudanças nesta página</span>
+        ├── nota-versao.xml
+        ├── conceito-relatorio.dita
+        ├── tarefa-enviar-relatorio.dita
+        ├── ref-limites.dita
+        ├── guia.ditamap
+        └── avisos.dita</div>
+  <div class="callout c-sum"><b>Você aprendeu</b><p>O DITA-OT precisa do Java. O PATH é a lista de pastas onde o Mac procura programas. Depois de mudar o PATH, feche e abra o terminal.</p></div>
+</section>
+
+<section class="lesson" data-id="2-9b" data-mod="2" data-short="Gerar o site" hidden>
+  <p class="l-eyebrow">Módulo 2 · No seu computador (Mac)</p>
   <h1>Gere o site de verdade</h1>
-  <p class="l-goal">Instalar a “gráfica” (DITA-OT) no Mac e transformar seus arquivos num site.</p>
-  <div class="callout c-warn"><b>Esta é a parte mais técnica do curso</b><p>Vá com calma e siga na ordem. Se algo der errado, veja “Problemas comuns” no fim da página. Se travar, pule para o Módulo 3 e volte depois.</p></div>
-  <h2>Parte A · Instale o Java</h2>
-  <ol class="how">
-    <li><div><b>Teste se já existe</b><span>No VS Code, abra o terminal com <kbd>Ctrl</kbd>+<kbd>`</kbd> e rode o comando abaixo. Se aparecer versão 17 ou maior, pule para a Parte B.</span></div></li>
-    <li><div><b>Baixe o Temurin</b><span>O DITA-OT precisa do Java 17 ou mais novo. Acesse <a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a> e baixe a versão LTS recomendada para macOS (arquivo <code>.pkg</code>). É gratuito.</span></div></li>
-    <li><div><b>Instale e teste de novo</b><span>Abra o <code>.pkg</code> e avance até o fim. Feche e abra o terminal e rode o teste outra vez.</span></div></li>
-  </ol>
-  <div class="code-wrap" data-code="java-test" data-tag="terminal"></div>
-  <h2>Parte B · Instale o DITA-OT</h2>
-  <ol class="how">
-    <li><div><b>Baixe</b><span>Acesse <a href="https://www.dita-ot.org/download" target="_blank" rel="noopener">dita-ot.org/download</a> e baixe o arquivo <code>.zip</code>.</span></div></li>
-    <li><div><b>Extraia e renomeie</b><span>Dê dois cliques no zip para extrair. Renomeie a pasta para <code>dita-ot</code> (sem o número da versão).</span></div></li>
-    <li><div><b>Mova para a sua pasta de usuário</b><span>No Finder, use <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd> para abrir a pasta com o seu nome e arraste <code>dita-ot</code> para lá.</span></div></li>
-    <li><div><b>Avise o Mac onde ela está (PATH)</b><span>O PATH é a lista de pastas onde o Mac procura programas. Rode no terminal o comando abaixo, uma vez só. Ele acrescenta a pasta <code>dita-ot/bin</code> nessa lista.</span></div></li>
-    <li><div><b>Feche e abra o terminal</b><span>O PATH só é lido quando o terminal abre. Feche o painel e abra de novo com <kbd>Ctrl</kbd>+<kbd>`</kbd>.</span></div></li>
-    <li><div><b>Teste</b><span>Digite <code>dita --version</code>. Deve aparecer um número.</span></div></li>
-  </ol>
-  <div class="code-wrap" data-code="path-mac" data-tag="terminal · uma vez só"></div>
-  <h2>Parte C · Gere o site</h2>
-  <ol class="how">
-    <li><div><b>Confira os arquivos</b><span>Na pasta do projeto você deve ter: <code>conceito-relatorio.dita</code>, <code>tarefa-enviar-relatorio.dita</code>, <code>ref-limites.dita</code>, <code>avisos.dita</code> e <code>guia.ditamap</code>.</span></div></li>
-    <li><div><b>Rode o comando</b><span>No terminal do VS Code (que já abre na pasta do projeto), digite o comando abaixo e aperte Enter. Leva alguns segundos.</span></div></li>
-    <li><div><b>Abra o resultado</b><span>Apareceu a pasta <code>docs</code>. Clique com o botão direito em <code>docs/index.html</code> → <em>Reveal in Finder</em> e abra o arquivo no navegador.</span></div></li>
-  </ol>
-  <div class="code-wrap" data-code="build" data-tag="terminal"></div>
-  <div class="prose"><p>Lendo o comando: <code>dita</code> é o programa, <code>-i</code> é a entrada (seu mapa), <code>-f</code> é o formato (html5) e <code>-o</code> é a pasta de saída. Quer PDF também? Acrescente <code>-f pdf</code>.</p></div>
-  <h2>Problemas comuns</h2>
+  <p class="l-goal">Transformar seus tópicos num site com sumário e ver o aviso do conref no lugar certo.</p>
+
+  <h2>Entenda</h2>
+  <div class="prose"><p>Um comando só faz o trabalho todo. O DITA-OT lê o mapa, junta os tópicos na ordem do sumário, troca cada conref pelo texto de verdade e cria uma pasta com o site pronto.</p></div>
+  <div class="code-wrap" data-code="build" data-tag="o comando"></div>
   <div class="scroll-x"><table class="tbl">
-    <thead><tr><th>Mensagem</th><th>O que fazer</th></tr></thead>
+    <thead><tr><th>Parte</th><th>O que quer dizer</th></tr></thead>
     <tbody>
-      <tr><td>“command not found: dita”</td><td>O PATH não está certo, ou o terminal não foi reaberto. Confira se a pasta se chama exatamente <code>dita-ot</code> e está na sua pasta de usuário. Refaça os passos 4 e 5.</td></tr>
-      <tr><td>“permission denied”</td><td>Rode <code>chmod +x ~/dita-ot/bin/dita</code> e tente de novo.</td></tr>
-      <tr><td>Erro falando de Java ou versão</td><td>O Java está desatualizado. Instale o Temurin 17 ou mais novo.</td></tr>
-      <tr><td>Erro com nome de arquivo e número de linha</td><td>É um erro no seu XML. Abra o arquivo e confira a linha, como no Módulo 1.</td></tr>
+      <tr><td><code>dita</code></td><td>O programa, a gráfica.</td></tr>
+      <tr><td><code>-i guia.ditamap</code></td><td>A entrada (<em>input</em>): o mapa que diz quais tópicos entram.</td></tr>
+      <tr><td><code>-f html5</code></td><td>O formato da saída. <code>html5</code> é site. Para PDF, troque por <code>pdf</code>.</td></tr>
+      <tr><td><code>-o docs</code></td><td>A pasta de saída (<em>output</em>), onde o site é criado. O nome <code>docs</code> é o que o GitHub usa para publicar o site no Módulo 3.</td></tr>
     </tbody>
   </table></div>
+
+  <h2>Faça no seu computador</h2>
+  <ol class="how">
+    <li><div><b>Abra o terminal no VS Code</b><span>Com a pasta do projeto aberta, use <em>Terminal → New Terminal</em>.</span></div></li>
+    <li><div><b>Confira se está na pasta do projeto</b><span>O comando <code>pwd</code> mostra em qual pasta o terminal está.</span>
+      <div class="code-wrap" data-code="cmd-pwd" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada</span><pre class="code">/Users/seu-usuario/Documents/central-ajuda-despesas</pre></div>
+      <span>Se o caminho terminar em outra pasta, feche o VS Code, abra de novo com <em>File → Open Folder</em> escolhendo <code>central-ajuda-despesas</code> e abra um terminal novo.</span></div></li>
+    <li><div><b>Confira os arquivos</b><span>O comando <code>ls</code> lista os arquivos da pasta.</span>
+      <div class="code-wrap" data-code="cmd-ls" data-tag="terminal"></div>
+      <div class="code-wrap"><span class="code-tag">saída esperada · a arrumação das colunas pode variar</span><pre class="code">avisos.dita                  nota-versao.xml
+conceito-relatorio.dita      ref-limites.dita
+guia.ditamap                 tarefa-enviar-relatorio.dita</pre></div>
+      <span>Se faltar algum arquivo, volte à página onde ele foi criado (2.4 a 2.8).</span></div></li>
+    <li><div><b>Gere o site</b><span>Rode o comando abaixo e espere. Pode levar de alguns segundos a um minuto. Ele terminou quando a linha com o cursor piscando aparece de novo.</span>
+      <div class="code-wrap" data-code="build" data-tag="terminal"></div>
+      <span>Se tudo deu certo, o terminal mostra pouca coisa ou nada. Mensagens com a palavra <code>ERROR</code> indicam problema: veja “Deu errado?”.</span></div></li>
+    <li><div><b>Veja a pasta nova</b><span>No Explorer do VS Code apareceu a pasta <code>docs</code>. Clique na setinha ao lado dela: dentro há um <code>index.html</code> e uma página para cada tópico.</span></div></li>
+    <li><div><b>Abra o site no navegador</b><span>O comando <code>open</code> abre um arquivo no programa padrão do Mac. Para um <code>.html</code>, é o navegador.</span>
+      <div class="code-wrap" data-code="open-site" data-tag="terminal"></div></div></li>
+    <li><div><b>Ache o aviso</b><span>No site, clique em “Enviar um relatório de despesas”. Procure o texto “Guarde o recibo original por 5 anos.” antes dos passos. Ele veio do <code>avisos.dita</code> pelo conref.</span></div></li>
+  </ol>
+
+  <div class="callout c-result"><b>O que você deve ver</b><ul>
+    <li>Uma página inicial com o sumário: “Relatório de despesas” e, dentro dele, a task e a reference.</li>
+    <li>Na página da task, o aviso do recibo aparece em destaque antes dos passos.</li>
+    <li>Não existe página “Avisos reutilizáveis”, porque o <code>avisos.dita</code> não está no mapa.</li>
+    <li>Alguns títulos e rótulos criados pelo DITA-OT podem aparecer em inglês. Isso é normal: o DITA-OT usa inglês quando os arquivos não dizem o idioma.</li>
+  </ul></div>
+  <div class="callout c-warn"><b>Deu errado?</b><ul>
+    <li><strong><code>zsh: command not found: dita</code></strong>. A instalação da página 2.9 não terminou. Volte à Parte C de lá.</li>
+    <li><strong>Erro com nome de arquivo e número de linha.</strong> É um erro no XML daquele arquivo. Abra o arquivo, vá até a linha (<kbd>Ctrl</kbd>+<kbd>G</kbd> e digite o número) e confira, como no Módulo 1.</li>
+    <li><strong>Erro que cita <code>avisos.dita</code> ou o endereço do conref.</strong> O nome do arquivo ou um dos ids não bate com o endereço. Veja o “Deu errado?” da página 2.8.</li>
+    <li><strong>O site abriu, mas o aviso não aparece.</strong> A task talvez não esteja salva. Uma bolinha branca na aba do arquivo quer dizer “não salvo”. Salve com <kbd>Cmd</kbd>+<kbd>S</kbd> e rode o comando de gerar de novo.</li>
+  </ul></div>
+  <div class="callout c-analogy"><b>Mudou um tópico?</b><p>O site não se atualiza sozinho. Sempre que mudar um tópico, rode o comando de gerar de novo. Ele substitui a pasta <code>docs</code> inteira. Por isso, nunca edite os arquivos dentro de <code>docs</code>: edite os <code>.dita</code> e gere de novo.</p></div>
+
+  <h3>Arquivos na pasta agora</h3>
+  <div class="tree"><span class="d">central-ajuda-despesas/</span>
+├── nota-versao.xml
+├── conceito-relatorio.dita
+├── tarefa-enviar-relatorio.dita
+├── ref-limites.dita
+├── guia.ditamap
+├── avisos.dita
+└── docs/                          <span class="d">← novo (site gerado, não edite)</span>
+    ├── index.html
+    └── <span class="d">uma página .html para cada tópico</span></div>
   <div class="callout c-result"><b>Resultado do Módulo 2</b><p>Um site de ajuda com sumário, gerado a partir dos seus tópicos. É o mesmo fluxo de um time de documentação real.</p></div>
 </section>
 
@@ -1269,6 +1452,6 @@ git push</pre></div></div></li>
 </div>
 
 
-<script src="assets/curso.js"></script>
+<script src="assets/curso.js?v=2"></script>
 </body>
 </html>

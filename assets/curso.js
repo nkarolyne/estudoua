@@ -46,6 +46,16 @@
     'gloss': '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE glossentry PUBLIC "-//OASIS//DTD DITA Glossary Entry//EN" "glossentry.dtd">\n<glossentry id="reembolso">\n  <glossterm>Reembolso</glossterm>\n  <glossdef>Pagamento que devolve ao funcionário o valor gasto a trabalho.</glossdef>\n</glossentry>',
     'abap-msg': 'MESSAGE e001(zdespesas) WITH lv_limite.',
     'abap-prazo': '* Despesas antigas demais não podem ser enviadas\nIF ls_despesa-data < lv_data_minima.\n  MESSAGE e003(zdespesas) WITH ls_despesa-data lv_prazo.\nENDIF.',
+    'conref-context': "    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>",
+    'task-conref-snip': "    <prereq>Todas as despesas precisam ter um recibo anexado.</prereq>\n    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>\n    <steps>",
+    'task-conref-full': "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE task PUBLIC \"-//OASIS//DTD DITA Task//EN\" \"task.dtd\">\n<task id=\"enviar-relatorio\">\n  <title>Enviar um relatório de despesas</title>\n  <shortdesc>Envie o relatório para que seu gestor possa aprovar o reembolso.</shortdesc>\n  <taskbody>\n    <prereq>Todas as despesas precisam ter um recibo anexado.</prereq>\n    <context>\n      <note conref=\"avisos.dita#avisos/recibo\"/>\n    </context>\n    <steps>\n      <step>\n        <cmd>Abra o relatório em <uicontrol>Meus relatórios</uicontrol>.</cmd>\n      </step>\n      <step>\n        <cmd>Confira o valor total.</cmd>\n        <info>Se algum valor estiver errado, edite a despesa antes de enviar.</info>\n      </step>\n      <step>\n        <cmd>Anexe os recibos que faltam.</cmd>\n      </step>\n      <step>\n        <cmd>Clique em <uicontrol>Enviar</uicontrol>.</cmd>\n        <stepresult>O status muda para Enviado.</stepresult>\n      </step>\n    </steps>\n    <result>Seu gestor recebe uma notificação para aprovar.</result>\n  </taskbody>\n</task>",
+    'mv-dita': "mv ~/Downloads/dita-ot ~/dita-ot",
+    'ls-dita': "ls ~/dita-ot",
+    'which-dita': "which dita",
+    'dita-test': "dita --version",
+    'cmd-pwd': "pwd",
+    'cmd-ls': "ls",
+    'open-site': "open docs/index.html",
     'readme': '# Central de Ajuda: Relatório de Despesas\n\nProjeto de estudo de documentação estruturada em DITA.\n\n## O que tem aqui\n- 1 concept, 2 tasks e 1 reference\n- Aviso reutilizado com conref\n- Glossário com glossentry\n- Site gerado com DITA-OT (pasta docs/)\n\n## Decisões de conteúdo\n- Separei explicação (concept) de procedimento (task),\n  para cada página ter um só propósito.\n- Avisos que se repetem ficam em avisos.dita e são reutilizados.\n\n## Como gerar o site\ndita -i guia.ditamap -f html5 -o docs\n\n## Ver online\nhttps://SEU-USUARIO.github.io/central-ajuda-despesas/'
   };
 
@@ -688,7 +698,7 @@
     var c = g.getAttribute('data-complete'); if (c) { done[c] = true; store('done', JSON.stringify(done)); }
     show(g.getAttribute('data-go'));
   });
-  window.addEventListener('hashchange', function () { var m = location.hash.match(/^#l(\d-\d+)$/); if (m) show(m[1], true); });
+  window.addEventListener('hashchange', function () { var m = location.hash.match(/^#l(\d-\d+[a-z]?)$/); if (m) show(m[1], true); });
   openBtn.addEventListener('click', function () { side.classList.add('open'); scrim.hidden = false; openBtn.setAttribute('aria-expanded', 'true'); var c = $('a.is-current', nav); if (c) c.focus(); });
   document.getElementById('close-nav').addEventListener('click', closeNav);
   scrim.addEventListener('click', closeNav);
@@ -714,5 +724,5 @@
     location.reload();
   });
   if (!store('started')) showCover();
-  else show((location.hash.match(/^#l(\d-\d+)$/) || [])[1] || store('last') || ids[0], true);
+  else show((location.hash.match(/^#l(\d-\d+[a-z]?)$/) || [])[1] || store('last') || ids[0], true);
 })();
